@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Called & Equipped!</title>
+    <style>
+        :root {
+            --primary-gold: #D4AF37;
+            --deep-blue: #1B3A57;
+            --cream: #FBF7F0;
+            --charcoal: #2C2C2C;
+            --sage: #7C8471;
+            --light-gold: #F4E5C2;
+            --white: #FFFFFF;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: var(--charcoal);
+            background-color: var(--cream);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            box-shadow: 0 2px 10px var(--shadow);
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--deep-blue);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        /* Main Content */
+        .success-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .success-content {
+            background: var(--white);
+            padding: 4rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px var(--shadow);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .success-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-gold), var(--light-gold), var(--primary-gold));
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: scaleIn 0.5s ease-out;
+        }
+
+        @keyframes scaleIn {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .checkmark svg {
+            width: 40px;
+            height: 40px;
+            stroke: var(--white);
+            stroke-width: 3;
+            fill: none;
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: drawCheck 0.5s ease-out 0.5s forwards;
+        }
+
+        @keyframes drawCheck {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--deep-blue);
+            margin-bottom: 1rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .welcome-message {
+            font-size: 1.2rem;
+            color: var(--sage);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .next-steps {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .next-steps h2 {
+            font-size: 1.5rem;
+            color: var(--deep-blue);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .step-number {
+            background: var(--primary-gold);
+            color: var(--white);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            color: var(--deep-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .step-content p {
+            color: var(--sage);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .email-reminder {
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--primary-gold);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .email-reminder p {
+            color: var(--deep-blue);
+            font-weight: 500;
+        }
+
+        .support-info {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--light-gold);
+            font-size: 0.95rem;
+            color: var(--sage);
+        }
+
+        .support-info a {
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .support-info a:hover {
+            text-decoration: underline;
+        }
+
+        .home-button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background: var(--deep-blue);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .home-button:hover {
+            background: var(--primary-gold);
+            color: var(--deep-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Loading animation */
+        .loading-dots {
+            display: inline-flex;
+            margin-left: 0.5rem;
+        }
+
+        .loading-dots span {
+            width: 8px;
+            height: 8px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+
+        .loading-dots span:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+
+        .loading-dots span:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+
+        @keyframes bounce {
+            0%, 80%, 100% {
+                transform: scale(0);
+            }
+            40% {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .success-content {
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .welcome-message {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">Called & Equipped</a>
+        </div>
+    </nav>
+
+    <!-- Success Content -->
+    <div class="success-container">
+        <div class="success-content">
+            <!-- Animated Checkmark -->
+            <div class="checkmark">
+                <svg viewBox="0 0 52 52">
+                    <path d="M14 27 L22 35 L38 17" />
+                </svg>
+            </div>
+
+            <h1>Welcome to Called & Equipped!</h1>
+            
+            <p class="welcome-message">
+                Your payment was successful, and your transformative journey to discovering your divine purpose begins now. We're honored to walk alongside you in this sacred exploration.
+            </p>
+
+            <!-- Email Reminder Box -->
+            <div class="email-reminder">
+                <p>
+                    📧 <strong>Check your email inbox now!</strong> We've sent your welcome email with important access details and first steps.
+                </p>
+            </div>
+
+            <!-- Next Steps -->
+            <div class="next-steps">
+                <h2>What Happens Next?</h2>
+                
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Check Your Email</h3>
+                        <p>Look for an email from Called & Equipped with your unique access link. This email contains everything you need to begin.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Access Your Materials</h3>
+                        <p>Week 1 content is immediately available! Click the link in your email to access your student portal and begin exploring.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Join the Community</h3>
+                        <p>Connect with fellow participants in our private Facebook group for support, encouragement, and shared insights.</p>
+                    </div>
+                </div>
+            </div>
+
+            <p style="margin-top: 2rem; color: var(--sage);">
+                Your email is being sent now
+                <span class="loading-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </p>
+
+            <!-- Support Information -->
+            <div class="support-info">
+                <p>
+                    <strong>Didn't receive your email?</strong> Please check your spam folder first. 
+                    If you still can't find it after 10 minutes, contact us at 
+                    <a href="mailto:support@calledandequipped.com">support@calledandequipped.com</a>
+                </p>
+                <p style="margin-top: 1rem;">
+                    We're praying for you as you begin this journey of purpose discovery!
+                </p>
+            </div>
+
+            <a href="/" class="home-button">Return to Homepage</a>
+        </div>
+    </div>
+
+    <script>
+        // Check if payment was actually successful by looking for session_id
+        const urlParams = new URLSearchParams(window.location.search);
+        const sessionId = urlParams.get('session_id');
+
+        if (!sessionId) {
+            // If no session_id, they shouldn't be on this page
+            window.location.href = '/';
+        }
+
+        // Optional: Add celebration confetti or other effects
+        setTimeout(() => {
+            console.log('Welcome email has been sent!');
+        }, 3000);
+    </script>
+</body>
+</html>
