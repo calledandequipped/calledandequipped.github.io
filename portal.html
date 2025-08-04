@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal - Called & Equipped</title>
+    <style>
+        :root {
+            --primary-gold: #D4AF37;
+            --deep-blue: #1B3A57;
+            --cream: #FBF7F0;
+            --charcoal: #2C2C2C;
+            --sage: #7C8471;
+            --light-gold: #F4E5C2;
+            --white: #FFFFFF;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --success-green: #4CAF50;
+            --locked-gray: #CCCCCC;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: var(--charcoal);
+            background-color: var(--cream);
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .loading-content {
+            text-align: center;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid var(--light-gold);
+            border-top: 4px solid var(--primary-gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 2rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: var(--deep-blue);
+            color: var(--white);
+            padding: 2rem;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-section {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .logo-section h2 {
+            font-size: 1.5rem;
+            color: var(--primary-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .user-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .user-avatar {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--deep-blue);
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--primary-gold);
+        }
+
+        .nav-icon {
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .header {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: var(--deep-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .breadcrumb {
+            color: var(--sage);
+        }
+
+        /* Progress Overview */
+        .progress-overview {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: var(--light-gold);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-gold);
+            width: 0%;
+            transition: width 1s ease;
+        }
+
+        .progress-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: var(--cream);
+            border-radius: 8px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--deep-blue);
+        }
+
+        .stat-label {
+            color: var(--sage);
+            font-size: 0.9rem;
+        }
+
+        /* Week Cards */
+        .weeks-container {
+            margin-bottom: 2rem;
+        }
+
+        .week-card {
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 2px 10px var(--shadow);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .week-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px var(--shadow);
+        }
+
+        .week-header {
+            background: var(--deep-blue);
+            color: var(--white);
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .week-header.current {
+            background: var(--primary-gold);
+            color: var(--deep-blue);
+        }
+
+        .week-header.locked {
+            background: var(--locked-gray);
+            cursor: not-allowed;
+        }
+
+        .week-number {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .week-title {
+            font-size: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .week-status {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .expand-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .week-card.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .week-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .week-card.expanded .week-content {
+            max-height: 1000px;
+            padding: 1.5rem;
+        }
+
+        .session-list {
+            list-style: none;
+        }
+
+        .session-item {
+            padding: 1rem;
+            border-bottom: 1px solid var(--cream);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .session-item:last-child {
+            border-bottom: none;
+        }
+
+        .session-info {
+            flex: 1;
+        }
+
+        .session-day {
+            font-weight: bold;
+            color: var(--deep-blue);
+            margin-bottom: 0.25rem;
+        }
+
+        .session-title {
+            color: var(--sage);
+            font-size: 0.9rem;
+        }
+
+        .session-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .status-icon.completed {
+            background: var(--success-green);
+            color: var(--white);
+        }
+
+        .status-icon.available {
+            background: var(--primary-gold);
+            color: var(--white);
+        }
+
+        .status-icon.locked {
+            background: var(--locked-gray);
+            color: var(--white);
+        }
+
+        .access-button {
+            padding: 0.5rem 1rem;
+            background: var(--deep-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .access-button:hover {
+            background: var(--primary-gold);
+            color: var(--deep-blue);
+        }
+
+        .access-button.locked {
+            background: var(--locked-gray);
+            cursor: not-allowed;
+        }
+
+        /* Session Content Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal-content {
+            background: var(--white);
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .modal-header {
+            background: var(--deep-blue);
+            color: var(--white);
+            padding: 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--white);
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .resource-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--cream);
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .resource-item {
+            background: var(--cream);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--charcoal);
+            transition: all 0.3s ease;
+        }
+
+        .resource-item:hover {
+            background: var(--light-gold);
+            transform: translateY(-2px);
+        }
+
+        .resource-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1000;
+            background: var(--deep-blue);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.mobile-open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .progress-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Error State */
+        .error-container {
+            display: none;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .error-icon {
+            font-size: 4rem;
+            color: var(--primary-gold);
+            margin-bottom: 1rem;
+        }
+
+        .error-message {
+            font-size: 1.2rem;
+            color: var(--sage);
+            margin-bottom: 2rem;
+        }
+
+        .error-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--deep-blue);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .error-button:hover {
+            background: var(--primary-gold);
+            color: var(--deep-blue);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h2 style="color: var(--deep-blue);">Loading Your Dashboard...</h2>
+            <p style="color: var(--sage);">Preparing your personalized journey</p>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="logo-section">
+            <h2>Called & Equipped</h2>
+            <p style="font-size: 0.9rem; color: var(--light-gold);">Student Portal</p>
+        </div>
+
+        <div class="user-info">
+            <div class="user-avatar" id="userAvatar">--</div>
+            <h3 style="font-size: 1.1rem; margin-bottom: 0.25rem;" id="userName">Loading...</h3>
+            <p style="font-size: 0.9rem; opacity: 0.8;" id="userPlan">--</p>
+        </div>
+
+        <nav>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a class="nav-link active" data-page="dashboard">
+                        <span class="nav-icon">🏠</span>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-page="resources">
+                        <span class="nav-icon">📁</span>
+                        Resources
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.facebook.com/groups/calledandequipped" target="_blank">
+                        <span class="nav-icon">👥</span>
+                        Community
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-page="profile">
+                        <span class="nav-icon">⚙️</span>
+                        Profile Settings
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="logout()">
+                        <span class="nav-icon">🚪</span>
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent" style="display: none;">
+        <!-- Dashboard Page -->
+        <div id="dashboardPage" class="page-content">
+            <!-- Header -->
+            <div class="header">
+                <h1 id="welcomeMessage">Welcome Back!</h1>
+                <p class="breadcrumb" id="breadcrumb">Dashboard</p>
+            </div>
+
+            <!-- Progress Overview -->
+            <div class="progress-overview">
+                <h2 style="color: var(--deep-blue); margin-bottom: 1rem;">Your Journey Progress</h2>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar"></div>
+                </div>
+                <div class="progress-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" id="currentWeek">1</div>
+                        <div class="stat-label">Current Week</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="completedSessions">0</div>
+                        <div class="stat-label">Sessions Completed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="progressPercent">0%</div>
+                        <div class="stat-label">Overall Progress</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="daysRemaining">42</div>
+                        <div class="stat-label">Days Remaining</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course Weeks -->
+            <h2 style="color: var(--deep-blue); margin-bottom: 1.5rem;">Course Content</h2>
+            <div class="weeks-container" id="weeksContainer">
+                <!-- Weeks will be dynamically loaded here -->
+            </div>
+        </div>
+
+        <!-- Resources Page -->
+        <div id="resourcesPage" class="page-content" style="display: none;">
+            <div class="header">
+                <h1>Course Resources</h1>
+                <p class="breadcrumb">Resources</p>
+            </div>
+
+            <div style="background: var(--white); padding: 2rem; border-radius: 10px; box-shadow: 0 2px 10px var(--shadow);">
+                <h2 style="color: var(--deep-blue); margin-bottom: 2rem;">Download Your Materials</h2>
+                
+                <div class="resource-grid">
+                    <a href="#" class="resource-item" onclick="downloadResource('workbook')">
+                        <div class="resource-icon">📘</div>
+                        <h4>Purpose Discovery Workbook</h4>
+                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Complete PDF Guide</p>
+                    </a>
+                    
+                    <a href="#" class="resource-item" onclick="downloadResource('journal')">
+                        <div class="resource-icon">📝</div>
+                        <h4>Reflection Journals</h4>
+                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Weekly Templates</p>
+                    </a>
+                    
+                    <a href="#" class="resource-item" onclick="downloadResource('assessment')">
+                        <div class="resource-icon">🎁</div>
+                        <h4>Gifts Assessment</h4>
+                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Spiritual Gifts Test</p>
+                    </a>
+                    
+                    <a href="#" class="resource-item" onclick="downloadResource('scriptures')">
+                        <div class="resource-icon">📖</div>
+                        <h4>Scripture Cards</h4>
+                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Memory Verses</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Page -->
+        <div id="profilePage" class="page-content" style="display: none;">
+            <div class="header">
+                <h1>Profile Settings</h1>
+                <p class="breadcrumb">Profile</p>
+            </div>
+
+            <div style="background: var(--white); padding: 2rem; border-radius: 10px; box-shadow: 0 2px 10px var(--shadow);">
+                <h2 style="color: var(--deep-blue); margin-bottom: 2rem;">Your Information</h2>
+                <p><strong>Email:</strong> <span id="profileEmail">--</span></p>
+                <p><strong>Plan:</strong> <span id="profilePlan">--</span></p>
+                <p><strong>Enrolled:</strong> <span id="profileEnrolled">--</span></p>
+                
+                <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--cream);">
+                    <h3 style="color: var(--deep-blue); margin-bottom: 1rem;">Need Help?</h3>
+                    <p>Contact us at <a href="mailto:support@calledandequipped.com" style="color: var(--primary-gold);">support@calledandequipped.com</a></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Error Container -->
+    <div class="error-container" id="errorContainer">
+        <div class="error-icon">⚠️</div>
+        <h2 style="color: var(--deep-blue); margin-bottom: 1rem;">Access Error</h2>
+        <p class="error-message" id="errorMessage">We couldn't verify your access. Please check your email for the correct link.</p>
+        <a href="/" class="error-button">Return to Homepage</a>
+    </div>
+
+    <!-- Session Content Modal -->
+    <div class="modal" id="sessionModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close-modal" onclick="closeModal()">&times;</span>
+                <h2 id="modalTitle">Session Title</h2>
+                <p id="modalSubtitle" style="opacity: 0.8; margin-top: 0.5rem;">Week 1 - Monday</p>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let userData = null;
+        let accessToken = null;
+
+        // Course content structure
+        const courseContent = {
+            1: {
+                title: "Created for a Purpose",
+                sessions: {
+                    monday: {
+                        title: "You Are God's Masterpiece",
+                        videoUrl: "https://player.vimeo.com/video/123456789", // Replace with actual
+                        description: "Deep dive into Ephesians 2:10 - Understanding your unique design and spiritual DNA",
+                        resources: ["Divine Design Profile Template", "Ephesians Study Guide"]
+                    },
+                    wednesday: {
+                        title: "Before You Were Born",
+                        videoUrl: "https://player.vimeo.com/video/123456790",
+                        description: "Studying Jeremiah 1:5 and Psalm 139:13-16 - God's foreknowledge of your purpose",
+                        resources: ["Generational Calling Worksheet", "Breaking Limiting Beliefs Guide"]
+                    },
+                    friday: {
+                        title: "The Joseph Journey",
+                        videoUrl: "https://player.vimeo.com/video/123456791",
+                        description: "Learning from Joseph's path to purpose through adversity",
+                        resources: ["Life Journey Map", "Modern-Day Josephs Case Studies"]
+                    }
+                }
+            },
+            2: {
+                title: "Hearing God's Voice",
+                sessions: {
+                    monday: {
+                        title: "The Many Ways God Speaks",
+                        videoUrl: "https://player.vimeo.com/video/123456792",
+                        description: "Biblical examples of divine communication and how to recognize God's voice today",
+                        resources: ["God Speaks Journal Template", "Divine Communication Guide"]
+                    },
+                    wednesday: {
+                        title: "Cultivating a Listening Heart",
+                        videoUrl: "https://player.vimeo.com/video/123456793",
+                        description: "Creating space for silence, practicing Lectio Divina, and spiritual disciplines",
+                        resources: ["Lectio Divina Guide", "24-Hour Media Fast Plan"]
+                    },
+                    friday: {
+                        title: "Confirming Your Calling",
+                        videoUrl: "https://player.vimeo.com/video/123456794",
+                        description: "Biblical tests for authentic calling and creating your confirmation checklist",
+                        resources: ["Calling Confirmation Checklist", "Prophetic Encouragement Guide"]
+                    }
+                }
+            },
+            // Add remaining weeks 3-6 with same structure
+        };
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            accessToken = urlParams.get('token') || localStorage.getItem('accessToken');
+
+            if (!accessToken) {
+                showError('No access token found. Please use the link from your email.');
+                return;
+            }
+
+            await verifyAccess();
+        });
+
+        // Verify access token with backend
+        async function verifyAccess() {
+            try {
+                const response = await fetch(`https://called-equipped-backend.onrender.com/api/verify-access?token=${accessToken}`);
+                
+                if (!response.ok) {
+                    throw new Error('Invalid access token');
+                }
+
+                userData = await response.json();
+                localStorage.setItem('accessToken', accessToken);
+                
+                // Initialize the portal
+                initializePortal();
+                loadProgress();
+                
+                // Hide loading screen
+                document.getElementById('loadingScreen').style.display = 'none';
+                document.getElementById('mainContent').style.display = 'block';
+                
+            } catch (error) {
+                console.error('Access verification failed:', error);
+                showError('Unable to verify your access. Please try again or contact support.');
+            }
+        }
+
+        // Initialize portal with user data
+        function initializePortal() {
+            // Set user info
+            const email = userData.email;
+            const initials = email.substring(0, 2).toUpperCase();
+            
+            document.getElementById('userAvatar').textContent = initials;
+            document.getElementById('userName').textContent = email;
+            document.getElementById('userPlan').textContent = userData.plan === 'coaching' ? 'Individual + Coaching' : 'Individual';
+            document.getElementById('welcomeMessage').textContent = `Welcome Back, ${email.split('@')[0]}!`;
+            
+            // Profile page
+            document.getElementById('profileEmail').textContent = email;
+            document.getElementById('profilePlan').textContent = userData.plan === 'coaching' ? 'Individual + Coaching' : 'Individual';
+            document.getElementById('profileEnrolled').textContent = new Date(userData.enrollmentDate).toLocaleDateString();
+            
+            // Load weeks
+            loadWeeks();
+        }
+
+        // Load progress data
+        async function loadProgress() {
+            try {
+                const response = await fetch(`https://called-equipped-backend.onrender.com/api/progress/${accessToken}`);
+                const progress = await response.json();
+                
+                // Update progress bar and stats
+                document.getElementById('progressBar').style.width = progress.progressPercentage + '%';
+                document.getElementById('currentWeek').textContent = progress.currentWeek;
+                document.getElementById('completedSessions').textContent = progress.totalSessions;
+                document.getElementById('progressPercent').textContent = progress.progressPercentage + '%';
+                
+                // Calculate days remaining
+                const enrollDate = new Date(userData.enrollmentDate);
+                const endDate = new Date(enrollDate);
+                endDate.setDate(endDate.getDate() + 42); // 6 weeks
+                const today = new Date();
+                const daysRemaining = Math.max(0, Math.ceil((endDate - today) / (1000 * 60 * 60 * 24)));
+                document.getElementById('daysRemaining').textContent = daysRemaining;
+                
+            } catch (error) {
+                console.error('Failed to load progress:', error);
+            }
+        }
+
+        // Load course weeks
+        function loadWeeks() {
+            const container = document.getElementById('weeksContainer');
+            container.innerHTML = '';
+            
+            for (let week = 1; week <= 6; week++) {
+                const weekData = userData.weekUnlockDates.find(w => w.week === week);
+                const isUnlocked = weekData && weekData.isUnlocked;
+                const isCurrent = userData.currentWeek === week;
+                
+                const weekCard = createWeekCard(week, isUnlocked, isCurrent);
+                container.appendChild(weekCard);
+            }
+        }
+
+        // Create week card element
+        function createWeekCard(weekNumber, isUnlocked, isCurrent) {
+            const weekTitles = {
+                1: "Created for a Purpose",
+                2: "Hearing God's Voice",
+                3: "Aligning Passion with Purpose",
+                4: "Overcoming Purpose Blockers",
+                5: "Practical Purpose Implementation",
+                6: "Living Your Purpose Daily"
+            };
+            
+            const div = document.createElement('div');
+            div.className = 'week-card';
+            div.innerHTML = `
+                <div class="week-header ${isCurrent ? 'current' : ''} ${!isUnlocked ? 'locked' : ''}" onclick="${isUnlocked ? `toggleWeek(${weekNumber})` : ''}">
+                    <div>
+                        <div class="week-number">WEEK ${weekNumber} ${isCurrent ? '- CURRENT' : ''}</div>
+                        <div class="week-title">${weekTitles[weekNumber]}</div>
+                        <div class="week-status">${!isUnlocked ? 'Unlocks soon' : ''}</div>
+                    </div>
+                    <div class="expand-icon">${isUnlocked ? '▼' : '🔒'}</div>
+                </div>
+                <div class="week-content">
+                    <ul class="session-list">
+                        ${createSessionsList(weekNumber, isUnlocked)}
+                    </ul>
+                </div>
+            `;
+            
+            return div;
+        }
+
+        // Create sessions list
+        function createSessionsList(weekNumber, isUnlocked) {
+            if (!isUnlocked) return '';
+            
+            const sessions = ['Monday', 'Wednesday', 'Friday'];
+            const weekContent = courseContent[weekNumber] || {};
+            
+            return sessions.map(day => {
+                const dayKey = day.toLowerCase();
+                const session = weekContent.sessions?.[dayKey] || {};
+                
+                return `
+                    <li class="session-item">
+                        <div class="session-info">
+                            <div class="session-day">${day}</div>
+                            <div class="session-title">${session.title || 'Session Title'}</div>
+                        </div>
+                        <div class="session-status">
+                            <span class="status-icon available">▶</span>
+                            <button class="access-button" onclick="openSession(${weekNumber}, '${dayKey}')">
+                                Start Session
+                            </button>
+                        </div>
+                    </li>
+                `;
+            }).join('');
+        }
+
+        // Toggle week expansion
+        function toggleWeek(weekNumber) {
+            const weekCards = document.querySelectorAll('.week-card');
+            weekCards[weekNumber - 1].classList.toggle('expanded');
+        }
+
+        // Open session modal
+        function openSession(weekNumber, day) {
+            const session = courseContent[weekNumber]?.sessions?.[day];
+            if (!session) {
+                alert('Session content is being prepared. Please check back soon!');
+                return;
+            }
+            
+            const modal = document.getElementById('sessionModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalSubtitle = document.getElementById('modalSubtitle');
+            const modalBody = document.getElementById('modalBody');
+            
+            modalTitle.textContent = session.title;
+            modalSubtitle.textContent = `Week ${weekNumber} - ${day.charAt(0).toUpperCase() + day.slice(1)}`;
+            
+            modalBody.innerHTML = `
+                <div class="video-container">
+                    <iframe src="${session.videoUrl}" allowfullscreen></iframe>
+                </div>
+                
+                <h3 style="color: var(--deep-blue); margin-bottom: 1rem;">Session Overview</h3>
+                <p style="color: var(--sage); line-height: 1.8; margin-bottom: 2rem;">${session.description}</p>
+                
+                <div class="resource-section">
+                    <h3 style="color: var(--deep-blue); margin-bottom: 1rem;">Session Resources</h3>
+                    <div class="resource-grid">
+                        ${session.resources.map(resource => `
+                            <a href="#" class="resource-item" onclick="downloadSessionResource('${resource}')">
+                                <div class="resource-icon">📄</div>
+                                <h4 style="font-size: 1rem;">${resource}</h4>
+                            </a>
+                        `).join('')}
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem; text-align: center;">
+                    <button class="access-button" onclick="markComplete(${weekNumber}, '${day}')" style="padding: 1rem 2rem;">
+                        Mark as Complete
+                    </button>
+                </div>
+            `;
+            
+            modal.style.display = 'flex';
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('sessionModal').style.display = 'none';
+        }
+
+        // Download resources
+        function downloadResource(type) {
+            // In production, these would be actual file URLs
+            const resourceUrls = {
+                workbook: '/resources/purpose-discovery-workbook.pdf',
+                journal: '/resources/weekly-reflection-journals.pdf',
+                assessment: '/resources/spiritual-gifts-assessment.pdf',
+                scriptures: '/resources/scripture-memory-cards.pdf'
+            };
+            
+            alert(`Downloading ${type}... In production, this would download from: ${resourceUrls[type]}`);
+        }
+
+        function downloadSessionResource(resourceName) {
+            alert(`Downloading ${resourceName}... This will be linked to actual files.`);
+        }
+
+        // Mark session complete
+        function markComplete(weekNumber, day) {
+            alert(`Marking Week ${weekNumber} ${day} as complete. This will update your progress.`);
+            // In production, this would update the backend
+            closeModal();
+            loadProgress(); // Refresh progress
+        }
+
+        // Navigation
+        document.querySelectorAll('.nav-link[data-page]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const page = this.getAttribute('data-page');
+                showPage(page);
+                
+                // Update active state
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Close mobile menu
+                if (window.innerWidth <= 768) {
+                    document.getElementById('sidebar').classList.remove('mobile-open');
+                }
+            });
+        });
+
+        function showPage(pageName) {
+            // Hide all pages
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.style.display = 'none';
+            });
+            
+            // Show selected page
+            const page = document.getElementById(pageName + 'Page');
+            if (page) {
+                page.style.display = 'block';
+            }
+            
+            // Update breadcrumb
+            const breadcrumb = document.getElementById('breadcrumb');
+            breadcrumb.textContent = pageName.charAt(0).toUpperCase() + pageName.slice(1);
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('mobile-open');
+        }
+
+        // Logout
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('accessToken');
+                window.location.href = '/';
+            }
+        }
+
+        // Show error
+        function showError(message) {
+            document.getElementById('loadingScreen').style.display = 'none';
+            document.getElementById('errorContainer').style.display = 'block';
+            document.getElementById('errorMessage').textContent = message;
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('sessionModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
