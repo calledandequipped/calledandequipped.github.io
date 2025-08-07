@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Purpose Rhythms Designer - Week 6</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        h1 { color: #1e3c72; font-size: 2.5em; text-align: center; margin-bottom: 10px; }
+        .subtitle { text-align: center; color: #666; margin-bottom: 30px; }
+        .scripture-box { background: #e8f0ff; padding: 20px; border-left: 4px solid #1e3c72; margin: 20px 0; border-radius: 5px; }
+        .section { margin: 30px 0; padding: 20px; background: #fafafa; border-radius: 8px; }
+        h2 { color: #1e3c72; margin-bottom: 15px; }
+        h3 { color: #666; margin: 20px 0 10px; }
+        label { display: block; margin-bottom: 5px; color: #555; font-weight: 600; }
+        input[type="text"], input[type="email"], input[type="time"], textarea, select { width: 100%; padding: 10px; margin-bottom: 15px; border: 2px solid #ddd; border-radius: 5px; }
+        input:focus, textarea:focus { outline: none; border-color: #1e3c72; }
+        .time-block { display: grid; grid-template-columns: 100px 1fr; gap: 15px; align-items: center; margin: 10px 0; padding: 15px; background: white; border-radius: 8px; }
+        .time-label { font-weight: bold; color: #1e3c72; }
+        .rhythm-builder { background: #e8f0ff; padding: 25px; border-radius: 10px; margin: 20px 0; }
+        .habit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .habit-card { background: white; padding: 15px; border-radius: 8px; border: 2px solid #1e3c72; text-align: center; }
+        .sabbath-planner { background: #f5f5f5; padding: 25px; border-radius: 10px; border: 2px dashed #1e3c72; margin: 20px 0; }
+        .submit-btn { background: #1e3c72; color: white; padding: 15px 40px; border: none; border-radius: 5px; font-size: 1.1em; cursor: pointer; display: block; margin: 30px auto 0; }
+        .submit-btn:hover { background: #2a5298; }
+        #successMessage { display: none; background: #d4edda; color: #155724; padding: 20px; border-radius: 5px; margin-top: 20px; text-align: center; }
+        .loading { display: none; text-align: center; margin: 20px 0; }
+        .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #1e3c72; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .day-schedule { background: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Daily Rhythms of Purpose</h1>
+        <p class="subtitle">Week 6, Monday - Sustaining a Purpose-Driven Life</p>
+
+        <div class="scripture-box">
+            <p>"Very early in the morning, while it was still dark, Jesus got up, left the house and went off to a solitary place, where he prayed."</p>
+            <p style="text-align: right; font-weight: bold;">Mark 1:35 (NIV)</p>
+        </div>
+
+        <form id="dailyRhythmsForm">
+            <div class="section">
+                <h2>1. Personal Information</h2>
+                <label for="fullName">Full Name *</label>
+                <input type="text" id="fullName" name="fullName" required>
+                
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="currentSchedule">Describe your current daily schedule:</label>
+                <textarea id="currentSchedule" name="currentSchedule" rows="3" placeholder="Wake time, work hours, evening routine..."></textarea>
+            </div>
+
+            <div class="section rhythm-builder">
+                <h2>2. Morning Purpose Routine</h2>
+                <p style="margin-bottom: 20px;">Design your ideal morning that aligns with your calling:</p>
+                
+                <div class="time-block">
+                    <input type="time" name="wakeTime" required>
+                    <input type="text" name="wakeActivity" placeholder="Wake up + First action" required>
+                </div>
+                
+                <div class="time-block">
+                    <input type="time" name="prayerTime" required>
+                    <input type="text" name="prayerActivity" placeholder="Prayer/Devotion details" required>
+                </div>
+                
+                <div class="time-block">
+                    <input type="time" name="purposeTime" required>
+                    <input type="text" name="purposeActivity" placeholder="Purpose-focused activity" required>
+                </div>
+                
+                <div class="time-block">
+                    <input type="time" name="prepTime">
+                    <input type="text" name="prepActivity" placeholder="Preparation for the day">
+                </div>
+                
+                <label for="morningNonNegotiables">What are your morning non-negotiables? *</label>
+                <textarea id="morningNonNegotiables" name="morningNonNegotiables" required rows="2" placeholder="The habits you'll protect no matter what..."></textarea>
+            </div>
+
+            <div class="section">
+                <h2>3. Purpose Integration Throughout the Day</h2>
+                
+                <h3>Work/Daily Activities</h3>
+                <label for="workPurpose">How will you live your purpose during work hours? *</label>
+                <textarea id="workPurpose" name="workPurpose" required rows="3" placeholder="Specific ways to align work with calling..."></textarea>
+                
+                <h3>Purpose Touchpoints</h3>
+                <div class="habit-grid">
+                    <div class="habit-card">
+                        <h4>Mid-Morning</h4>
+                        <input type="text" name="midMorningTouch" placeholder="Quick purpose reminder">
+                    </div>
+                    <div class="habit-card">
+                        <h4>Lunch Break</h4>
+                        <input type="text" name="lunchTouch" placeholder="Purpose activity">
+                    </div>
+                    <div class="habit-card">
+                        <h4>Afternoon</h4>
+                        <input type="text" name="afternoonTouch" placeholder="Purpose check-in">
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>4. Evening Purpose Routine</h2>
+                <div class="day-schedule">
+                    <div class="time-block">
+                        <input type="time" name="eveningReflectTime">
+                        <input type="text" name="eveningReflect" placeholder="Daily reflection/journaling">
+                    </div>
+                    
+                    <div class="time-block">
+                        <input type="time" name="planningTime">
+                        <input type="text" name="planningActivity" placeholder="Next day purpose planning">
+                    </div>
+                    
+                    <div class="time-block">
+                        <input type="time" name="gratitudeTime">
+                        <input type="text" name="gratitudeActivity" placeholder="Gratitude practice">
+                    </div>
+                    
+                    <label for="eveningBoundaries">What boundaries will protect your evening routine?</label>
+                    <textarea id="eveningBoundaries" name="eveningBoundaries" rows="2" placeholder="No emails after X, phone away by Y..."></textarea>
+                </div>
+            </div>
+
+            <div class="section sabbath-planner">
+                <h2>5. Sabbath & Sustainability</h2>
+                <p style="margin-bottom: 15px;">Rest is part of purpose, not opposed to it!</p>
+                
+                <label for="sabbathDay">Which day will be your Sabbath? *</label>
+                <select id="sabbathDay" name="sabbathDay" required>
+                    <option value="">Select a day</option>
+                    <option value="Sunday">Sunday</option>
+                    <option value="Saturday">Saturday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Other">Other day</option>
+                </select>
+                
+                <label for="sabbathPractices">What will your Sabbath include? *</label>
+                <textarea id="sabbathPractices" name="sabbathPractices" required rows="3" placeholder="Rest activities, spiritual practices, what you'll avoid..."></textarea>
+                
+                <label for="burnoutPrevention">How will you prevent purpose burnout?</label>
+                <textarea id="burnoutPrevention" name="burnoutPrevention" rows="3" placeholder="Warning signs to watch for, rest rhythms..."></textarea>
+            </div>
+
+            <div class="section">
+                <h2>6. Weekly Purpose Rhythms</h2>
+                <div class="habit-grid">
+                    <div class="habit-card">
+                        <h4>Monday</h4>
+                        <input type="text" name="mondayFocus" placeholder="Purpose focus">
+                    </div>
+                    <div class="habit-card">
+                        <h4>Tuesday</h4>
+                        <input type="text" name="tuesdayFocus" placeholder="Purpose focus">
+                    </div>
+                    <div class="habit-card">
+                        <h4>Wednesday</h4>
+                        <input type="text" name="wednesdayFocus" placeholder="Purpose focus">
+                    </div>
+                    <div class="habit-card">
+                        <h4>Thursday</h4>
+                        <input type="text" name="thursdayFocus" placeholder="Purpose focus">
+                    </div>
+                    <div class="habit-card">
+                        <h4>Friday</h4>
+                        <input type="text" name="fridayFocus" placeholder="Purpose focus">
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>7. 7-Day Rhythm Challenge</h2>
+                <p style="margin-bottom: 15px;">Commit to implementing your new rhythms:</p>
+                
+                <label for="startDate">When will you start your new rhythms? *</label>
+                <input type="date" id="startDate" name="startDate" required>
+                
+                <label for="accountabilityCheck">Who will check on your rhythm implementation?</label>
+                <input type="text" id="accountabilityCheck" name="accountabilityCheck" placeholder="Name and check-in plan">
+                
+                <label for="adjustmentPlan">How will you adjust if rhythms aren't working?</label>
+                <textarea id="adjustmentPlan" name="adjustmentPlan" rows="2" placeholder="Grace to adapt, not abandon..."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Design My Purpose Rhythms</button>
+            
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Creating your rhythm plan...</p>
+            </div>
+            
+            <div id="successMessage">
+                <h3>🎉 Daily Rhythms Designed!</h3>
+                <p>Your purpose-driven daily rhythms are ready! Start implementing them tomorrow!</p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('dailyRhythmsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            document.querySelector('.loading').style.display = 'block';
+            document.querySelector('.submit-btn').style.display = 'none';
+            
+            const formData = new FormData(e.target);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            data['timestamp'] = new Date().toLocaleString();
+            
+            console.log('Form Data:', data);
+            
+            setTimeout(() => {
+                document.querySelector('.loading').style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+                document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

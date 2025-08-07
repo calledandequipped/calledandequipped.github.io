@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Rhythms of Purpose - Week 6 Monday</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #0a0f1b; color: #fff; overflow: hidden; height: 100vh; }
+        .slideshow-container { position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .slide { display: none; width: 90%; max-width: 1200px; height: 85vh; text-align: center; animation: fadeIn 0.5s; }
+        .slide.active { display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .title-slide { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); border-radius: 20px; padding: 60px; }
+        .title-slide h1 { font-size: 4em; margin-bottom: 20px; }
+        .content-slide { background: #1a2332; border-radius: 20px; padding: 50px; }
+        .content-slide h2 { font-size: 3em; color: #4a90e2; margin-bottom: 40px; }
+        .content-slide p { font-size: 1.4em; line-height: 1.8; margin-bottom: 20px; }
+        .content-slide ul { text-align: left; font-size: 1.3em; line-height: 2; max-width: 800px; margin: 0 auto; list-style: none; }
+        .content-slide ul li { margin-bottom: 15px; padding-left: 40px; position: relative; }
+        .content-slide ul li::before { content: "⏰"; position: absolute; left: 0; font-size: 1.3em; }
+        
+        .scripture-slide { background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%); border-radius: 20px; padding: 60px; }
+        .daily-schedule { background: #2a3850; padding: 30px; border-radius: 15px; margin: 20px auto; max-width: 800px; }
+        .time-slot { display: flex; justify-content: space-between; align-items: center; padding: 15px; margin: 10px 0; background: #1a2332; border-radius: 10px; }
+        .rhythm-visual { display: flex; justify-content: center; gap: 20px; margin: 30px 0; }
+        .rhythm-circle { width: 120px; height: 120px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        .morning { background: #ffa500; }
+        .afternoon { background: #4a90e2; }
+        .evening { background: #8b5cf6; }
+        
+        .nav-buttons { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; }
+        .nav-btn { background: #4a90e2; color: white; border: none; padding: 15px 30px; font-size: 1.1em; border-radius: 50px; cursor: pointer; }
+        .nav-btn:hover { background: #357abd; }
+        .nav-btn:disabled { background: #4a5568; cursor: not-allowed; }
+        
+        .progress-bar { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); width: 300px; height: 6px; background: #4a5568; border-radius: 3px; overflow: hidden; }
+        .progress { height: 100%; background: #4a90e2; transition: width 0.3s; }
+        .slide-counter { position: absolute; top: 30px; right: 30px; font-size: 1.2em; }
+        
+        @media (max-width: 768px) {
+            .slide { width: 95%; padding: 30px; }
+            .title-slide h1 { font-size: 2.5em; }
+            .rhythm-visual { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <div class="progress-bar"><div class="progress" id="progressBar"></div></div>
+        <div class="slide-counter"><span id="currentSlide">1</span> / 10</div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <h1>Daily Rhythms of Purpose</h1>
+            <p style="font-size: 1.8em;">Sustaining a Purpose-Driven Life</p>
+            <p style="font-size: 1.2em; margin-top: 40px;">Week 6, Monday - Session 16</p>
+        </div>
+
+        <!-- Slide 2: Scripture -->
+        <div class="slide scripture-slide">
+            <p style="font-size: 2.2em; line-height: 1.8; font-style: italic;">"Very early in the morning, while it was still dark, Jesus got up, left the house and went off to a solitary place, where he prayed."</p>
+            <p style="font-size: 1.5em; margin-top: 30px; font-weight: bold;">Mark 1:35 (NIV)</p>
+        </div>
+
+        <!-- Slide 3: Jesus' Example -->
+        <div class="slide content-slide">
+            <h2>Jesus' Purposeful Daily Life</h2>
+            <p style="font-size: 1.5em; color: #4a90e2; margin-bottom: 30px;">Even the Son of God had daily rhythms!</p>
+            <ul>
+                <li>Early morning prayer (Mark 1:35)</li>
+                <li>Teaching in the day (Luke 19:47)</li>
+                <li>Evening fellowship (Luke 24:29)</li>
+                <li>Regular Sabbath observance (Luke 4:16)</li>
+                <li>Withdrawing to solitary places (Luke 5:16)</li>
+            </ul>
+            <p style="margin-top: 40px;">If Jesus needed rhythms, so do we!</p>
+        </div>
+
+        <!-- Slide 4: Morning Rhythms -->
+        <div class="slide content-slide">
+            <h2>Morning: Foundation for Purpose</h2>
+            <div class="daily-schedule">
+                <div class="time-slot">
+                    <span style="color: #ffa500;">5:00 AM</span>
+                    <span>Rise & Give Thanks</span>
+                </div>
+                <div class="time-slot">
+                    <span style="color: #ffa500;">5:15 AM</span>
+                    <span>Prayer & Scripture</span>
+                </div>
+                <div class="time-slot">
+                    <span style="color: #ffa500;">6:00 AM</span>
+                    <span>Purpose Planning</span>
+                </div>
+                <div class="time-slot">
+                    <span style="color: #ffa500;">6:30 AM</span>
+                    <span>Physical Preparation</span>
+                </div>
+            </div>
+            <p style="margin-top: 30px;">Win the morning, win the day!</p>
+        </div>
+
+        <!-- Slide 5: Throughout the Day -->
+        <div class="slide content-slide">
+            <h2>Purpose Touchpoints</h2>
+            <div class="rhythm-visual">
+                <div class="rhythm-circle morning">Morning<br>Foundation</div>
+                <div class="rhythm-circle afternoon">Midday<br>Realignment</div>
+                <div class="rhythm-circle evening">Evening<br>Reflection</div>
+            </div>
+            <p style="font-size: 1.4em;">Stay connected to purpose all day long</p>
+            <ul style="margin-top: 30px;">
+                <li>Set phone reminders for purpose check-ins</li>
+                <li>Practice presence in every task</li>
+                <li>See interruptions as divine appointments</li>
+                <li>End meetings with Kingdom impact in mind</li>
+            </ul>
+        </div>
+
+        <!-- Slide 6: Sabbath Rest -->
+        <div class="slide content-slide">
+            <h2>Sabbath: Sustaining Your Purpose</h2>
+            <p style="font-size: 1.5em; color: #8b5cf6; margin-bottom: 30px;">Rest is not laziness - it's obedience!</p>
+            <div style="background: #2a3850; padding: 40px; border-radius: 20px;">
+                <h3 style="color: #4a90e2; margin-bottom: 20px;">Sabbath Essentials:</h3>
+                <ul>
+                    <li>Complete rest from work</li>
+                    <li>Worship and celebration</li>
+                    <li>Family and community</li>
+                    <li>Reflection on God's goodness</li>
+                    <li>Preparation for the week ahead</li>
+                </ul>
+            </div>
+            <p style="margin-top: 30px;">You can't pour from an empty cup!</p>
+        </div>
+
+        <!-- Slide 7: Avoiding Burnout -->
+        <div class="slide content-slide">
+            <h2>Avoiding Purpose Burnout</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 900px; margin: 0 auto;">
+                <div style="background: #2a3850; padding: 30px; border-radius: 15px;">
+                    <h3 style="color: #ff6b6b;">Warning Signs</h3>
+                    <ul style="font-size: 1.1em;">
+                        <li>Constant exhaustion</li>
+                        <li>Loss of joy</li>
+                        <li>Spiritual dryness</li>
+                        <li>Relational strain</li>
+                        <li>Physical symptoms</li>
+                    </ul>
+                </div>
+                <div style="background: #2a3850; padding: 30px; border-radius: 15px;">
+                    <h3 style="color: #4a90e2;">Prevention Plan</h3>
+                    <ul style="font-size: 1.1em;">
+                        <li>Daily quiet time</li>
+                        <li>Weekly Sabbath</li>
+                        <li>Monthly retreat</li>
+                        <li>Quarterly review</li>
+                        <li>Annual sabbatical</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Your Ideal Day -->
+        <div class="slide content-slide">
+            <h2>Design Your Ideal Purpose Day</h2>
+            <div style="background: #2a3850; padding: 40px; border-radius: 20px;">
+                <h3 style="color: #4a90e2; margin-bottom: 30px;">7-Day Rhythm Challenge:</h3>
+                <ol style="text-align: left; font-size: 1.3em; line-height: 2.5;">
+                    <li>Create your morning routine</li>
+                    <li>Set 3 purpose touchpoints</li>
+                    <li>Design evening reflection</li>
+                    <li>Choose your Sabbath day</li>
+                    <li>Implement for 7 days straight</li>
+                    <li>Adjust and optimize</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Slide 9: Prayer -->
+        <div class="slide scripture-slide">
+            <h2>Daily Purpose Prayer</h2>
+            <p style="font-size: 1.8em; line-height: 2; max-width: 800px;">
+                "Lord, order my steps today. Help me create rhythms that honor You and sustain the purpose You've given me. Guard me from burnout and guide me to rest. May every moment of my day reflect Your glory. Amen."
+            </p>
+        </div>
+
+        <!-- Slide 10: Assignment -->
+        <div class="slide title-slide">
+            <h2>This Week's Challenge</h2>
+            <div style="background: rgba(255,255,255,0.1); padding: 40px; border-radius: 20px; margin-top: 40px;">
+                <p style="font-size: 1.5em; margin-bottom: 30px;">Implement Your Purpose Rhythms</p>
+                <p style="font-size: 1.2em; line-height: 2;">
+                    ✓ Complete the Daily Rhythms Designer<br>
+                    ✓ Start your new morning routine tomorrow<br>
+                    ✓ Set up purpose touchpoint reminders<br>
+                    ✓ Plan your first Sabbath<br>
+                    ✓ Track your energy and joy levels
+                </p>
+            </div>
+            <p style="margin-top: 40px;">Wednesday: Legacy & Multiplication</p>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">Previous</button>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 10;
+
+        function changeSlide(direction) {
+            const slides = document.querySelectorAll('.slide');
+            slides[currentSlide - 1].classList.remove('active');
+            
+            currentSlide += direction;
+            if (currentSlide > totalSlides) currentSlide = totalSlides;
+            if (currentSlide < 1) currentSlide = 1;
+            
+            slides[currentSlide - 1].classList.add('active');
+            document.getElementById('currentSlide').textContent = currentSlide;
+            
+            updateProgressBar();
+            updateNavButtons();
+        }
+
+        function updateProgressBar() {
+            const progress = (currentSlide / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function updateNavButtons() {
+            document.getElementById('prevBtn').disabled = currentSlide === 1;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
+            document.getElementById('nextBtn').textContent = currentSlide === totalSlides ? 'Complete' : 'Next';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+        });
+
+        updateProgressBar();
+        updateNavButtons();
+    </script>
+</body>
+</html>

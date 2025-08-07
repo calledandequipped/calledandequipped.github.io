@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legacy & Multiplication - Week 6 Wednesday</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #1a0f2e; color: #fff; overflow: hidden; height: 100vh; }
+        .slideshow-container { position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .slide { display: none; width: 90%; max-width: 1200px; height: 85vh; text-align: center; animation: fadeIn 0.5s; }
+        .slide.active { display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        
+        .title-slide { background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%); border-radius: 20px; padding: 60px; }
+        .title-slide h1 { font-size: 4em; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .content-slide { background: #2d1b4e; border-radius: 20px; padding: 50px; }
+        .content-slide h2 { font-size: 3em; color: #c084fc; margin-bottom: 40px; }
+        .content-slide h3 { font-size: 1.8em; color: #e879f9; margin-bottom: 20px; }
+        .content-slide p { font-size: 1.4em; line-height: 1.8; margin-bottom: 20px; color: #e2e8f0; }
+        .content-slide ul { text-align: left; font-size: 1.3em; line-height: 2; max-width: 800px; margin: 0 auto; list-style: none; }
+        .content-slide ul li { margin-bottom: 15px; padding-left: 40px; position: relative; }
+        .content-slide ul li::before { content: "👑"; position: absolute; left: 0; font-size: 1.2em; }
+        
+        .scripture-slide { background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%); border-radius: 20px; padding: 60px; }
+        .scripture-slide .verse { font-size: 2.2em; line-height: 1.8; margin-bottom: 30px; font-style: italic; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
+        .scripture-slide .reference { font-size: 1.5em; font-weight: bold; }
+        
+        .legacy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 30px auto; max-width: 900px; }
+        .legacy-card { background: #3a2557; padding: 25px; border-radius: 15px; border: 2px solid #8b5cf6; transition: transform 0.3s; }
+        .legacy-card:hover { transform: translateY(-10px); box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3); }
+        .legacy-card h4 { color: #c084fc; margin-bottom: 15px; }
+        
+        .multiplication-visual { display: flex; justify-content: center; align-items: center; gap: 30px; margin: 30px 0; }
+        .person-icon { width: 80px; height: 80px; background: #8b5cf6; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2em; }
+        .arrow { font-size: 2em; color: #c084fc; }
+        
+        .timeline { display: flex; justify-content: space-between; align-items: center; margin: 40px auto; max-width: 800px; position: relative; }
+        .timeline::before { content: ''; position: absolute; width: 100%; height: 4px; background: #8b5cf6; top: 50%; z-index: 0; }
+        .timeline-item { background: #ec4899; padding: 20px; border-radius: 15px; z-index: 1; color: white; font-weight: bold; }
+        
+        .mission-builder { background: #3a2557; padding: 40px; border-radius: 20px; margin: 20px auto; max-width: 800px; }
+        .mission-element { background: #2d1b4e; padding: 20px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #c084fc; }
+        
+        .nav-buttons { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; }
+        .nav-btn { background: #8b5cf6; color: white; border: none; padding: 15px 30px; font-size: 1.1em; border-radius: 50px; cursor: pointer; transition: all 0.3s; }
+        .nav-btn:hover { background: #7c3aed; transform: translateY(-2px); }
+        .nav-btn:disabled { background: #4a5568; cursor: not-allowed; }
+        
+        .progress-bar { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); width: 300px; height: 6px; background: #4a5568; border-radius: 3px; overflow: hidden; }
+        .progress { height: 100%; background: #8b5cf6; transition: width 0.3s; }
+        .slide-counter { position: absolute; top: 30px; right: 30px; font-size: 1.2em; color: #e2e8f0; }
+        
+        @media (max-width: 768px) {
+            .slide { width: 95%; padding: 30px; }
+            .title-slide h1 { font-size: 2.5em; }
+            .legacy-grid { grid-template-columns: 1fr; }
+            .multiplication-visual { flex-direction: column; }
+            .timeline { flex-direction: column; gap: 20px; }
+            .timeline::before { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <div class="progress-bar"><div class="progress" id="progressBar"></div></div>
+        <div class="slide-counter"><span id="currentSlide">1</span> / 11</div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <h1>Legacy & Multiplication</h1>
+            <p style="font-size: 1.8em;">Building Something That Outlasts You</p>
+            <p style="font-size: 1.2em; margin-top: 40px;">Week 6, Wednesday - Session 17</p>
+        </div>
+
+        <!-- Slide 2: Scripture -->
+        <div class="slide scripture-slide">
+            <p class="verse">"The things you have heard me say in the presence of many witnesses entrust to reliable people who will also be qualified to teach others."</p>
+            <p class="reference">2 Timothy 2:2 (NIV)</p>
+        </div>
+
+        <!-- Slide 3: Four Generations -->
+        <div class="slide content-slide">
+            <h2>The Multiplication Principle</h2>
+            <p style="font-size: 1.5em; color: #c084fc; margin-bottom: 30px;">Paul → Timothy → Reliable People → Others</p>
+            <div class="multiplication-visual">
+                <div class="person-icon">1</div>
+                <span class="arrow">→</span>
+                <div class="person-icon">2</div>
+                <span class="arrow">→</span>
+                <div class="person-icon">4</div>
+                <span class="arrow">→</span>
+                <div class="person-icon">8</div>
+            </div>
+            <p style="margin-top: 30px;">Your purpose isn't just for you - it's meant to multiply!</p>
+        </div>
+
+        <!-- Slide 4: Legacy Vision -->
+        <div class="slide content-slide">
+            <h2>What Legacy Will You Leave?</h2>
+            <div class="legacy-grid">
+                <div class="legacy-card">
+                    <h4>📚 Written Legacy</h4>
+                    <p>Books, blogs, teachings that outlive you</p>
+                </div>
+                <div class="legacy-card">
+                    <h4>🏛️ Organizational Legacy</h4>
+                    <p>Ministries, businesses, movements you build</p>
+                </div>
+                <div class="legacy-card">
+                    <h4>👥 People Legacy</h4>
+                    <p>Lives transformed and equipped to carry on</p>
+                </div>
+                <div class="legacy-card">
+                    <h4>💰 Financial Legacy</h4>
+                    <p>Resources that fund future Kingdom work</p>
+                </div>
+                <div class="legacy-card">
+                    <h4>🔥 Spiritual Legacy</h4>
+                    <p>Revival and awakening in your generation</p>
+                </div>
+                <div class="legacy-card">
+                    <h4>👨‍👩‍👧‍👦 Family Legacy</h4>
+                    <p>Children walking in purpose</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Generational Impact -->
+        <div class="slide content-slide">
+            <h2>Think Generationally</h2>
+            <div class="timeline">
+                <div class="timeline-item">Your Generation</div>
+                <div class="timeline-item">Children</div>
+                <div class="timeline-item">Grandchildren</div>
+                <div class="timeline-item">Great-Grandchildren</div>
+            </div>
+            <p style="margin-top: 40px; font-size: 1.4em;">What you do today echoes in eternity!</p>
+            <p style="font-size: 1.2em; color: #c084fc;">One person fully committed to their purpose can impact thousands</p>
+        </div>
+
+        <!-- Slide 6: Mission Statement -->
+        <div class="slide content-slide">
+            <h2>Craft Your Life Mission Statement</h2>
+            <div class="mission-builder">
+                <div class="mission-element">
+                    <h3 style="color: #e879f9;">WHO</h3>
+                    <p>Who are you called to serve and impact?</p>
+                </div>
+                <div class="mission-element">
+                    <h3 style="color: #e879f9;">WHAT</h3>
+                    <p>What transformation will you bring?</p>
+                </div>
+                <div class="mission-element">
+                    <h3 style="color: #e879f9;">HOW</h3>
+                    <p>How will you accomplish this mission?</p>
+                </div>
+                <div class="mission-element">
+                    <h3 style="color: #e879f9;">WHY</h3>
+                    <p>Why does this matter for eternity?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Discipleship Strategy -->
+        <div class="slide content-slide">
+            <h2>Your Discipleship Strategy</h2>
+            <p style="font-size: 1.5em; color: #c084fc; margin-bottom: 30px;">Jesus' Model: Invest deeply in a few</p>
+            <ul>
+                <li>He had the multitudes (5,000+)</li>
+                <li>He had the 70 sent ones</li>
+                <li>He had the 12 disciples</li>
+                <li>He had the inner 3 (Peter, James, John)</li>
+            </ul>
+            <p style="margin-top: 40px; font-size: 1.4em;">Who are your 3? Your 12? Your 70?</p>
+        </div>
+
+        <!-- Slide 8: Multiplication Math -->
+        <div class="slide content-slide">
+            <h2>The Power of Multiplication</h2>
+            <div style="background: #3a2557; padding: 40px; border-radius: 20px;">
+                <h3>If you disciple just 2 people per year...</h3>
+                <p style="font-size: 1.3em; line-height: 2; margin-top: 20px;">
+                    Year 1: 2 disciples<br>
+                    Year 5: 32 disciples<br>
+                    Year 10: 1,024 disciples<br>
+                    Year 20: Over 1 million disciples!
+                </p>
+                <p style="margin-top: 30px; font-size: 1.2em; color: #c084fc;">This is the power of spiritual multiplication!</p>
+            </div>
+        </div>
+
+        <!-- Slide 9: Start Today -->
+        <div class="slide content-slide">
+            <h2>Start Building Your Legacy Today</h2>
+            <div style="background: #3a2557; padding: 40px; border-radius: 20px;">
+                <h3 style="color: #e879f9; margin-bottom: 30px;">This Week's Legacy Actions:</h3>
+                <ol style="text-align: left; font-size: 1.3em; line-height: 2.5;">
+                    <li>Write your life mission statement</li>
+                    <li>Identify 3 people to begin mentoring</li>
+                    <li>Document one key lesson from your journey</li>
+                    <li>Start planning your legacy project</li>
+                    <li>Schedule time with someone you'll disciple</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Slide 10: Prayer -->
+        <div class="slide scripture-slide">
+            <h2>Legacy Prayer</h2>
+            <p style="font-size: 1.8em; line-height: 2; max-width: 800px;">
+                "Lord, help me build something that outlasts my life. Give me spiritual sons and daughters who will carry the torch further than I ever could. May my ceiling be their floor, and may the ripples of my obedience touch generations I'll never meet. Use me to leave a legacy that brings glory to Your name. Amen."
+            </p>
+        </div>
+
+        <!-- Slide 11: Challenge -->
+        <div class="slide title-slide">
+            <h2>Your Legacy Challenge</h2>
+            <div style="background: rgba(255,255,255,0.1); padding: 40px; border-radius: 20px; margin-top: 40px;">
+                <p style="font-size: 1.5em; margin-bottom: 30px;">This Week's Assignment:</p>
+                <p style="font-size: 1.2em; line-height: 2;">
+                    ✓ Complete your Life Mission Statement<br>
+                    ✓ List 10 people you could impact<br>
+                    ✓ Choose 3 to begin investing in<br>
+                    ✓ Write one page of your story<br>
+                    ✓ Pray for multiplication daily
+                </p>
+            </div>
+            <p style="margin-top: 40px;">Friday: Commissioning & Sending</p>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">Previous</button>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 11;
+
+        function changeSlide(direction) {
+            const slides = document.querySelectorAll('.slide');
+            slides[currentSlide - 1].classList.remove('active');
+            
+            currentSlide += direction;
+            if (currentSlide > totalSlides) currentSlide = totalSlides;
+            if (currentSlide < 1) currentSlide = 1;
+            
+            slides[currentSlide - 1].classList.add('active');
+            document.getElementById('currentSlide').textContent = currentSlide;
+            
+            updateProgressBar();
+            updateNavButtons();
+        }
+
+        function updateProgressBar() {
+            const progress = (currentSlide / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function updateNavButtons() {
+            document.getElementById('prevBtn').disabled = currentSlide === 1;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
+            document.getElementById('nextBtn').textContent = currentSlide === totalSlides ? 'Complete' : 'Next';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+        });
+
+        updateProgressBar();
+        updateNavButtons();
+
+        // Touch support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) changeSlide(1);
+            if (touchEndX > touchStartX + 50) changeSlide(-1);
+        }
+    </script>
+</body>
+</html>

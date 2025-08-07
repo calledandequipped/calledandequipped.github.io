@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commissioning and Sending - Week 6 Friday</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #0f0f23; color: #fff; overflow: hidden; height: 100vh; }
+        .slideshow-container { position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .slide { display: none; width: 90%; max-width: 1200px; height: 85vh; text-align: center; animation: fadeIn 0.5s; }
+        .slide.active { display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        
+        .title-slide { background: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%); border-radius: 20px; padding: 60px; }
+        .title-slide h1 { font-size: 4em; margin-bottom: 20px; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .content-slide { background: #1a1a2e; border-radius: 20px; padding: 50px; }
+        .content-slide h2 { font-size: 3em; color: #ffd700; margin-bottom: 40px; }
+        .content-slide p { font-size: 1.4em; line-height: 1.8; margin-bottom: 20px; }
+        .content-slide ul { text-align: left; font-size: 1.3em; line-height: 2; max-width: 800px; margin: 0 auto; list-style: none; }
+        .content-slide ul li { margin-bottom: 15px; padding-left: 40px; position: relative; }
+        .content-slide ul li::before { content: "🔥"; position: absolute; left: 0; font-size: 1.3em; }
+        
+        .scripture-slide { background: linear-gradient(135deg, #ff8c00 0%, #ffd700 100%); border-radius: 20px; padding: 60px; }
+        .commission-box { background: #2a2a3e; padding: 40px; border-radius: 20px; margin: 20px auto; max-width: 800px; border: 3px solid #ffd700; }
+        .next-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 30px 0; }
+        .step-card { background: #2a2a3e; padding: 25px; border-radius: 15px; border: 2px solid #ffd700; }
+        .step-card h4 { color: #ffd700; margin-bottom: 15px; }
+        .declaration-slide { background: radial-gradient(circle, #2a2a3e 0%, #0f0f23 100%); border-radius: 20px; padding: 60px; }
+        
+        .nav-buttons { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; }
+        .nav-btn { background: #ffd700; color: #1a1a2e; border: none; padding: 15px 30px; font-size: 1.1em; border-radius: 50px; cursor: pointer; font-weight: bold; }
+        .nav-btn:hover { background: #ff8c00; color: white; }
+        .nav-btn:disabled { background: #4a5568; cursor: not-allowed; color: #999; }
+        
+        .progress-bar { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); width: 300px; height: 6px; background: #4a5568; border-radius: 3px; overflow: hidden; }
+        .progress { height: 100%; background: #ffd700; transition: width 0.3s; }
+        .slide-counter { position: absolute; top: 30px; right: 30px; font-size: 1.2em; }
+        
+        .celebration { font-size: 3em; margin: 20px 0; }
+        
+        @media (max-width: 768px) {
+            .slide { width: 95%; padding: 30px; }
+            .title-slide h1 { font-size: 2.5em; }
+            .next-steps { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <div class="progress-bar"><div class="progress" id="progressBar"></div></div>
+        <div class="slide-counter"><span id="currentSlide">1</span> / 12</div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <h1>Commissioning & Sending</h1>
+            <p style="font-size: 1.8em;">You Are Ready to Walk in Purpose!</p>
+            <p style="font-size: 1.2em; margin-top: 40px;">Week 6, Friday - Session 18</p>
+            <div class="celebration">🎉🙌🎊</div>
+        </div>
+
+        <!-- Slide 2: Scripture -->
+        <div class="slide scripture-slide">
+            <p style="font-size: 2.2em; line-height: 1.8; font-style: italic;">"Therefore go and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit, and teaching them to obey everything I have commanded you."</p>
+            <p style="font-size: 1.5em; margin-top: 30px; font-weight: bold;">Matthew 28:19-20 (NIV)</p>
+        </div>
+
+        <!-- Slide 3: Journey Recap -->
+        <div class="slide content-slide">
+            <h2>Your 6-Week Journey</h2>
+            <p style="font-size: 1.5em; color: #ffd700; margin-bottom: 30px;">Look how far you've come!</p>
+            <ul>
+                <li>Week 1: Discovered your divine design</li>
+                <li>Week 2: Learned to hear God's voice</li>
+                <li>Week 3: Aligned passion with purpose</li>
+                <li>Week 4: Overcame purpose blockers</li>
+                <li>Week 5: Created practical implementation</li>
+                <li>Week 6: Established sustainable rhythms</li>
+            </ul>
+            <p style="margin-top: 40px; font-size: 1.4em;">You are EQUIPPED and EMPOWERED!</p>
+        </div>
+
+        <!-- Slide 4: What You've Gained -->
+        <div class="slide content-slide">
+            <h2>You Now Have...</h2>
+            <div style="background: #2a2a3e; padding: 40px; border-radius: 20px;">
+                <ul style="font-size: 1.4em;">
+                    <li>Clear understanding of your purpose</li>
+                    <li>Written mission statement</li>
+                    <li>90-day action plan</li>
+                    <li>Support system blueprint</li>
+                    <li>Daily rhythms for sustainability</li>
+                    <li>Legacy multiplication strategy</li>
+                </ul>
+            </div>
+            <p style="margin-top: 30px; font-size: 1.5em; color: #ffd700;">The foundation is LAID!</p>
+        </div>
+
+        <!-- Slide 5: Staying Connected -->
+        <div class="slide content-slide">
+            <h2>Staying Connected to the Vine</h2>
+            <p style="font-size: 1.5em; color: #ff8c00; margin-bottom: 30px;">"Apart from me you can do nothing" - John 15:5</p>
+            <ul>
+                <li>Daily time with God is non-negotiable</li>
+                <li>Weekly accountability keeps you sharp</li>
+                <li>Monthly evaluation ensures progress</li>
+                <li>Quarterly retreats provide renewal</li>
+                <li>Annual vision casting maintains clarity</li>
+            </ul>
+        </div>
+
+        <!-- Slide 6: Continuous Growth -->
+        <div class="slide content-slide">
+            <h2>Your Growth Never Stops</h2>
+            <div style="background: #2a2a3e; padding: 40px; border-radius: 20px;">
+                <h3 style="color: #ffd700; margin-bottom: 20px;">Keep Learning:</h3>
+                <ul>
+                    <li>Read books on your calling</li>
+                    <li>Attend conferences and workshops</li>
+                    <li>Find advanced training</li>
+                    <li>Join mastermind groups</li>
+                    <li>Seek feedback constantly</li>
+                </ul>
+                <p style="margin-top: 30px;">Your purpose will EVOLVE as you grow!</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: Next Steps -->
+        <div class="slide content-slide">
+            <h2>Your Next 12 Months</h2>
+            <div class="next-steps">
+                <div class="step-card">
+                    <h4>Months 1-3</h4>
+                    <p>Execute 90-day plan<br>Build momentum<br>Gather testimonies</p>
+                </div>
+                <div class="step-card">
+                    <h4>Months 4-6</h4>
+                    <p>Expand impact<br>Develop systems<br>Multiply efforts</p>
+                </div>
+                <div class="step-card">
+                    <h4>Months 7-9</h4>
+                    <p>Refine approach<br>Deepen expertise<br>Increase influence</p>
+                </div>
+            </div>
+            <div class="step-card" style="max-width: 400px; margin: 20px auto;">
+                <h4>Months 10-12</h4>
+                <p>Evaluate & celebrate<br>Plan year 2<br>Raise up others</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: Community -->
+        <div class="slide content-slide">
+            <h2>Stay Connected</h2>
+            <div class="commission-box">
+                <h3 style="color: #ffd700; margin-bottom: 20px;">Your Purpose Community:</h3>
+                <p style="font-size: 1.3em; line-height: 2;">
+                    📱 Join our online community<br>
+                    🤝 Find accountability partners<br>
+                    📚 Access ongoing resources<br>
+                    🎯 Share your victories<br>
+                    🙏 Request prayer support<br>
+                    🚀 Collaborate on Kingdom projects
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 9: Declaration -->
+        <div class="slide declaration-slide">
+            <h2 style="color: #ffd700;">Your Commissioning Declaration</h2>
+            <div style="background: rgba(255,215,0,0.1); padding: 40px; border-radius: 20px; border: 2px solid #ffd700;">
+                <p style="font-size: 1.6em; line-height: 2;">
+                    "I am commissioned to walk in my divine purpose. I will not shrink back in fear or comparison. I will steward my gifts with excellence, serve with love, and multiply Kingdom impact. I am sent to make a difference in my generation. I say YES to God's call!"
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 10: Blessing -->
+        <div class="slide scripture-slide">
+            <h2>Receive This Blessing</h2>
+            <p style="font-size: 1.8em; line-height: 2; max-width: 800px;">
+                "May the Lord bless you and keep you as you walk in purpose. May His face shine upon you and give you favor. May He establish the work of your hands and multiply your impact for His glory. Go forth in power, love, and a sound mind!"
+            </p>
+            <div class="celebration">🙏✨👑</div>
+        </div>
+
+        <!-- Slide 11: Challenge -->
+        <div class="slide content-slide">
+            <h2>Your Final Challenge</h2>
+            <div style="background: #2a2a3e; padding: 40px; border-radius: 20px;">
+                <h3 style="color: #ffd700; margin-bottom: 30px;">In the Next 7 Days:</h3>
+                <ol style="text-align: left; font-size: 1.4em; line-height: 2.5;">
+                    <li>Make your public purpose declaration</li>
+                    <li>Take ONE bold action step</li>
+                    <li>Share your journey with 3 people</li>
+                    <li>Schedule your first accountability meeting</li>
+                    <li>Begin your daily purpose rhythms</li>
+                </ol>
+            </div>
+            <p style="margin-top: 30px; font-size: 1.5em; color: #ffd700;">The world is waiting for what you carry!</p>
+        </div>
+
+        <!-- Slide 12: Final Send-Off -->
+        <div class="slide title-slide">
+            <h1>YOU ARE SENT!</h1>
+            <p style="font-size: 2em; margin: 40px 0;">Go Change the World!</p>
+            <div class="celebration">🚀🌍✨</div>
+            <p style="font-size: 1.5em; margin-top: 40px;">
+                #DivinePurpose #KingdomImpact #Commissioned
+            </p>
+            <p style="margin-top: 60px; font-size: 1.2em;">
+                "The one who calls you is faithful, and he will do it."<br>
+                - 1 Thessalonians 5:24
+            </p>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">Previous</button>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 12;
+
+        function changeSlide(direction) {
+            const slides = document.querySelectorAll('.slide');
+            slides[currentSlide - 1].classList.remove('active');
+            
+            currentSlide += direction;
+            if (currentSlide > totalSlides) currentSlide = totalSlides;
+            if (currentSlide < 1) currentSlide = 1;
+            
+            slides[currentSlide - 1].classList.add('active');
+            document.getElementById('currentSlide').textContent = currentSlide;
+            
+            updateProgressBar();
+            updateNavButtons();
+        }
+
+        function updateProgressBar() {
+            const progress = (currentSlide / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function updateNavButtons() {
+            document.getElementById('prevBtn').disabled = currentSlide === 1;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
+            document.getElementById('nextBtn').textContent = currentSlide === totalSlides ? 'Amen!' : 'Next';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+        });
+
+        updateProgressBar();
+        updateNavButtons();
+    </script>
+</body>
+</html>

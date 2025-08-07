@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purpose Commissioning Declaration - Week 6 Finale</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        h1 { color: #ff8c00; font-size: 2.5em; text-align: center; margin-bottom: 10px; }
+        .subtitle { text-align: center; color: #666; margin-bottom: 30px; font-style: italic; }
+        .celebration { text-align: center; font-size: 2em; margin: 20px 0; }
+        .scripture-box { background: #fff8e6; padding: 20px; border-left: 4px solid #ffd700; margin: 20px 0; border-radius: 5px; }
+        .section { margin: 30px 0; padding: 20px; background: #fafafa; border-radius: 8px; }
+        h2 { color: #ff8c00; margin-bottom: 15px; }
+        h3 { color: #666; margin: 20px 0 10px; }
+        label { display: block; margin-bottom: 5px; color: #555; font-weight: 600; }
+        input[type="text"], input[type="email"], textarea, select { width: 100%; padding: 10px; margin-bottom: 15px; border: 2px solid #ddd; border-radius: 5px; }
+        input:focus, textarea:focus { outline: none; border-color: #ffd700; }
+        
+        .journey-recap { background: #fff8e6; padding: 30px; border-radius: 15px; margin: 20px 0; }
+        .week-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 20px 0; }
+        .week-item { background: white; padding: 15px; border-radius: 10px; border: 2px solid #ffd700; }
+        .week-item h4 { color: #ff8c00; margin-bottom: 5px; }
+        
+        .transformation-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 20px 0; }
+        .before-after { background: white; padding: 25px; border-radius: 10px; text-align: center; }
+        .before { border: 2px solid #ccc; }
+        .after { border: 2px solid #ffd700; background: #fffef5; }
+        
+        .commitment-builder { background: #fff3cd; padding: 30px; border-radius: 15px; margin: 20px 0; }
+        .action-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0; }
+        .action-card { background: white; padding: 20px; border-radius: 10px; border: 2px solid #ff8c00; text-align: center; }
+        .action-number { background: #ff8c00; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-weight: bold; }
+        
+        .declaration-section { background: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%); color: white; padding: 40px; border-radius: 15px; margin: 30px 0; text-align: center; }
+        .declaration-text { background: rgba(255,255,255,0.2); padding: 30px; border-radius: 10px; margin: 20px 0; font-size: 1.2em; line-height: 1.8; }
+        
+        .witness-section { background: #f8f8f8; padding: 25px; border-radius: 10px; margin: 20px 0; }
+        .signature-line { border-bottom: 2px solid #333; margin: 30px 0 5px; padding-bottom: 5px; }
+        
+        .next-steps { background: #e8f5e9; padding: 30px; border-radius: 15px; margin: 20px 0; border: 2px solid #4caf50; }
+        .resource-list { background: white; padding: 20px; border-radius: 10px; margin: 15px 0; }
+        
+        .submit-btn { background: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%); color: white; padding: 20px 50px; border: none; border-radius: 50px; font-size: 1.3em; font-weight: bold; cursor: pointer; display: block; margin: 30px auto 0; box-shadow: 0 8px 25px rgba(255, 140, 0, 0.3); transition: all 0.3s; }
+        .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(255, 140, 0, 0.4); }
+        
+        #successMessage { display: none; background: #d4edda; color: #155724; padding: 30px; border-radius: 10px; margin-top: 20px; text-align: center; }
+        .loading { display: none; text-align: center; margin: 20px 0; }
+        .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #ff8c00; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="celebration">🎉🙌🎊</div>
+        <h1>Your Purpose Commissioning</h1>
+        <p class="subtitle">Week 6, Friday - You Are Ready to Walk in Your Divine Purpose!</p>
+
+        <div class="scripture-box">
+            <p>"The one who calls you is faithful, and he will do it."</p>
+            <p style="text-align: right; font-weight: bold;">1 Thessalonians 5:24 (NIV)</p>
+        </div>
+
+        <form id="commissioningForm">
+            <div class="section">
+                <h2>1. Personal Information</h2>
+                <label for="fullName">Full Name *</label>
+                <input type="text" id="fullName" name="fullName" required>
+                
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="completionDate">Today's Date *</label>
+                <input type="date" id="completionDate" name="completionDate" required>
+            </div>
+
+            <div class="section journey-recap">
+                <h2>2. Your 6-Week Journey Recap</h2>
+                <p style="margin-bottom: 20px;">Reflect on how God has transformed you through each week:</p>
+                
+                <div class="week-grid">
+                    <div class="week-item">
+                        <h4>Week 1: Created for a Purpose</h4>
+                        <textarea name="week1Reflection" rows="3" placeholder="What did you discover about your divine design?"></textarea>
+                    </div>
+                    <div class="week-item">
+                        <h4>Week 2: Hearing God's Voice</h4>
+                        <textarea name="week2Reflection" rows="3" placeholder="How has your ability to hear God improved?"></textarea>
+                    </div>
+                    <div class="week-item">
+                        <h4>Week 3: Aligning Passion with Purpose</h4>
+                        <textarea name="week3Reflection" rows="3" placeholder="What passions connected with your purpose?"></textarea>
+                    </div>
+                    <div class="week-item">
+                        <h4>Week 4: Overcoming Purpose Blockers</h4>
+                        <textarea name="week4Reflection" rows="3" placeholder="What fears or obstacles did you overcome?"></textarea>
+                    </div>
+                    <div class="week-item">
+                        <h4>Week 5: Practical Implementation</h4>
+                        <textarea name="week5Reflection" rows="3" placeholder="What practical steps have you taken?"></textarea>
+                    </div>
+                    <div class="week-item">
+                        <h4>Week 6: Living Your Purpose Daily</h4>
+                        <textarea name="week6Reflection" rows="3" placeholder="How will you sustain your purpose journey?"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>3. Transformation Declaration</h2>
+                <div class="transformation-compare">
+                    <div class="before-after before">
+                        <h3>BEFORE This Course</h3>
+                        <p style="margin-bottom: 15px;">I was...</p>
+                        <textarea name="beforeState" rows="5" required placeholder="Describe where you were 6 weeks ago (confused, stuck, fearful, etc.)"></textarea>
+                    </div>
+                    <div class="before-after after">
+                        <h3>AFTER This Course</h3>
+                        <p style="margin-bottom: 15px;">I am now...</p>
+                        <textarea name="afterState" rows="5" required placeholder="Describe who you are today (clear, confident, equipped, etc.)"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>4. Your Discovered Purpose Summary</h2>
+                
+                <label for="purposeStatement">My Life Purpose Statement (from previous weeks): *</label>
+                <textarea id="purposeStatement" name="purposeStatement" required rows="3" placeholder="I exist to..."></textarea>
+                
+                <label for="uniqueGifts">My Top 3 Unique Gifts/Talents: *</label>
+                <input type="text" id="uniqueGifts" name="uniqueGifts" required placeholder="1. Leadership 2. Teaching 3. Encouragement">
+                
+                <label for="targetAudience">Who I'm Called to Serve: *</label>
+                <input type="text" id="targetAudience" name="targetAudience" required placeholder="Young professionals, single mothers, business leaders, etc.">
+                
+                <label for="kingdomImpact">The Kingdom Impact I Will Make: *</label>
+                <textarea id="kingdomImpact" name="kingdomImpact" required rows="3" placeholder="Lives transformed, communities changed, etc."></textarea>
+            </div>
+
+            <div class="section commitment-builder">
+                <h2>5. My 12-Month Purpose Action Plan</h2>
+                <p style="margin-bottom: 20px;">Commit to specific actions for the next year:</p>
+                
+                <div class="action-grid">
+                    <div class="action-card">
+                        <div class="action-number">1-3</div>
+                        <h4>Months 1-3</h4>
+                        <textarea name="months1to3" rows="4" placeholder="Foundation building actions..."></textarea>
+                    </div>
+                    <div class="action-card">
+                        <div class="action-number">4-6</div>
+                        <h4>Months 4-6</h4>
+                        <textarea name="months4to6" rows="4" placeholder="Expansion actions..."></textarea>
+                    </div>
+                    <div class="action-card">
+                        <div class="action-number">7-9</div>
+                        <h4>Months 7-9</h4>
+                        <textarea name="months7to9" rows="4" placeholder="Multiplication actions..."></textarea>
+                    </div>
+                </div>
+                
+                <label for="yearEndVision">By this time next year, I will have: *</label>
+                <textarea id="yearEndVision" name="yearEndVision" required rows="3" placeholder="Specific, measurable outcomes..."></textarea>
+            </div>
+
+            <div class="declaration-section">
+                <h2>6. My Commissioning Declaration</h2>
+                <div class="declaration-text">
+                    <p>I, <span style="text-decoration: underline;">[Your Name]</span>, having completed the Discovering Your Divine Purpose journey, do hereby declare:</p>
+                    <p style="margin-top: 20px;">I ACCEPT God's call on my life. I COMMIT to walking in my purpose with courage and faith. I PROMISE to use my gifts for Kingdom impact. I WILL NOT shrink back in fear, comparison, or doubt. I CHOOSE to be a faithful steward of all God has entrusted to me. I AM COMMISSIONED to change my world for Christ!</p>
+                </div>
+                
+                <label for="personalDeclaration" style="color: white;">Add your personal declaration:</label>
+                <textarea id="personalDeclaration" name="personalDeclaration" rows="4" style="background: rgba(255,255,255,0.9);" placeholder="Write your own powerful declaration..."></textarea>
+            </div>
+
+            <div class="section witness-section">
+                <h2>7. Accountability & Witnesses</h2>
+                <p style="margin-bottom: 20px;">Purpose is not walked alone. Who will hold you accountable?</p>
+                
+                <label for="accountabilityPartner1">Primary Accountability Partner: *</label>
+                <input type="text" id="accountabilityPartner1" name="accountabilityPartner1" required placeholder="Name and relationship">
+                
+                <label for="accountabilityPartner2">Secondary Accountability Partner:</label>
+                <input type="text" id="accountabilityPartner2" name="accountabilityPartner2" placeholder="Name and relationship">
+                
+                <label for="spiritualCovering">Spiritual Covering/Mentor: *</label>
+                <input type="text" id="spiritualCovering" name="spiritualCovering" required placeholder="Pastor, leader, or mentor name">
+                
+                <div style="margin-top: 30px;">
+                    <p><strong>By submitting this form, I commit to:</strong></p>
+                    <ul style="list-style: none; margin-top: 15px;">
+                        <li>✓ Living out my purpose daily</li>
+                        <li>✓ Staying connected to the community</li>
+                        <li>✓ Continuing to grow and learn</li>
+                        <li>✓ Multiplying my impact through others</li>
+                        <li>✓ Giving God glory in all I do</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section next-steps">
+                <h2>8. Your Next Steps</h2>
+                <p style="margin-bottom: 20px;">Keep the momentum going!</p>
+                
+                <div class="resource-list">
+                    <h3>This Week I Will:</h3>
+                    <textarea name="thisWeekActions" rows="3" placeholder="3 specific actions to take this week..."></textarea>
+                </div>
+                
+                <div class="resource-list">
+                    <h3>Resources I Need:</h3>
+                    <textarea name="resourcesNeeded" rows="3" placeholder="Books, courses, connections, tools..."></textarea>
+                </div>
+                
+                <div class="resource-list">
+                    <h3>How I'll Celebrate This Milestone:</h3>
+                    <input type="text" name="celebration" placeholder="Share with family, special dinner, gratitude journal...">
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>9. Share Your Victory!</h2>
+                <label for="testimony">Write a brief testimony to encourage others: *</label>
+                <textarea id="testimony" name="testimony" required rows="5" placeholder="In 2-3 sentences, share how this course transformed your life and what you're excited about..."></textarea>
+                
+                <label for="sharePermission">May we share your testimony? *</label>
+                <select id="sharePermission" name="sharePermission" required>
+                    <option value="">Select option</option>
+                    <option value="Yes with name">Yes, with my name</option>
+                    <option value="Yes anonymously">Yes, anonymously</option>
+                    <option value="No">No, keep private</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn">🎯 SEAL MY COMMISSIONING 🎯</button>
+            
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Sealing your commissioning...</p>
+            </div>
+            
+            <div id="successMessage">
+                <h2>🎊 CONGRATULATIONS! 🎊</h2>
+                <h3>You Are Officially Commissioned!</h3>
+                <p style="font-size: 1.2em; margin: 20px 0;">Your journey doesn't end here - it BEGINS here!</p>
+                <p>Check your email for your Commissioning Certificate and next steps.</p>
+                <p style="margin-top: 30px; font-size: 2em;">Go Change the World! 🚀</p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Set today's date as default
+        document.getElementById('completionDate').valueAsDate = new Date();
+
+        document.getElementById('commissioningForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Add name to declaration
+            const name = document.getElementById('fullName').value;
+            const declarationText = document.querySelector('.declaration-text p');
+            declarationText.innerHTML = declarationText.innerHTML.replace('[Your Name]', name);
+            
+            document.querySelector('.loading').style.display = 'block';
+            document.querySelector('.submit-btn').style.display = 'none';
+            
+            const formData = new FormData(e.target);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            data['timestamp'] = new Date().toLocaleString();
+            data['courseCompleted'] = true;
+            
+            console.log('Commissioning Data:', data);
+            
+            // Simulate submission
+            setTimeout(() => {
+                document.querySelector('.loading').style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+                document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+                
+                // Trigger celebration animation
+                confetti();
+            }, 2000);
+        });
+
+        // Simple confetti effect
+        function confetti() {
+            const colors = ['#ffd700', '#ff8c00', '#ff6b6b', '#4caf50', '#2196f3'];
+            const confettiCount = 100;
+            
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = '-10px';
+                confetti.style.opacity = Math.random() + 0.5;
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                confetti.style.transition = `all ${Math.random() * 3 + 2}s linear`;
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => {
+                    confetti.style.top = '100%';
+                    confetti.style.transform = `rotate(${Math.random() * 720}deg)`;
+                }, 100);
+                
+                setTimeout(() => confetti.remove(), 5000);
+            }
+        }
+    </script>
+</body>
+</html>
