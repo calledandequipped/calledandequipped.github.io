@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 1 Friday - The Joseph Journey</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0f0f0f;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .slideshow-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #b8860b 0%, #daa520 100%);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            color: #fff8dc;
+        }
+
+        h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+
+        p, li {
+            font-size: 1.4em;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto 20px;
+        }
+
+        .scripture {
+            font-size: 1.6em;
+            font-style: italic;
+            color: #fff8dc;
+            margin: 30px auto;
+            padding: 25px;
+            border: 2px solid #ffd700;
+            border-radius: 15px;
+            max-width: 800px;
+            text-align: left;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .scripture-ref {
+            display: block;
+            text-align: right;
+            font-size: 0.9em;
+            margin-top: 10px;
+            color: #ffd700;
+        }
+
+        ul {
+            list-style: none;
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        li::before {
+            content: "⭐ ";
+            color: #ffd700;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 100;
+        }
+
+        button {
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid #fff;
+            color: #fff;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 1.2em;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .journey-slide {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+
+        .pit-slide {
+            background: linear-gradient(135deg, #424242 0%, #212121 100%);
+        }
+
+        .palace-slide {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #333;
+        }
+
+        .palace-slide h1, .palace-slide h2, .palace-slide h3 {
+            color: #333;
+        }
+
+        .process-slide {
+            background: linear-gradient(135deg, #4a148c 0%, #7b1fa2 100%);
+        }
+
+        .key-point {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .journey-map {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1000px;
+            margin: 30px auto;
+            position: relative;
+        }
+
+        .journey-map::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #ffd700;
+            z-index: 0;
+        }
+
+        .journey-point {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            border: 3px solid #ffd700;
+            z-index: 1;
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .comparison-table {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 900px;
+            margin: 20px auto;
+        }
+
+        .comparison-column {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5em; }
+            h2 { font-size: 2em; }
+            h3 { font-size: 1.5em; }
+            p, li { font-size: 1.2em; }
+            .slide { padding: 30px; }
+            .journey-map { flex-direction: column; }
+            .journey-map::before { display: none; }
+            .comparison-table { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <span class="slide-number">1 / 24</span>
+            <h1>The Joseph Journey</h1>
+            <h2>From Dreams to Destiny</h2>
+            <p>Week 1, Day 5: Understanding Your Process</p>
+        </div>
+
+        <!-- Slide 2: Welcome & Recap -->
+        <div class="slide">
+            <span class="slide-number">2 / 24</span>
+            <h2>Journey Check-In</h2>
+            <p>This week we've discovered:</p>
+            <ul>
+                <li>You are God's masterpiece (Monday)</li>
+                <li>You were known before birth (Wednesday)</li>
+                <li>Today: Your journey to purpose</li>
+            </ul>
+        </div>
+
+        <!-- Slide 3: Opening Prayer -->
+        <div class="slide process-slide">
+            <span class="slide-number">3 / 24</span>
+            <h2>Opening Prayer</h2>
+            <p>"Father, thank You for the journey You've designed for each of us. Help us to trust Your process, even when we can't see the destination. Give us Joseph's faith to believe that You are working all things for good. In Jesus' name, Amen."</p>
+        </div>
+
+        <!-- Slide 4: Joseph's Story Overview -->
+        <div class="slide">
+            <span class="slide-number">4 / 24</span>
+            <h2>Joseph's Journey: A Timeline</h2>
+            <div class="journey-map">
+                <div class="journey-point">
+                    <h3>17</h3>
+                    <p>The Dream</p>
+                </div>
+                <div class="journey-point">
+                    <h3>17</h3>
+                    <p>The Pit</p>
+                </div>
+                <div class="journey-point">
+                    <h3>17-28</h3>
+                    <p>Potiphar's House</p>
+                </div>
+                <div class="journey-point">
+                    <h3>28-30</h3>
+                    <p>Prison</p>
+                </div>
+                <div class="journey-point">
+                    <h3>30</h3>
+                    <p>The Palace</p>
+                </div>
+            </div>
+            <p><strong>13 years from dream to destiny!</strong></p>
+        </div>
+
+        <!-- Slide 5: The Dream Phase -->
+        <div class="slide journey-slide">
+            <span class="slide-number">5 / 24</span>
+            <h1>Phase 1: The Dream</h1>
+            <div class="scripture">
+                "Joseph had a dream, and when he told it to his brothers, they hated him all the more."
+                <span class="scripture-ref">- Genesis 37:5</span>
+            </div>
+        </div>
+
+        <!-- Slide 6: Characteristics of the Dream Phase -->
+        <div class="slide journey-slide">
+            <span class="slide-number">6 / 24</span>
+            <h2>When God Gives You a Dream</h2>
+            <ul>
+                <li>It often comes before you're ready</li>
+                <li>Others may not understand or celebrate it</li>
+                <li>It reveals the destination, not the journey</li>
+                <li>It requires a process to fulfill</li>
+                <li>It's bigger than your current capacity</li>
+            </ul>
+        </div>
+
+        <!-- Slide 7: Your Dreams Matter -->
+        <div class="slide journey-slide">
+            <span class="slide-number">7 / 24</span>
+            <h2>Your Dreams Are Not Random</h2>
+            <div class="key-point">
+                <p>God plants dreams as <strong>seeds of destiny</strong></p>
+                <p>What seems impossible today is <strong>preparation for tomorrow</strong></p>
+                <p>Your dreams reveal what God wants to <strong>develop in you</strong></p>
+            </div>
+        </div>
+
+        <!-- Slide 8: The Pit Phase -->
+        <div class="slide pit-slide">
+            <span class="slide-number">8 / 24</span>
+            <h1>Phase 2: The Pit</h1>
+            <div class="scripture">
+                "So when Joseph came to his brothers, they stripped him of his robe... and they threw him into the cistern."
+                <span class="scripture-ref">- Genesis 37:23-24</span>
+            </div>
+        </div>
+
+        <!-- Slide 9: Purpose of the Pit -->
+        <div class="slide pit-slide">
+            <span class="slide-number">9 / 24</span>
+            <h2>Why God Allows Pits</h2>
+            <ul>
+                <li>To develop dependence on Him</li>
+                <li>To strip away self-reliance</li>
+                <li>To build character for the calling</li>
+                <li>To create compassion for others</li>
+                <li>To prepare you for promotion</li>
+            </ul>
+            <p><strong>Your pit is not your end—it's your beginning!</strong></p>
+        </div>
+
+        <!-- Slide 10: Potiphar's House -->
+        <div class="slide">
+            <span class="slide-number">10 / 24</span>
+            <h1>Phase 3: The Process</h1>
+            <h2>Potiphar's House - Learning Excellence</h2>
+            <div class="scripture">
+                "The Lord was with Joseph so that he prospered, and he lived in the house of his Egyptian master."
+                <span class="scripture-ref">- Genesis 39:2</span>
+            </div>
+        </div>
+
+        <!-- Slide 11: Excellence in Obscurity -->
+        <div class="slide">
+            <span class="slide-number">11 / 24</span>
+            <h2>Excellence in Obscurity</h2>
+            <div class="key-point">
+                <p>Joseph went from <strong>favorite son</strong> to <strong>slave</strong></p>
+                <p>But he chose <strong>excellence</strong> over <strong>bitterness</strong></p>
+                <p>God promoted him even in <strong>slavery</strong></p>
+                <p>Your attitude in obscurity determines your <strong>altitude in opportunity</strong></p>
+            </div>
+        </div>
+
+        <!-- Slide 12: The Prison Phase -->
+        <div class="slide pit-slide">
+            <span class="slide-number">12 / 24</span>
+            <h1>Phase 4: The Prison</h1>
+            <h2>When Right Choices Lead to Wrong Places</h2>
+            <div class="scripture">
+                "But while Joseph was there in the prison, the Lord was with him; he showed him kindness..."
+                <span class="scripture-ref">- Genesis 39:20-21</span>
+            </div>
+        </div>
+
+        <!-- Slide 13: Prison Principles -->
+        <div class="slide pit-slide">
+            <span class="slide-number">13 / 24</span>
+            <h2>What Prison Teaches</h2>
+            <ul>
+                <li>Sometimes obedience leads to harder places</li>
+                <li>God's presence is more important than position</li>
+                <li>Your gift will make room even in confinement</li>
+                <li>Helping others prepares you for your purpose</li>
+                <li>Delay is not denial</li>
+            </ul>
+        </div>
+
+        <!-- Slide 14: The Forgotten Years -->
+        <div class="slide pit-slide">
+            <span class="slide-number">14 / 24</span>
+            <h2>The Forgotten Years</h2>
+            <div class="scripture">
+                "The chief cupbearer, however, did not remember Joseph; he forgot him."
+                <span class="scripture-ref">- Genesis 40:23</span>
+            </div>
+            <p><strong>Two more years passed...</strong></p>
+            <p>When people forget you, God remembers you!</p>
+        </div>
+
+        <!-- Slide 15: The Palace Phase -->
+        <div class="slide palace-slide">
+            <span class="slide-number">15 / 24</span>
+            <h1>Phase 5: The Palace</h1>
+            <h2>Suddenly!</h2>
+            <div class="scripture" style="color: #333; border-color: #b8860b;">
+                "So Pharaoh said to Joseph, 'I hereby put you in charge of the whole land of Egypt.'"
+                <span class="scripture-ref" style="color: #666;">- Genesis 41:41</span>
+            </div>
+        </div>
+
+        <!-- Slide 16: From Prison to Palace -->
+        <div class="slide palace-slide">
+            <span class="slide-number">16 / 24</span>
+            <h2>God's Suddenlies</h2>
+            <div class="key-point" style="background: rgba(0,0,0,0.1); color: #333;">
+                <p>In ONE DAY, Joseph went from:</p>
+                <p>Prison → Palace</p>
+                <p>Forgotten → Favored</p>
+                <p>Slave → Second in Command</p>
+                <p><strong>Your breakthrough can happen suddenly!</strong></p>
+            </div>
+        </div>
+
+        <!-- Slide 17: The Purpose Revealed -->
+        <div class="slide">
+            <span class="slide-number">17 / 24</span>
+            <h2>The Purpose Revealed</h2>
+            <div class="scripture">
+                "You intended to harm me, but God intended it for good to accomplish what is now being done, the saving of many lives."
+                <span class="scripture-ref">- Genesis 50:20</span>
+            </div>
+            <p>Every phase prepared Joseph to save nations!</p>
+        </div>
+
+        <!-- Slide 18: Joseph's Journey vs Your Journey -->
+        <div class="slide process-slide">
+            <span class="slide-number">18 / 24</span>
+            <h2>Your Journey Parallels</h2>
+            <div class="comparison-table">
+                <div class="comparison-column">
+                    <h3>Joseph's Journey</h3>
+                    <ul>
+                        <li>Received dreams at 17</li>
+                        <li>Betrayed by family</li>
+                        <li>Sold into slavery</li>
+                        <li>Falsely accused</li>
+                        <li>Forgotten in prison</li>
+                        <li>Promoted at 30</li>
+                    </ul>
+                </div>
+                <div class="comparison-column">
+                    <h3>Your Journey</h3>
+                    <ul>
+                        <li>God-given dreams</li>
+                        <li>Misunderstood</li>
+                        <li>Difficult seasons</li>
+                        <li>Unfair treatment</li>
+                        <li>Waiting periods</li>
+                        <li>Divine timing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 19: Keys to Surviving Your Process -->
+        <div class="slide">
+            <span class="slide-number">19 / 24</span>
+            <h2>Keys to Thriving in Your Process</h2>
+            <div class="key-point">
+                <p><strong>1. Maintain Your Character</strong><br>Excellence attracts promotion</p>
+                <p><strong>2. Serve Where You Are</strong><br>Bloom where you're planted</p>
+                <p><strong>3. Keep Your Dream Alive</strong><br>Don't let circumstances kill vision</p>
+                <p><strong>4. Trust God's Timing</strong><br>He's never early, never late</p>
+                <p><strong>5. Help Others</strong><br>Your gift serves a greater purpose</p>
+            </div>
+        </div>
+
+        <!-- Slide 20: Interactive Reflection -->
+        <div class="slide journey-slide">
+            <span class="slide-number">20 / 24</span>
+            <h2>🤔 Identify Your Season</h2>
+            <h3>Which phase are you in?</h3>
+            <ul>
+                <li><strong>Dream Phase:</strong> Receiving vision</li>
+                <li><strong>Pit Phase:</strong> Major setback/betrayal</li>
+                <li><strong>Process Phase:</strong> Faithful in obscurity</li>
+                <li><strong>Prison Phase:</strong> Waiting/forgotten</li>
+                <li><strong>Palace Phase:</strong> Walking in purpose</li>
+            </ul>
+            <p><em>Share with a partner</em></p>
+        </div>
+
+        <!-- Slide 21: Case Study -->
+        <div class="slide">
+            <span class="slide-number">21 / 24</span>
+            <h2>Modern Day Josephs</h2>
+            <ul>
+                <li><strong>Tyler Perry:</strong> Homeless → Hollywood mogul</li>
+                <li><strong>Oprah Winfrey:</strong> Abuse survivor → Media empire</li>
+                <li><strong>Nick Vujicic:</strong> No limbs → International speaker</li>
+                <li><strong>Joyce Meyer:</strong> Abuse victim → Ministry leader</li>
+            </ul>
+            <p>Your story is still being written!</p>
+        </div>
+
+        <!-- Slide 22: This Week's Project -->
+        <div class="slide journey-slide">
+            <span class="slide-number">22 / 24</span>
+            <h2>Project: Map Your Journey</h2>
+            <ul>
+                <li>Create a timeline of your life</li>
+                <li>Identify your "pit" moments</li>
+                <li>Recognize your "process" seasons</li>
+                <li>See God's hand through it all</li>
+                <li>Write your testimony of faith</li>
+            </ul>
+            <p>Due: Beginning of Week 2</p>
+        </div>
+
+        <!-- Slide 23: Week 1 Celebration -->
+        <div class="slide palace-slide">
+            <span class="slide-number">23 / 24</span>
+            <h1>Week 1 Complete!</h1>
+            <h2>You've Discovered:</h2>
+            <ul style="color: #333;">
+                <li>You are God's masterpiece</li>
+                <li>You were planned before birth</li>
+                <li>Your journey has purpose</li>
+            </ul>
+            <p style="color: #333;"><strong>Next Week: Hearing God's Voice</strong></p>
+        </div>
+
+        <!-- Slide 24: Closing -->
+        <div class="slide">
+            <span class="slide-number">24 / 24</span>
+            <h1>Remember:</h1>
+            <h2>Your Process Has Purpose</h2>
+            <div class="scripture">
+                "And we know that in all things God works for the good of those who love him, who have been called according to his purpose."
+                <span class="scripture-ref">- Romans 8:28</span>
+            </div>
+            <p><strong>Trust the process. Your palace is coming!</strong></p>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button onclick="changeSlide(-1)">← Previous</button>
+        <button onclick="changeSlide(1)">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            // Remove active class from all slides
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Calculate the correct slide index
+            if (n >= totalSlides) {
+                currentSlide = 0;
+            } else if (n < 0) {
+                currentSlide = totalSlides - 1;
+            } else {
+                currentSlide = n;
+            }
+            
+            // Add active class to current slide
+            slides[currentSlide].classList.add('active');
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                changeSlide(-1);
+            } else if (e.key === 'ArrowRight') {
+                changeSlide(1);
+            }
+        });
+
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                changeSlide(1); // Swipe left, go to next slide
+            }
+            if (touchEndX > touchStartX + 50) {
+                changeSlide(-1); // Swipe right, go to previous slide
+            }
+        }
+    </script>
+</body>
+</html>

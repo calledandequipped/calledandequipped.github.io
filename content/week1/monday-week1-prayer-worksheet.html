@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prayer Exercise: Seeking God's Revelation About Your Identity</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #2a5298;
+            font-size: 20px;
+            margin: 20px 0 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        h3 {
+            color: #4a148c;
+            font-size: 16px;
+            margin: 15px 0 10px;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .subtitle {
+            font-style: italic;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .time-note {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin: 20px 0;
+            padding: 10px;
+            background: #fff9c4;
+            border-radius: 5px;
+        }
+
+        .scripture-box {
+            background: #f5f5f5;
+            border-left: 4px solid #ffd700;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .scripture-ref {
+            display: block;
+            text-align: right;
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .form-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin: 20px 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: 'Georgia', serif;
+            resize: vertical;
+        }
+
+        textarea {
+            min-height: 100px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+            z-index: 1000;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #2a5298;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .submit-button {
+            background: #2a5298;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background: #1e3c72;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .submit-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .success-message {
+            display: none;
+            background: #4caf50;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .error-message {
+            display: none;
+            background: #f44336;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .instruction-box {
+            background: #e8f4f8;
+            border: 1px solid #2a5298;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                border-radius: 0;
+            }
+            
+            .header, .content {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressBar"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Prayer Exercise Worksheet</h1>
+            <p class="subtitle">Seeking God's Revelation About Your Identity</p>
+            <p>Week 1, Day 1: You Are God's Masterpiece</p>
+        </div>
+
+        <div class="content">
+            <div class="time-note">
+                ⏰ Set aside 30 minutes of uninterrupted time for this exercise
+            </div>
+
+            <div class="scripture-box">
+                "Be still, and know that I am God"
+                <span class="scripture-ref">- Psalm 46:10</span>
+            </div>
+
+            <form id="prayerForm" onsubmit="handleSubmit(event)">
+                <!-- User Information -->
+                <div class="form-section">
+                    <h2>Your Information</h2>
+                    <div class="form-group">
+                        <label for="userName">Name:</label>
+                        <input type="text" id="userName" name="userName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userEmail">Email:</label>
+                        <input type="email" id="userEmail" name="userEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date:</label>
+                        <input type="text" id="date" name="date" value="" readonly>
+                    </div>
+                </div>
+
+                <!-- Preparation -->
+                <div class="form-section">
+                    <h2>Preparation (5 minutes)</h2>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="prep1" name="preparation" value="quiet_place">
+                        <label for="prep1">Find a quiet, comfortable place where you won't be disturbed</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="prep2" name="preparation" value="devices_off">
+                        <label for="prep2">Turn off or silence all devices</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="prep3" name="preparation" value="bible_ready">
+                        <label for="prep3">Have your Bible and journal ready</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="prep4" name="preparation" value="deep_breaths">
+                        <label for="prep4">Take three deep breaths to center yourself</label>
+                    </div>
+                </div>
+
+                <!-- Opening Prayer -->
+                <div class="form-section">
+                    <h2>Opening Prayer (5 minutes)</h2>
+                    <div class="instruction-box">
+                        <p>Begin by inviting the Holy Spirit to speak to you. You may use this prayer or your own words:</p>
+                    </div>
+                    <p style="font-style: italic; margin: 15px 0;">"Holy Spirit, I invite You into this time. Quiet my mind and open my heart to hear Your voice. Reveal to me how You see me. Show me the identity You've given me in Christ. I trust that You want to speak to me, and I position myself to listen. In Jesus' name, Amen."</p>
+                    
+                    <div class="form-group">
+                        <label for="additionalPrayers">Write any additional prayers or thoughts:</label>
+                        <textarea id="additionalPrayers" name="additionalPrayers"></textarea>
+                    </div>
+                </div>
+
+                <!-- Scripture Meditation -->
+                <div class="form-section">
+                    <h2>Scripture Meditation (10 minutes)</h2>
+                    <p>Slowly read each scripture below. After each one, pause and ask God: <strong>"What does this reveal about who I am to You?"</strong></p>
+                    
+                    <div class="scripture-box">
+                        "For we are God's handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do."
+                        <span class="scripture-ref">- Ephesians 2:10</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ephesiansResponse">What I sense God saying about my identity:</label>
+                        <textarea id="ephesiansResponse" name="ephesiansResponse" required></textarea>
+                    </div>
+
+                    <div class="scripture-box">
+                        "I praise you because I am fearfully and wonderfully made; your works are wonderful, I know that full well."
+                        <span class="scripture-ref">- Psalm 139:14</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="psalmResponse">What stands out to me:</label>
+                        <textarea id="psalmResponse" name="psalmResponse" required></textarea>
+                    </div>
+
+                    <div class="scripture-box">
+                        "See what great love the Father has lavished on us, that we should be called children of God! And that is what we are!"
+                        <span class="scripture-ref">- 1 John 3:1</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="johnResponse">How God sees me as His child:</label>
+                        <textarea id="johnResponse" name="johnResponse" required></textarea>
+                    </div>
+                </div>
+
+                <!-- Listening Prayer -->
+                <div class="form-section">
+                    <h2>Listening Prayer (10 minutes)</h2>
+                    <div class="instruction-box">
+                        <p>Now, quiet your heart and simply listen. Ask God these questions one at a time, then wait in silence for His response. Write down any thoughts, impressions, pictures, or scriptures that come to mind.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fatherName">1. "Father, what name do You call me?"</label>
+                        <p style="font-size: 14px; color: #666; margin-bottom: 8px;"><em>(Examples: Beloved, Chosen, Warrior, Healer, Teacher, Leader, Encourager)</em></p>
+                        <textarea id="fatherName" name="fatherName" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="godSmile">2. "Lord, what makes You smile when You look at me?"</label>
+                        <textarea id="godSmile" name="godSmile" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="spiritualGifts">3. "Holy Spirit, what gifts have You placed within me?"</label>
+                        <textarea id="spiritualGifts" name="spiritualGifts" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="liesReject">4. "Jesus, what lies about my identity do I need to reject?"</label>
+                        <textarea id="liesReject" name="liesReject" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="purposeTruth">5. "Father, what is one truth about my purpose You want me to know today?"</label>
+                        <textarea id="purposeTruth" name="purposeTruth" required></textarea>
+                    </div>
+                </div>
+
+                <!-- Declaration -->
+                <div class="form-section">
+                    <h2>Declaration (5 minutes)</h2>
+                    <div class="instruction-box">
+                        <p>Based on what God has revealed, write a personal declaration of your identity in Christ. Begin with "I am..." and include the truths He's shown you.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="identityDeclaration">My Identity Declaration:</label>
+                        <textarea id="identityDeclaration" name="identityDeclaration" placeholder="I am..." required></textarea>
+                    </div>
+                </div>
+
+                <!-- Closing -->
+                <div class="form-section">
+                    <h2>Closing</h2>
+                    <p>End your prayer time by thanking God for His revelations and committing to walk in your true identity.</p>
+
+                    <div class="scripture-box">
+                        "Therefore, if anyone is in Christ, the new creation has come: The old has gone, the new is here!"
+                        <span class="scripture-ref">- 2 Corinthians 5:17</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="commitmentPrayer">My commitment prayer:</label>
+                        <textarea id="commitmentPrayer" name="commitmentPrayer" required></textarea>
+                    </div>
+                </div>
+
+                <div class="success-message" id="successMessage">
+                    ✓ Your responses have been saved successfully! Thank you for completing this prayer exercise.
+                </div>
+
+                <div class="error-message" id="errorMessage">
+                    ✗ There was an error saving your responses. Please try again.
+                </div>
+
+                <button type="submit" class="submit-button" id="submitButton">Submit Prayer Exercise</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Set today's date
+        document.getElementById('date').value = new Date().toLocaleDateString();
+
+        // Update progress bar as user fills form
+        function updateProgress() {
+            const form = document.getElementById('prayerForm');
+            const inputs = form.querySelectorAll('input[required], textarea[required]');
+            const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+            
+            let filledInputs = 0;
+            inputs.forEach(input => {
+                if (input.value.trim() !== '') filledInputs++;
+            });
+            
+            let checkedBoxes = 0;
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) checkedBoxes++;
+            });
+            
+            const totalFields = inputs.length + checkboxes.length;
+            const completedFields = filledInputs + checkedBoxes;
+            const progress = (completedFields / totalFields) * 100;
+            
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        // Add event listeners to all form fields
+        document.querySelectorAll('input, textarea').forEach(field => {
+            field.addEventListener('input', updateProgress);
+            field.addEventListener('change', updateProgress);
+        });
+
+        // Handle form submission
+        async function handleSubmit(event) {
+            event.preventDefault();
+            
+            const submitButton = document.getElementById('submitButton');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Disable submit button
+            submitButton.disabled = true;
+            submitButton.textContent = 'Submitting...';
+            
+            // Collect form data
+            const formData = new FormData(event.target);
+            const data = {
+                timestamp: new Date().toISOString(),
+                week: 1,
+                day: 'Monday',
+                exercise: 'Prayer Exercise - Identity',
+                responses: {}
+            };
+            
+            // Convert FormData to object
+            for (let [key, value] of formData.entries()) {
+                if (data.responses[key]) {
+                    // Handle multiple values (checkboxes)
+                    if (!Array.isArray(data.responses[key])) {
+                        data.responses[key] = [data.responses[key]];
+                    }
+                    data.responses[key].push(value);
+                } else {
+                    data.responses[key] = value;
+                }
+            }
+            
+            try {
+                // TODO: Replace with your Google Sheets API endpoint
+                // This is where you would send data to Google Sheets
+                // For now, we'll simulate a successful submission
+                
+                console.log('Form data to be sent:', data);
+                
+                // Simulate API call
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                // Show success message
+                successMessage.style.display = 'block';
+                errorMessage.style.display = 'none';
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+            } finally {
+                // Re-enable submit button
+                submitButton.disabled = false;
+                submitButton.textContent = 'Submit Prayer Exercise';
+            }
+        }
+
+        // Initialize progress
+        updateProgress();
+    </script>
+
+    <!-- Google Sheets Integration -->
+    <script>
+        // Replace this with your Google Apps Script Web App URL
+        const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
+        
+        async function submitToGoogleSheets(data) {
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', // Important for Google Apps Script
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                // Note: With no-cors, we can't read the response
+                // But the data will be saved to Google Sheets
+                return { success: true };
+            } catch (error) {
+                console.error('Error submitting to Google Sheets:', error);
+                throw error;
+            }
+        }
+        
+        // Update the handleSubmit function to use Google Sheets
+        async function handleSubmit(event) {
+            event.preventDefault();
+            
+            const submitButton = document.getElementById('submitButton');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Disable submit button
+            submitButton.disabled = true;
+            submitButton.textContent = 'Submitting...';
+            
+            // Collect form data
+            const formData = new FormData(event.target);
+            const data = {
+                timestamp: new Date().toISOString(),
+                week: 1,
+                day: 'Monday',
+                exercise: 'Prayer Exercise - Identity',
+                responses: {}
+            };
+            
+            // Convert FormData to object
+            for (let [key, value] of formData.entries()) {
+                if (data.responses[key]) {
+                    // Handle multiple values (checkboxes)
+                    if (!Array.isArray(data.responses[key])) {
+                        data.responses[key] = [data.responses[key]];
+                    }
+                    data.responses[key].push(value);
+                } else {
+                    data.responses[key] = value;
+                }
+            }
+            
+            try {
+                // Submit to Google Sheets
+                await submitToGoogleSheets(data);
+                
+                // Show success message
+                successMessage.style.display = 'block';
+                errorMessage.style.display = 'none';
+                
+                // Optional: Save to localStorage as backup
+                const savedResponses = JSON.parse(localStorage.getItem('divinePurposeResponses') || '[]');
+                savedResponses.push(data);
+                localStorage.setItem('divinePurposeResponses', JSON.stringify(savedResponses));
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                // Optional: Reset form after successful submission
+                // event.target.reset();
+                // updateProgress();
+                
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+            } finally {
+                // Re-enable submit button
+                submitButton.disabled = false;
+                submitButton.textContent = 'Submit Prayer Exercise';
+            }
+        }
+    </script>
+</body>
+</html>

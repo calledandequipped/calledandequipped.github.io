@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 1 Monday - You Are God's Masterpiece</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .slideshow-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100vh;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            color: #ffd700;
+        }
+
+        h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #87ceeb;
+        }
+
+        p, li {
+            font-size: 1.4em;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto 20px;
+        }
+
+        .scripture {
+            font-size: 1.6em;
+            font-style: italic;
+            color: #ffd700;
+            margin: 30px auto;
+            padding: 20px;
+            border-left: 5px solid #ffd700;
+            max-width: 800px;
+            text-align: left;
+        }
+
+        .scripture-ref {
+            display: block;
+            text-align: right;
+            font-size: 0.9em;
+            margin-top: 10px;
+            color: #87ceeb;
+        }
+
+        ul {
+            list-style: none;
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        li::before {
+            content: "✨ ";
+            color: #ffd700;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 100;
+        }
+
+        button {
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid #fff;
+            color: #fff;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 1.2em;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .section-break {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle, #2a5298 0%, #1e3c72 100%);
+        }
+
+        .prayer-moment {
+            background: linear-gradient(135deg, #4a148c 0%, #7b1fa2 100%);
+        }
+
+        .interactive {
+            background: linear-gradient(135deg, #f57c00 0%, #ff9800 100%);
+        }
+
+        .key-point {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5em; }
+            h2 { font-size: 2em; }
+            h3 { font-size: 1.5em; }
+            p, li { font-size: 1.2em; }
+            .slide { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <span class="slide-number">1 / 20</span>
+            <h1>You Are God's Masterpiece</h1>
+            <h2>Week 1, Day 1</h2>
+            <p>Discovering Your Divine Purpose</p>
+        </div>
+
+        <!-- Slide 2: Opening Prayer -->
+        <div class="slide prayer-moment">
+            <span class="slide-number">2 / 20</span>
+            <h2>Opening Prayer</h2>
+            <p>"Heavenly Father, open our hearts and minds to receive Your truth about our identity and purpose. Help us to see ourselves as You see us - as Your masterpiece, created for good works. In Jesus' name, Amen."</p>
+        </div>
+
+        <!-- Slide 3: Key Scripture -->
+        <div class="slide">
+            <span class="slide-number">3 / 20</span>
+            <h2>Today's Foundation Scripture</h2>
+            <div class="scripture">
+                "For we are God's handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do."
+                <span class="scripture-ref">- Ephesians 2:10 (NIV)</span>
+            </div>
+        </div>
+
+        <!-- Slide 4: You Are God's Handiwork -->
+        <div class="slide">
+            <span class="slide-number">4 / 20</span>
+            <h2>You Are God's Handiwork</h2>
+            <p>The Greek word for "handiwork" is <strong>poiema</strong></p>
+            <ul>
+                <li>Where we get the English word "poem"</li>
+                <li>Means a work of art or masterpiece</li>
+                <li>You are God's creative expression</li>
+                <li>Uniquely crafted with intention and purpose</li>
+            </ul>
+        </div>
+
+        <!-- Slide 5: Created vs. Manufactured -->
+        <div class="slide">
+            <span class="slide-number">5 / 20</span>
+            <h2>Created, Not Manufactured</h2>
+            <div class="key-point">
+                <h3>Manufactured:</h3>
+                <p>Mass-produced, identical, replaceable</p>
+                <h3>Created:</h3>
+                <p>Handcrafted, unique, irreplaceable</p>
+            </div>
+            <p>God doesn't mass-produce people - He creates masterpieces!</p>
+        </div>
+
+        <!-- Slide 6: Understanding Your Spiritual DNA -->
+        <div class="slide section-break">
+            <span class="slide-number">6 / 20</span>
+            <h1>Understanding Your Spiritual DNA</h1>
+        </div>
+
+        <!-- Slide 7: Components of Your Divine Design -->
+        <div class="slide">
+            <span class="slide-number">7 / 20</span>
+            <h2>Your Divine Design Includes:</h2>
+            <ul>
+                <li>Spiritual Gifts (1 Corinthians 12)</li>
+                <li>Natural Talents & Abilities</li>
+                <li>Personality & Temperament</li>
+                <li>Life Experiences & Story</li>
+                <li>Passions & Burdens</li>
+                <li>Dreams & Visions</li>
+            </ul>
+        </div>
+
+        <!-- Slide 8: Spiritual Gifts Overview -->
+        <div class="slide">
+            <span class="slide-number">8 / 20</span>
+            <h2>Spiritual Gifts: Your Supernatural Equipment</h2>
+            <div class="scripture">
+                "There are different kinds of gifts, but the same Spirit distributes them."
+                <span class="scripture-ref">- 1 Corinthians 12:4</span>
+            </div>
+            <p>Your spiritual gifts are divine enablements for Kingdom impact</p>
+        </div>
+
+        <!-- Slide 9: Categories of Spiritual Gifts -->
+        <div class="slide">
+            <span class="slide-number">9 / 20</span>
+            <h2>Categories of Spiritual Gifts</h2>
+            <div class="key-point">
+                <h3>Motivational Gifts (Romans 12:6-8)</h3>
+                <p>Prophecy, Serving, Teaching, Encouraging, Giving, Leadership, Mercy</p>
+                <h3>Manifestation Gifts (1 Corinthians 12:8-10)</h3>
+                <p>Wisdom, Knowledge, Faith, Healing, Miracles, Prophecy, Discernment, Tongues, Interpretation</p>
+                <h3>Ministry Gifts (Ephesians 4:11)</h3>
+                <p>Apostle, Prophet, Evangelist, Pastor, Teacher</p>
+            </div>
+        </div>
+
+        <!-- Slide 10: Interactive Moment -->
+        <div class="slide interactive">
+            <span class="slide-number">10 / 20</span>
+            <h2>🤔 Reflection Moment</h2>
+            <h3>Consider:</h3>
+            <ul>
+                <li>What activities make you feel most alive?</li>
+                <li>What do others say you're gifted at?</li>
+                <li>When do you sense God's pleasure?</li>
+                <li>What needs break your heart?</li>
+            </ul>
+            <p><em>Take 2 minutes to journal your thoughts</em></p>
+        </div>
+
+        <!-- Slide 11: The Good Works Prepared -->
+        <div class="slide section-break">
+            <span class="slide-number">11 / 20</span>
+            <h1>Good Works Prepared in Advance</h1>
+        </div>
+
+        <!-- Slide 12: God's Advance Preparation -->
+        <div class="slide">
+            <span class="slide-number">12 / 20</span>
+            <h2>God Has Already Prepared Your Path</h2>
+            <ul>
+                <li>Your purpose isn't something you create</li>
+                <li>It's something you discover</li>
+                <li>God prepared specific works for YOU</li>
+                <li>They align with your unique design</li>
+                <li>They were planned before you were born</li>
+            </ul>
+        </div>
+
+        <!-- Slide 13: Biblical Examples -->
+        <div class="slide">
+            <span class="slide-number">13 / 20</span>
+            <h2>Biblical Examples of Prepared Purpose</h2>
+            <div class="key-point">
+                <p><strong>Jeremiah:</strong> "Before I formed you in the womb I knew you" (Jer 1:5)</p>
+                <p><strong>Esther:</strong> "For such a time as this" (Esther 4:14)</p>
+                <p><strong>Paul:</strong> "Set apart from my mother's womb" (Gal 1:15)</p>
+                <p><strong>John the Baptist:</strong> "Filled with the Holy Spirit even before birth" (Luke 1:15)</p>
+            </div>
+        </div>
+
+        <!-- Slide 14: Your Purpose is Personal -->
+        <div class="slide">
+            <span class="slide-number">14 / 20</span>
+            <h2>Your Purpose is Personal</h2>
+            <div class="scripture">
+                "For David, after he had served God's purpose in his own generation, fell asleep"
+                <span class="scripture-ref">- Acts 13:36</span>
+            </div>
+            <p>You have a specific assignment for YOUR generation!</p>
+        </div>
+
+        <!-- Slide 15: Breaking Free from Limitations -->
+        <div class="slide section-break">
+            <span class="slide-number">15 / 20</span>
+            <h1>Breaking Free from<br>Limiting Beliefs</h1>
+        </div>
+
+        <!-- Slide 16: Common Limiting Beliefs -->
+        <div class="slide">
+            <span class="slide-number">16 / 20</span>
+            <h2>Lies That Limit Your Purpose</h2>
+            <ul>
+                <li>"I'm not talented enough"</li>
+                <li>"My past disqualifies me"</li>
+                <li>"I'm too young/old"</li>
+                <li>"I don't have the right education"</li>
+                <li>"Others are more qualified"</li>
+                <li>"My dreams are too big"</li>
+            </ul>
+            <p><strong>Truth:</strong> God qualifies the called!</p>
+        </div>
+
+        <!-- Slide 17: God's Truth About You -->
+        <div class="slide">
+            <span class="slide-number">17 / 20</span>
+            <h2>God's Truth About You</h2>
+            <div class="key-point">
+                <p>✨ You are chosen (1 Peter 2:9)</p>
+                <p>✨ You are equipped (2 Timothy 3:17)</p>
+                <p>✨ You are empowered (Acts 1:8)</p>
+                <p>✨ You are loved (Romans 8:38-39)</p>
+                <p>✨ You are called (2 Timothy 1:9)</p>
+            </div>
+        </div>
+
+        <!-- Slide 18: Today's Assignment -->
+        <div class="slide interactive">
+            <span class="slide-number">18 / 20</span>
+            <h2>Today's Assignment</h2>
+            <h3>Complete Your Spiritual Gifts Assessment</h3>
+            <ul>
+                <li>Take the provided spiritual gifts test</li>
+                <li>Reflect on your top 3-5 gifts</li>
+                <li>Journal about times you've used these gifts</li>
+                <li>Ask 3 trusted friends what gifts they see in you</li>
+            </ul>
+            <p>Due: Before Wednesday's class</p>
+        </div>
+
+        <!-- Slide 19: Prayer Exercise Preview -->
+        <div class="slide prayer-moment">
+            <span class="slide-number">19 / 20</span>
+            <h2>Tonight's Prayer Exercise</h2>
+            <h3>"Seeking God's Revelation About Your Identity"</h3>
+            <ul>
+                <li>Find a quiet place for 30 minutes</li>
+                <li>Use the provided prayer guide worksheet</li>
+                <li>Listen for God's voice about your identity</li>
+                <li>Record what you hear in your journal</li>
+            </ul>
+        </div>
+
+        <!-- Slide 20: Closing -->
+        <div class="slide">
+            <span class="slide-number">20 / 20</span>
+            <h1>Remember:</h1>
+            <h2>You Are God's Masterpiece!</h2>
+            <p>Created with intention, designed for purpose,<br>equipped for good works.</p>
+            <div class="scripture">
+                "I praise you because I am fearfully and wonderfully made"
+                <span class="scripture-ref">- Psalm 139:14</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button onclick="changeSlide(-1)">← Previous</button>
+        <button onclick="changeSlide(1)">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function changeSlide(n) {
+            showSlide(currentSlide + n);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        });
+    </script>
+</body>
+</html>

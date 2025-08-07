@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 1 Wednesday - Before You Were Born</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .slideshow-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #4a148c 0%, #7b1fa2 100%);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            color: #ffeb3b;
+        }
+
+        h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #ce93d8;
+        }
+
+        p, li {
+            font-size: 1.4em;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto 20px;
+        }
+
+        .scripture {
+            font-size: 1.6em;
+            font-style: italic;
+            color: #ffeb3b;
+            margin: 30px auto;
+            padding: 25px;
+            border: 2px solid #ffeb3b;
+            border-radius: 15px;
+            max-width: 800px;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .scripture-ref {
+            display: block;
+            text-align: right;
+            font-size: 0.9em;
+            margin-top: 10px;
+            color: #ce93d8;
+        }
+
+        ul {
+            list-style: none;
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        li::before {
+            content: "🌟 ";
+            color: #ffeb3b;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 100;
+        }
+
+        button {
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid #fff;
+            color: #fff;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 1.2em;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .section-break {
+            background: radial-gradient(circle, #7b1fa2 0%, #4a148c 100%);
+        }
+
+        .activity-slide {
+            background: linear-gradient(135deg, #00897b 0%, #00acc1 100%);
+        }
+
+        .revelation-slide {
+            background: linear-gradient(135deg, #5e35b1 0%, #7e57c2 100%);
+        }
+
+        .key-point {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            max-width: 900px;
+            margin: 30px auto;
+        }
+
+        .timeline-item {
+            text-align: center;
+            flex: 1;
+            padding: 20px;
+        }
+
+        .timeline-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5em; }
+            h2 { font-size: 2em; }
+            h3 { font-size: 1.5em; }
+            p, li { font-size: 1.2em; }
+            .slide { padding: 30px; }
+            .timeline { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <span class="slide-number">1 / 22</span>
+            <h1>Before You Were Born</h1>
+            <h2>Week 1, Day 3</h2>
+            <p>Understanding God's Foreknowledge of Your Purpose</p>
+        </div>
+
+        <!-- Slide 2: Welcome Back -->
+        <div class="slide">
+            <span class="slide-number">2 / 22</span>
+            <h2>Welcome Back!</h2>
+            <h3>Quick Reflection:</h3>
+            <p>What revelation about your identity did God give you during Monday's prayer exercise?</p>
+            <p><em>Take a moment to share with someone nearby</em></p>
+        </div>
+
+        <!-- Slide 3: Opening Prayer -->
+        <div class="slide revelation-slide">
+            <span class="slide-number">3 / 22</span>
+            <h2>Opening Prayer</h2>
+            <p>"Lord, we come before You in awe of Your sovereignty and foreknowledge. Open our eyes to see how You've been orchestrating our lives from before we were born. Help us trust Your perfect plan. In Jesus' name, Amen."</p>
+        </div>
+
+        <!-- Slide 4: Key Scripture -->
+        <div class="slide">
+            <span class="slide-number">4 / 22</span>
+            <h2>Today's Foundation Scripture</h2>
+            <div class="scripture">
+                "Before I formed you in the womb I knew you, before you were born I set you apart; I appointed you as a prophet to the nations."
+                <span class="scripture-ref">- Jeremiah 1:5 (NIV)</span>
+            </div>
+        </div>
+
+        <!-- Slide 5: God's Foreknowledge -->
+        <div class="slide">
+            <span class="slide-number">5 / 22</span>
+            <h2>God Knew You Before...</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon">🌍</div>
+                    <p>The world was created</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">👶</div>
+                    <p>You were conceived</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">🎯</div>
+                    <p>You knew yourself</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Psalm 139 Deep Dive -->
+        <div class="slide">
+            <span class="slide-number">6 / 22</span>
+            <h2>Fearfully and Wonderfully Made</h2>
+            <div class="scripture">
+                "For you created my inmost being; you knit me together in my mother's womb. I praise you because I am fearfully and wonderfully made..."
+                <span class="scripture-ref">- Psalm 139:13-14</span>
+            </div>
+        </div>
+
+        <!-- Slide 7: Knit Together -->
+        <div class="slide">
+            <span class="slide-number">7 / 22</span>
+            <h2>"Knit Together" - Divine Craftsmanship</h2>
+            <ul>
+                <li>Hebrew word: "sakak" - to weave or embroider</li>
+                <li>Implies intricate, deliberate design</li>
+                <li>Every detail purposefully placed</li>
+                <li>No accidents in God's creation</li>
+                <li>You are a divine tapestry</li>
+            </ul>
+        </div>
+
+        <!-- Slide 8: Your Days Ordained -->
+        <div class="slide">
+            <span class="slide-number">8 / 22</span>
+            <h2>Your Story Was Written</h2>
+            <div class="scripture">
+                "Your eyes saw my unformed body; all the days ordained for me were written in your book before one of them came to be."
+                <span class="scripture-ref">- Psalm 139:16</span>
+            </div>
+            <p>God has a book with YOUR name on it!</p>
+        </div>
+
+        <!-- Slide 9: Section Break -->
+        <div class="slide section-break">
+            <span class="slide-number">9 / 22</span>
+            <h1>Understanding<br>Generational Callings</h1>
+        </div>
+
+        <!-- Slide 10: Family Legacy -->
+        <div class="slide">
+            <span class="slide-number">10 / 22</span>
+            <h2>Your Family Line Matters</h2>
+            <ul>
+                <li>God works through family lines</li>
+                <li>Spiritual inheritances are real</li>
+                <li>Both blessings and battles can be generational</li>
+                <li>You can break negative cycles</li>
+                <li>You can establish new legacies</li>
+            </ul>
+        </div>
+
+        <!-- Slide 11: Biblical Examples -->
+        <div class="slide">
+            <span class="slide-number">11 / 22</span>
+            <h2>Generational Purpose in Scripture</h2>
+            <div class="key-point">
+                <p><strong>Abraham → Isaac → Jacob:</strong> Nation builders</p>
+                <p><strong>David → Solomon:</strong> Worship and wisdom</p>
+                <p><strong>Zechariah → John the Baptist:</strong> Preparing the way</p>
+                <p><strong>Lois → Eunice → Timothy:</strong> Faith legacy</p>
+            </div>
+        </div>
+
+        <!-- Slide 12: Activity Slide -->
+        <div class="slide activity-slide">
+            <span class="slide-number">12 / 22</span>
+            <h2>🔍 Family Purpose Discovery</h2>
+            <h3>Consider These Questions:</h3>
+            <ul>
+                <li>What positive patterns do you see in your family?</li>
+                <li>What gifts seem to run in your bloodline?</li>
+                <li>What battles have multiple generations faced?</li>
+                <li>What new legacy is God calling you to establish?</li>
+            </ul>
+            <p><em>Write down 2-3 insights</em></p>
+        </div>
+
+        <!-- Slide 13: Breaking Limiting Beliefs -->
+        <div class="slide section-break">
+            <span class="slide-number">13 / 22</span>
+            <h1>Breaking Free from<br>Limiting Beliefs</h1>
+        </div>
+
+        <!-- Slide 14: Common Limitations -->
+        <div class="slide">
+            <span class="slide-number">14 / 22</span>
+            <h2>Beliefs That Block Your Purpose</h2>
+            <div class="key-point">
+                <h3>Family Limitations:</h3>
+                <p>"No one in my family has ever..."</p>
+                <h3>Educational Limitations:</h3>
+                <p>"I don't have the right degree..."</p>
+                <h3>Economic Limitations:</h3>
+                <p>"I don't have the resources..."</p>
+                <h3>Age Limitations:</h3>
+                <p>"I'm too young/old to start..."</p>
+            </div>
+        </div>
+
+        <!-- Slide 15: God Uses the Unlikely -->
+        <div class="slide">
+            <span class="slide-number">15 / 22</span>
+            <h2>God Specializes in the Unlikely</h2>
+            <ul>
+                <li>Moses: Had a speech impediment</li>
+                <li>Gideon: From the weakest clan</li>
+                <li>David: The overlooked shepherd boy</li>
+                <li>Peter: Uneducated fisherman</li>
+                <li>Paul: Former persecutor of Christians</li>
+            </ul>
+            <p><strong>Your limitations are God's opportunities!</strong></p>
+        </div>
+
+        <!-- Slide 16: Truth Declarations -->
+        <div class="slide revelation-slide">
+            <span class="slide-number">16 / 22</span>
+            <h2>Declare These Truths</h2>
+            <div class="key-point">
+                <p>"I am not limited by my past"</p>
+                <p>"I am not defined by my family's failures"</p>
+                <p>"I am equipped for my calling"</p>
+                <p>"I am chosen for this generation"</p>
+                <p>"I am empowered by the Holy Spirit"</p>
+            </div>
+        </div>
+
+        <!-- Slide 17: Your Divine Timeline -->
+        <div class="slide">
+            <span class="slide-number">17 / 22</span>
+            <h2>Your Divine Timeline</h2>
+            <p>God sees your life from beginning to end</p>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon">📖</div>
+                    <p><strong>Past:</strong><br>Preparation</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">🎯</div>
+                    <p><strong>Present:</strong><br>Positioning</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">👑</div>
+                    <p><strong>Future:</strong><br>Purpose</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 18: Workshop Preview -->
+        <div class="slide activity-slide">
+            <span class="slide-number">18 / 22</span>
+            <h2>Today's Workshop</h2>
+            <h3>"Create Your Divine Design Profile"</h3>
+            <ul>
+                <li>Map your spiritual gifts</li>
+                <li>Identify generational patterns</li>
+                <li>Recognize divine appointments</li>
+                <li>Chart your purpose journey</li>
+            </ul>
+            <p>We'll work through this together!</p>
+        </div>
+
+        <!-- Slide 19: Scripture Memory -->
+        <div class="slide">
+            <span class="slide-number">19 / 22</span>
+            <h2>Scripture Memory Challenge</h2>
+            <div class="scripture">
+                "I praise you because I am fearfully and wonderfully made; your works are wonderful, I know that full well."
+                <span class="scripture-ref">- Psalm 139:14</span>
+            </div>
+            <p>Memorize this verse and declare it daily!</p>
+        </div>
+
+        <!-- Slide 20: Friday Preview -->
+        <div class="slide">
+            <span class="slide-number">20 / 22</span>
+            <h2>Coming Friday:</h2>
+            <h1>The Joseph Journey</h1>
+            <ul>
+                <li>Understanding seasons of preparation</li>
+                <li>How God uses trials to shape destiny</li>
+                <li>Maintaining faith during the process</li>
+                <li>From the pit to the palace</li>
+            </ul>
+        </div>
+
+        <!-- Slide 21: Today's Assignment -->
+        <div class="slide activity-slide">
+            <span class="slide-number">21 / 22</span>
+            <h2>Before Friday's Class:</h2>
+            <ul>
+                <li>Complete your Divine Design Profile</li>
+                <li>Interview a family member about family gifts/callings</li>
+                <li>Read Genesis 37-41 (Joseph's story)</li>
+                <li>Journal: "What season am I in right now?"</li>
+            </ul>
+        </div>
+
+        <!-- Slide 22: Closing Prayer -->
+        <div class="slide revelation-slide">
+            <span class="slide-number">22 / 22</span>
+            <h2>Closing Declaration</h2>
+            <p>"I am not an accident. I am not a mistake. I was planned before the foundation of the world. God knew me, formed me, and set me apart for a specific purpose. I embrace my divine design and trust His perfect plan for my life!"</p>
+            <div class="scripture">
+                "For I know the plans I have for you, declares the Lord"
+                <span class="scripture-ref">- Jeremiah 29:11</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button onclick="changeSlide(-1)">← Previous</button>
+        <button onclick="changeSlide(1)">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            // Remove active class from all slides
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Calculate the correct slide index
+            if (n >= totalSlides) {
+                currentSlide = 0;
+            } else if (n < 0) {
+                currentSlide = totalSlides - 1;
+            } else {
+                currentSlide = n;
+            }
+            
+            // Add active class to current slide
+            slides[currentSlide].classList.add('active');
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                changeSlide(-1);
+            } else if (e.key === 'ArrowRight') {
+                changeSlide(1);
+            }
+        });
+
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                changeSlide(1); // Swipe left, go to next slide
+            }
+            if (touchEndX > touchStartX + 50) {
+                changeSlide(-1); // Swipe right, go to previous slide
+            }
+        }
+    </script>
+</body>
+</html>

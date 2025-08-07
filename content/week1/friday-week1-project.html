@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journey Mapping Project - The Joseph Journey</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff8dc;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, #b8860b 0%, #daa520 100%);
+            color: white;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #daa520;
+            font-size: 22px;
+            margin: 25px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #f0e68c;
+        }
+
+        h3 {
+            color: #b8860b;
+            font-size: 18px;
+            margin: 20px 0 10px;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .subtitle {
+            font-style: italic;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .intro-box {
+            background: #fff8dc;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #daa520;
+        }
+
+        .scripture-box {
+            background: #f5f5dc;
+            border-left: 4px solid #b8860b;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .form-group {
+            margin: 20px 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: 'Georgia', serif;
+            resize: vertical;
+        }
+
+        textarea {
+            min-height: 80px;
+        }
+
+        .timeline-container {
+            position: relative;
+            padding: 40px 0;
+            margin: 30px 0;
+        }
+
+        .timeline-event {
+            position: relative;
+            margin: 40px 0;
+            display: flex;
+            align-items: start;
+            gap: 20px;
+        }
+
+        .timeline-event:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .event-content {
+            background: white;
+            border: 2px solid #daa520;
+            border-radius: 10px;
+            padding: 20px;
+            flex: 1;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .event-dot {
+            width: 30px;
+            height: 30px;
+            background: #b8860b;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            box-shadow: 0 0 0 3px #daa520;
+            flex-shrink: 0;
+            margin-top: 10px;
+        }
+
+        .event-age {
+            font-weight: bold;
+            color: #b8860b;
+            margin-bottom: 5px;
+        }
+
+        .season-identifier {
+            background: #fafafa;
+            border: 2px solid #daa520;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .season-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .season-box {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            background: white;
+        }
+
+        .season-title {
+            font-weight: bold;
+            color: #b8860b;
+            margin-bottom: 10px;
+        }
+
+        .reflection-section {
+            background: #fff8dc;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .testimony-template {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: start;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+            z-index: 1000;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #b8860b;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .submit-button {
+            background: #b8860b;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            display: block;
+            margin: 40px auto;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background: #8b6914;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .submit-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .success-message,
+        .error-message {
+            display: none;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .success-message {
+            background: #4caf50;
+            color: white;
+        }
+
+        .error-message {
+            background: #f44336;
+            color: white;
+        }
+
+        .action-plan {
+            background: #f5f5f5;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .declaration-section {
+            background: #fff8dc;
+            border: 2px solid #daa520;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                border-radius: 0;
+            }
+            
+            .header, .content {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+            
+            .timeline-event,
+            .timeline-event:nth-child(even) {
+                flex-direction: column;
+            }
+            
+            .season-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressBar"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Journey Mapping Project</h1>
+            <p class="subtitle">Tracing God's Hand Through Your Story</p>
+            <p>Week 1: The Joseph Journey</p>
+        </div>
+
+        <div class="content">
+            <div class="intro-box">
+                <p><strong>Purpose:</strong> Like Joseph, your journey has been orchestrated by God. This project will help you identify His hand through every season of your life and recognize how He's been preparing you for your purpose.</p>
+            </div>
+
+            <div class="scripture-box">
+                "You intended to harm me, but God intended it for good to accomplish what is now being done, the saving of many lives."
+                <br><small>- Genesis 50:20</small>
+            </div>
+
+            <form id="journeyForm" onsubmit="handleSubmit(event)">
+                <!-- User Information -->
+                <div class="season-identifier">
+                    <h2>Your Information</h2>
+                    <div class="season-grid">
+                        <div class="form-group">
+                            <label for="userName">Name:</label>
+                            <input type="text" id="userName" name="userName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="userEmail">Email:</label>
+                            <input type="email" id="userEmail" name="userEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Date:</label>
+                            <input type="text" id="date" name="date" value="" readonly>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Part 1: Life Timeline -->
+                <h2>Part 1: Your Life Timeline</h2>
+                <p>Create your personal timeline below. Include major events, transitions, and defining moments:</p>
+                
+                <div class="timeline-container">
+                    <div class="timeline-event">
+                        <div class="event-dot"></div>
+                        <div class="event-content">
+                            <div class="form-group">
+                                <label for="earlyAge">Age:</label>
+                                <input type="number" id="earlyAge" name="earlyAge" min="0" max="120">
+                            </div>
+                            <strong>Early Years</strong>
+                            <div class="form-group">
+                                <textarea id="earlyYears" name="earlyYears" required placeholder="Describe significant events from your early years..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-event">
+                        <div class="event-dot"></div>
+                        <div class="event-content">
+                            <div class="form-group">
+                                <label for="challengeAge">Age:</label>
+                                <input type="number" id="challengeAge" name="challengeAge" min="0" max="120">
+                            </div>
+                            <strong>First Major Challenge</strong>
+                            <div class="form-group">
+                                <textarea id="firstChallenge" name="firstChallenge" required placeholder="What was your first major life challenge?"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-event">
+                        <div class="event-dot"></div>
+                        <div class="event-content">
+                            <div class="form-group">
+                                <label for="transitionAge">Age:</label>
+                                <input type="number" id="transitionAge" name="transitionAge" min="0" max="120">
+                            </div>
+                            <strong>Significant Transition</strong>
+                            <div class="form-group">
+                                <textarea id="transition" name="transition" required placeholder="Describe a major life transition..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-event">
+                        <div class="event-dot"></div>
+                        <div class="event-content">
+                            <div class="form-group">
+                                <label for="growthAge">Age:</label>
+                                <input type="number" id="growthAge" name="growthAge" min="0" max="120">
+                            </div>
+                            <strong>Season of Growth</strong>
+                            <div class="form-group">
+                                <textarea id="growthSeason" name="growthSeason" required placeholder="When did you experience significant growth?"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-event">
+                        <div class="event-dot"></div>
+                        <div class="event-content">
+                            <div class="form-group">
+                                <label for="currentAge">Age:</label>
+                                <input type="number" id="currentAge" name="currentAge" min="0" max="120">
+                            </div>
+                            <strong>Current Season</strong>
+                            <div class="form-group">
+                                <textarea id="currentSeason" name="currentSeason" required placeholder="Describe your current life season..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Part 2: Pit Moments -->
+                <h2>Part 2: Identifying Your "Pit" Moments</h2>
+                <p>Joseph's pit was a defining moment. What have been your "pit" experiences?</p>
+                
+                <div class="season-identifier">
+                    <h3>Pit Experience #1</h3>
+                    <div class="form-group">
+                        <label for="pit1What">What happened?</label>
+                        <textarea id="pit1What" name="pit1What" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pit1Feel">How did it feel in the moment?</label>
+                        <textarea id="pit1Feel" name="pit1Feel" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pit1Teach">What did God teach you through it?</label>
+                        <textarea id="pit1Teach" name="pit1Teach" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pit1Prepare">How did it prepare you for your purpose?</label>
+                        <textarea id="pit1Prepare" name="pit1Prepare" required></textarea>
+                    </div>
+                </div>
+
+                <div class="season-identifier">
+                    <h3>Pit Experience #2</h3>
+                    <div class="form-group">
+                        <label for="pit2What">What happened?</label>
+                        <textarea id="pit2What" name="pit2What"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pit2Character">What character traits did it develop?</label>
+                        <textarea id="pit2Character" name="pit2Character"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pit2God">How do you see God's hand in it now?</label>
+                        <textarea id="pit2God" name="pit2God"></textarea>
+                    </div>
+                </div>
+
+                <!-- Part 3: Process Seasons -->
+                <h2>Part 3: Your Process Seasons</h2>
+                <p>Identify seasons where you were faithful in obscurity, like Joseph in Potiphar's house:</p>
+                
+                <div class="season-grid">
+                    <div class="season-box">
+                        <div class="season-title">Season of Preparation</div>
+                        <div class="form-group">
+                            <label for="prepPeriod">Time period:</label>
+                            <input type="text" id="prepPeriod" name="prepPeriod" placeholder="e.g., 2018-2020">
+                        </div>
+                        <div class="form-group">
+                            <label for="prepLearn">What you learned:</label>
+                            <textarea id="prepLearn" name="prepLearn"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="season-box">
+                        <div class="season-title">Season of Service</div>
+                        <div class="form-group">
+                            <label for="servePeriod">Time period:</label>
+                            <input type="text" id="servePeriod" name="servePeriod" placeholder="e.g., 2020-2021">
+                        </div>
+                        <div class="form-group">
+                            <label for="serveHow">How you served:</label>
+                            <textarea id="serveHow" name="serveHow"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="season-box">
+                        <div class="season-title">Season of Waiting</div>
+                        <div class="form-group">
+                            <label for="waitPeriod">Time period:</label>
+                            <input type="text" id="waitPeriod" name="waitPeriod" placeholder="e.g., 2021-2022">
+                        </div>
+                        <div class="form-group">
+                            <label for="waitSustain">What sustained you:</label>
+                            <textarea id="waitSustain" name="waitSustain"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="season-box">
+                        <div class="season-title">Season of Growth</div>
+                        <div class="form-group">
+                            <label for="growPeriod">Time period:</label>
+                            <input type="text" id="growPeriod" name="growPeriod" placeholder="e.g., 2022-2023">
+                        </div>
+                        <div class="form-group">
+                            <label for="growChange">How you changed:</label>
+                            <textarea id="growChange" name="growChange"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Part 4: Recognizing God's Hand -->
+                <div class="reflection-section">
+                    <h2>Part 4: Recognizing God's Hand</h2>
+                    
+                    <div class="form-group">
+                        <label for="divineConnections">Divine Connections - List people God strategically placed in your life during difficult seasons:</label>
+                        <textarea id="divineConnections" name="divineConnections" required style="min-height: 100px;"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="unexpectedBlessings">Unexpected Blessings - What good came from your hardest experiences?</label>
+                        <textarea id="unexpectedBlessings" name="unexpectedBlessings" required style="min-height: 100px;"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="skillsDeveloped">Skills & Character Development - What abilities and character traits did your journey develop?</label>
+                        <textarea id="skillsDeveloped" name="skillsDeveloped" required style="min-height: 100px;"></textarea>
+                    </div>
+                </div>
+
+                <!-- Part 5: Current Season -->
+                <div class="season-identifier">
+                    <h2>Part 5: Your Current Season</h2>
+                    <p>Where are you in your Joseph Journey right now? Select the season that best describes your current situation:</p>
+                    
+                    <div class="checkbox-item">
+                        <input type="radio" id="dreamSeason" name="currentSeasonType" value="dream" required>
+                        <label for="dreamSeason"><strong>Dream Season:</strong> Receiving fresh vision and dreams from God</label>
+                    </div>
+                    <div class="form-group" style="margin-left: 30px;">
+                        <label for="dreamDescription">Describe the dreams/visions you're receiving:</label>
+                        <textarea id="dreamDescription" name="dreamDescription"></textarea>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="radio" id="pitSeason" name="currentSeasonType" value="pit">
+                        <label for="pitSeason"><strong>Pit Season:</strong> Experiencing betrayal, loss, or major setback</label>
+                    </div>
+                    <div class="form-group" style="margin-left: 30px;">
+                        <label for="pitLearning">What are you learning about God's faithfulness?</label>
+                        <textarea id="pitLearning" name="pitLearning"></textarea>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="radio" id="processSeason" name="currentSeasonType" value="process">
+                        <label for="processSeason"><strong>Process Season:</strong> Faithfully serving in obscurity</label>
+                    </div>
+                    <div class="form-group" style="margin-left: 30px;">
+                        <label for="processExcellence">How are you maintaining excellence where you are?</label>
+                        <textarea id="processExcellence" name="processExcellence"></textarea>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="radio" id="prisonSeason" name="currentSeasonType" value="prison">
+                        <label for="prisonSeason"><strong>Prison Season:</strong> Waiting, feeling forgotten or stuck</label>
+                    </div>
+                    <div class="form-group" style="margin-left: 30px;">
+                        <label for="prisonFaith">What is sustaining your faith during this wait?</label>
+                        <textarea id="prisonFaith" name="prisonFaith"></textarea>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="radio" id="palaceSeason" name="currentSeasonType" value="palace">
+                        <label for="palaceSeason"><strong>Palace Season:</strong> Walking in purpose and seeing promises fulfilled</label>
+                    </div>
+                    <div class="form-group" style="margin-left: 30px;">
+                        <label for="palaceSteward">How are you stewarding this season of fulfillment?</label>
+                        <textarea id="palaceSteward" name="palaceSteward"></textarea>
+                    </div>
+                </div>
+
+                <!-- Part 6: Your Testimony -->
+                <div class="testimony-template">
+                    <h2>Part 6: Your Testimony of Faith</h2>
+                    <h3>Write Your Joseph Journey Testimony</h3>
+                    <p><em>Use this template to craft a 3-5 minute testimony of God's faithfulness through your journey:</em></p>
+                    
+                    <div class="form-group">
+                        <label for="testimonyDream"><strong>Opening (The Dream):</strong> "God gave me a dream/calling to..."</label>
+                        <textarea id="testimonyDream" name="testimonyDream" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="testimonyPit"><strong>The Challenge (The Pit):</strong> "But like Joseph, I faced..."</label>
+                        <textarea id="testimonyPit" name="testimonyPit" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="testimonyProcess"><strong>The Process (Potiphar's House/Prison):</strong> "During this difficult season, God taught me..."</label>
+                        <textarea id="testimonyProcess" name="testimonyProcess" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="testimonyFaithfulness"><strong>The Faithfulness (God's Hand):</strong> "Looking back, I can see how God..."</label>
+                        <textarea id="testimonyFaithfulness" name="testimonyFaithfulness" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="testimonyPurpose"><strong>The Purpose (The Palace/Present):</strong> "Now I understand that God was preparing me to..."</label>
+                        <textarea id="testimonyPurpose" name="testimonyPurpose" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="testimonyEncouragement"><strong>The Encouragement (Your Message):</strong> "If you're in a difficult season, I want you to know..."</label>
+                        <textarea id="testimonyEncouragement" name="testimonyEncouragement" required></textarea>
+                    </div>
+                </div>
+
+                <!-- Part 7: Lessons Learned -->
+                <div class="reflection-section">
+                    <h2>Part 7: Lessons from Your Journey</h2>
+                    <h3>Key Lessons God Has Taught You:</h3>
+                    
+                    <div class="form-group">
+                        <label for="lesson1">1.</label>
+                        <textarea id="lesson1" name="lesson1" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lesson2">2.</label>
+                        <textarea id="lesson2" name="lesson2" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lesson3">3.</label>
+                        <textarea id="lesson3" name="lesson3" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lesson4">4.</label>
+                        <textarea id="lesson4" name="lesson4"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lesson5">5.</label>
+                        <textarea id="lesson5" name="lesson5"></textarea>
+                    </div>
+                </div>
+
+                <!-- Part 8: Declaration of Trust -->
+                <div class="declaration-section">
+                    <h2>Part 8: Declaration of Trust</h2>
+                    <h3>My Joseph Journey Declaration</h3>
+                    <p><em>Complete this declaration based on your journey mapping:</em></p>
+                    
+                    <div class="form-group">
+                        <label for="declarePit">I declare that my journey has not been wasted. Every pit has been...</label>
+                        <textarea id="declarePit" name="declarePit" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="declareProcess">Every process season has developed in me...</label>
+                        <textarea id="declareProcess" name="declareProcess" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="declareTrust">I trust God with my current season because...</label>
+                        <textarea id="declareTrust" name="declareTrust" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="declarePalace">I believe my palace (purpose fulfillment) will...</label>
+                        <textarea id="declarePalace" name="declarePalace" required></textarea>
+                    </div>
+                </div>
+
+                <!-- Part 9: Action Steps -->
+                <div class="action-plan">
+                    <h2>Part 9: Action Steps</h2>
+                    <p>Based on your journey mapping, what three action steps will you take this week?</p>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="forward" name="nextSteps" value="move_forward">
+                        <label for="forward"><strong>Move Forward:</strong> I have clear confirmation and will begin taking steps</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="clarity" name="nextSteps" value="seek_clarity">
+                        <label for="clarity"><strong>Seek More Clarity:</strong> I need additional confirmation in these areas</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="wait" name="nextSteps" value="wait">
+                        <label for="wait"><strong>Wait:</strong> I will continue praying and waiting for clearer direction</label>
+                    </div>
+                    
+                    <h3>Specific actions I will take this week:</h3>
+                    <div class="form-group">
+                        <label for="action1">1.</label>
+                        <input type="text" id="action1" name="action1" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="action2">2.</label>
+                        <input type="text" id="action2" name="action2" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="action3">3.</label>
+                        <input type="text" id="action3" name="action3" required>
+                    </div>
+                </div>
+
+                <div class="scripture-box">
+                    "And we know that in all things God works for the good of those who love him, who have been called according to his purpose."
+                    <br><small>- Romans 8:28</small>
+                </div>
+
+                <div class="success-message" id="successMessage">
+                    ✓ Your Journey Mapping Project has been saved successfully!
+                </div>
+
+                <div class="error-message" id="errorMessage">
+                    ✗ There was an error saving your project. Please try again.
+                </div>
+
+                <button type="submit" class="submit-button" id="submitButton">Submit Journey Mapping Project</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Set today's date
+        document.getElementById('date').value = new Date().toLocaleDateString();
+
+        // Progress bar functionality
+        function updateProgress() {
+            const form = document.getElementById('journeyForm');
+            const requiredFields = form.querySelectorAll('[required]');
+            const radioGroups = ['currentSeasonType'];
+            const checkboxGroups = ['nextSteps'];
+            
+            let completed = 0;
+            let total = requiredFields.length + radioGroups.length + 1; // +1 for checkbox group
+            
+            // Check required fields
+            requiredFields.forEach(field => {
+                if (field.type === 'radio') {
+                    // Skip radio buttons as we'll check them separately
+                    return;
+                } else if (field.value.trim() !== '') {
+                    completed++;
+                }
+            });
+            
+            // Check radio groups
+            radioGroups.forEach(group => {
+                if (document.querySelector(`input[name="${group}"]:checked`)) {
+                    completed++;
+                }
+            });
+            
+            // Check if at least one checkbox is checked
+            if (document.querySelector('input[name="nextSteps"]:checked')) {
+                completed++;
+            }
+            
+            const progress = (completed / total) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        // Add event listeners
+        document.querySelectorAll('input, textarea').forEach(field => {
+            field.addEventListener('input', updateProgress);
+            field.addEventListener('change', updateProgress);
+        });
+
+        // Show/hide conditional textareas based on radio selection
+        document.querySelectorAll('input[name="currentSeasonType"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                // Hide all conditional textareas
+                document.querySelectorAll('[name$="Description"], [name$="Learning"], [name$="Excellence"], [name$="Faith"], [name$="Steward"]').forEach(textarea => {
+                    textarea.closest('.form-group').style.display = 'none';
+                });
+                
+                // Show the relevant textarea
+                let textareaName = '';
+                switch(this.value) {
+                    case 'dream': textareaName = 'dreamDescription'; break;
+                    case 'pit': textareaName = 'pitLearning'; break;
+                    case 'process': textareaName = 'processExcellence'; break;
+                    case 'prison': textareaName = 'prisonFaith'; break;
+                    case 'palace': textareaName = 'palaceSteward'; break;
+                }
+                
+                if (textareaName) {
+                    const textarea = document.querySelector(`[name="${textareaName}"]`);
+                    if (textarea) {
+                        textarea.closest('.form-group').style.display = 'block';
+                    }
+                }
+            });
+        });
+
+        // Initially hide all conditional textareas
+        document.querySelectorAll('[name$="Description"], [name$="Learning"], [name$="Excellence"], [name$="Faith"], [name$="Steward"]').forEach(textarea => {
+            textarea.closest('.form-group').style.display = 'none';
+        });
+
+        // Google Sheets Integration
+        const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
+
+        async function handleSubmit(event) {
+            event.preventDefault();
+            
+            const submitButton = document.getElementById('submitButton');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            submitButton.disabled = true;
+            submitButton.textContent = 'Submitting...';
+            
+            // Collect form data
+            const formData = new FormData(event.target);
+            const data = {
+                timestamp: new Date().toISOString(),
+                week: 1,
+                day: 'Friday',
+                exercise: 'Journey Mapping Project',
+                responses: {}
+            };
+            
+            // Process form data
+            for (let [key, value] of formData.entries()) {
+                if (data.responses[key]) {
+                    if (!Array.isArray(data.responses[key])) {
+                        data.responses[key] = [data.responses[key]];
+                    }
+                    data.responses[key].push(value);
+                } else {
+                    data.responses[key] = value;
+                }
+            }
+            
+            // Convert checkbox arrays to strings
+            if (Array.isArray(data.responses.nextSteps)) {
+                data.responses.nextSteps = data.responses.nextSteps.join(', ');
+            }
+            
+            // Create journey timeline summary
+            const timeline = [];
+            if (data.responses.earlyAge && data.responses.earlyYears) {
+                timeline.push(`Age ${data.responses.earlyAge}: ${data.responses.earlyYears}`);
+            }
+            if (data.responses.challengeAge && data.responses.firstChallenge) {
+                timeline.push(`Age ${data.responses.challengeAge}: ${data.responses.firstChallenge}`);
+            }
+            if (data.responses.transitionAge && data.responses.transition) {
+                timeline.push(`Age ${data.responses.transitionAge}: ${data.responses.transition}`);
+            }
+            if (data.responses.growthAge && data.responses.growthSeason) {
+                timeline.push(`Age ${data.responses.growthAge}: ${data.responses.growthSeason}`);
+            }
+            if (data.responses.currentAge && data.responses.currentSeason) {
+                timeline.push(`Age ${data.responses.currentAge}: ${data.responses.currentSeason}`);
+            }
+            data.responses.journeyTimeline = timeline.join(' | ');
+            
+            // Combine pit experiences
+            data.responses.pitExperience1 = `What: ${data.responses.pit1What || ''} | Feel: ${data.responses.pit1Feel || ''} | Teach: ${data.responses.pit1Teach || ''} | Prepare: ${data.responses.pit1Prepare || ''}`;
+            data.responses.pitExperience2 = `What: ${data.responses.pit2What || ''} | Character: ${data.responses.pit2Character || ''} | God's Hand: ${data.responses.pit2God || ''}`;
+            
+            // Combine seasons
+            data.responses.seasonPreparation = `${data.responses.prepPeriod || ''}: ${data.responses.prepLearn || ''}`;
+            data.responses.seasonService = `${data.responses.servePeriod || ''}: ${data.responses.serveHow || ''}`;
+            data.responses.seasonWaiting = `${data.responses.waitPeriod || ''}: ${data.responses.waitSustain || ''}`;
+            data.responses.seasonGrowth = `${data.responses.growPeriod || ''}: ${data.responses.growChange || ''}`;
+            
+            // Combine lessons
+            const lessons = [];
+            if (data.responses.lesson1) lessons.push(data.responses.lesson1);
+            if (data.responses.lesson2) lessons.push(data.responses.lesson2);
+            if (data.responses.lesson3) lessons.push(data.responses.lesson3);
+            if (data.responses.lesson4) lessons.push(data.responses.lesson4);
+            if (data.responses.lesson5) lessons.push(data.responses.lesson5);
+            data.responses.keyLessons = lessons.join(' | ');
+            
+            // Combine testimony
+            data.responses.testimony = `Dream: ${data.responses.testimonyDream || ''} | Pit: ${data.responses.testimonyPit || ''} | Process: ${data.responses.testimonyProcess || ''} | Faithfulness: ${data.responses.testimonyFaithfulness || ''} | Purpose: ${data.responses.testimonyPurpose || ''} | Encouragement: ${data.responses.testimonyEncouragement || ''}`;
+            
+            // Combine declaration
+            data.responses.trustDeclaration = `Pit: ${data.responses.declarePit || ''} | Process: ${data.responses.declareProcess || ''} | Trust: ${data.responses.declareTrust || ''} | Palace: ${data.responses.declarePalace || ''}`;
+            
+            // Combine action steps
+            data.responses.actionSteps = `1. ${data.responses.action1 || ''} | 2. ${data.responses.action2 || ''} | 3. ${data.responses.action3 || ''}`;
+            
+            try {
+                // Submit to Google Sheets
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                // Show success message
+                successMessage.style.display = 'block';
+                errorMessage.style.display = 'none';
+                
+                // Save to localStorage as backup
+                const savedProjects = JSON.parse(localStorage.getItem('journeyMappingProjects') || '[]');
+                savedProjects.push(data);
+                localStorage.setItem('journeyMappingProjects', JSON.stringify(savedProjects));
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Submit Journey Mapping Project';
+            }
+        }
+
+        // Initialize progress
+        updateProgress();
+    </script>
+</body>
+</html>
