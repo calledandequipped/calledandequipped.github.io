@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breaking Comparison and Competition - Week 4 Wednesday</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #0a1929; color: #fff; overflow: hidden; height: 100vh; }
+        .slideshow-container { position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .slide { display: none; width: 90%; max-width: 1200px; height: 85vh; text-align: center; animation: fadeIn 0.5s; overflow-y: auto; overflow-x: hidden; }
+        .slide.active { display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .title-slide { background: linear-gradient(135deg, #7b1fa2 0%, #9c27b0 100%); border-radius: 20px; padding: 40px; }
+        .title-slide h1 { font-size: 3.5em; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .content-slide { background: #1a2f3f; border-radius: 20px; padding: 40px; overflow-y: auto; }
+        .content-slide h2 { font-size: 2.5em; color: #ba68c8; margin-bottom: 30px; }
+        .content-slide h3 { font-size: 1.6em; color: #ce93d8; margin-bottom: 15px; }
+        .content-slide p { font-size: 1.2em; line-height: 1.6; margin-bottom: 15px; }
+        .content-slide ul { text-align: left; font-size: 1.1em; line-height: 1.8; max-width: 700px; margin: 0 auto; list-style: none; }
+        .content-slide ul li { margin-bottom: 10px; padding-left: 35px; position: relative; }
+        .content-slide ul li::before { content: "👁️"; position: absolute; left: 0; font-size: 1.2em; }
+        
+        .scripture-slide { background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%); border-radius: 20px; padding: 40px; }
+        .scripture-slide .verse { font-size: 1.8em; line-height: 1.6; margin-bottom: 20px; font-style: italic; }
+        .scripture-slide .reference { font-size: 1.3em; font-weight: bold; }
+        
+        .comparison-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; max-width: 800px; margin: 0 auto; }
+        .comparison-card { background: #2a3f5f; padding: 20px; border-radius: 15px; border: 2px solid #7b1fa2; }
+        .comparison-card h4 { color: #ba68c8; margin-bottom: 10px; font-size: 1.2em; }
+        .comparison-card p { font-size: 0.95em; line-height: 1.5; }
+        
+        .practice-slide { background: #1a2f3f; border-radius: 20px; padding: 40px; overflow-y: auto; }
+        .lane-box { background: #2a3f5f; padding: 25px; border-radius: 15px; margin: 15px auto; max-width: 700px; }
+        .lane-box h4 { color: #ce93d8; margin-bottom: 15px; }
+        
+        .nav-buttons { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; }
+        .nav-btn { background: #7b1fa2; color: white; border: none; padding: 15px 30px; font-size: 1.1em; border-radius: 50px; cursor: pointer; }
+        .nav-btn:hover { background: #4a148c; }
+        .nav-btn:disabled { background: #4a5568; cursor: not-allowed; }
+        
+        .progress-bar { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); width: 300px; height: 6px; background: #4a5568; border-radius: 3px; overflow: hidden; }
+        .progress { height: 100%; background: #7b1fa2; transition: width 0.3s; }
+        .slide-counter { position: absolute; top: 30px; right: 30px; font-size: 1.2em; }
+        
+        .celebration-exercise { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 700px; margin: 20px auto; }
+        .celebration-box { background: #2a3f5f; padding: 20px; border-radius: 10px; }
+        
+        @media (max-width: 768px) {
+            .slide { width: 95%; padding: 30px; }
+            .title-slide h1 { font-size: 2.5em; }
+            .comparison-grid { grid-template-columns: 1fr; }
+            .celebration-exercise { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <div class="progress-bar"><div class="progress" id="progressBar"></div></div>
+        <div class="slide-counter"><span id="currentSlide">1</span> / 10</div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <h1>Breaking Comparison and Competition</h1>
+            <p style="font-size: 1.8em;">Finding Your Unique Lane in God's Kingdom</p>
+            <p style="font-size: 1.2em; margin-top: 40px;">Week 4, Wednesday - Session 11</p>
+        </div>
+
+        <!-- Slide 2: Scripture -->
+        <div class="slide scripture-slide">
+            <p class="verse">"Each one should test their own actions. Then they can take pride in themselves alone, without comparing themselves to someone else, for each one should carry their own load."</p>
+            <p class="reference">Galatians 6:4-5 (NIV)</p>
+        </div>
+
+        <!-- Slide 3: Introduction -->
+        <div class="slide content-slide">
+            <h2>The Comparison Trap</h2>
+            <p style="font-size: 1.3em; color: #ba68c8; margin-bottom: 25px;">Comparison is the thief of joy and purpose</p>
+            <ul>
+                <li>Social media has amplified comparison culture</li>
+                <li>We compare our behind-the-scenes with others' highlight reels</li>
+                <li>Comparison breeds either pride or despair</li>
+                <li>It distracts us from our unique calling</li>
+                <li>God's kingdom operates on collaboration, not competition</li>
+            </ul>
+            <p style="margin-top: 30px;">Today: Learn to celebrate your unique design and others' success</p>
+        </div>
+
+        <!-- Slide 4: The Trap of Comparing Callings -->
+        <div class="slide content-slide">
+            <h2>The Trap of Comparing Callings</h2>
+            <div style="background: #2a3f5f; padding: 25px; border-radius: 15px; margin-bottom: 25px;">
+                <p style="font-size: 1.2em;">Every calling is unique - like fingerprints from God</p>
+            </div>
+            <h3>Why we fall into comparison:</h3>
+            <ul>
+                <li>Insecurity about our own worth</li>
+                <li>Misunderstanding of Kingdom values</li>
+                <li>Fear that there's not enough blessing to go around</li>
+                <li>Focusing on the visible rather than the eternal</li>
+                <li>Forgetting that God's timing is different for each person</li>
+            </ul>
+            <p style="margin-top: 25px; font-size: 1.2em; color: #ce93d8;">"Comparison is the death of contentment and the birth of covetousness"</p>
+        </div>
+
+        <!-- Slide 5: Biblical Examples -->
+        <div class="slide content-slide">
+            <h2>Biblical Lessons on Comparison</h2>
+            <div class="comparison-grid">
+                <div class="comparison-card">
+                    <h4>Peter & John (John 21:20-22)</h4>
+                    <p>Jesus to Peter: "What is that to you? You must follow me!"<br><br>Lesson: Stay focused on YOUR calling</p>
+                </div>
+                <div class="comparison-card">
+                    <h4>Rachel & Leah (Genesis 29-30)</h4>
+                    <p>Competition destroyed their peace and family<br><br>Lesson: Comparison breeds dysfunction</p>
+                </div>
+                <div class="comparison-card">
+                    <h4>Saul & David (1 Samuel 18)</h4>
+                    <p>Saul's jealousy led to his downfall<br><br>Lesson: Celebrate others' anointing</p>
+                </div>
+                <div class="comparison-card">
+                    <h4>Martha & Mary (Luke 10:38-42)</h4>
+                    <p>Different expressions, both loved by Jesus<br><br>Lesson: There are many ways to serve</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Celebrating Others' Purposes -->
+        <div class="slide content-slide">
+            <h2>Celebrating Others' Purposes</h2>
+            <h3 style="color: #ba68c8; margin-bottom: 25px;">Kingdom multiplication, not competition</h3>
+            <div style="background: #2a3f5f; padding: 25px; border-radius: 15px; margin-bottom: 25px;">
+                <p style="font-size: 1.2em;">"Rejoice with those who rejoice" - Romans 12:15</p>
+            </div>
+            <ul>
+                <li>Others' success doesn't diminish yours</li>
+                <li>We're parts of one body (1 Corinthians 12)</li>
+                <li>Their breakthrough might open doors for you</li>
+                <li>Celebration attracts more blessing</li>
+                <li>Unity releases greater anointing</li>
+            </ul>
+            <p style="margin-top: 25px;">Practice: This week, genuinely celebrate 3 people's wins</p>
+        </div>
+
+        <!-- Slide 7: Finding Your Unique Lane -->
+        <div class="slide practice-slide">
+            <h2>Finding Your Unique Lane</h2>
+            <div class="lane-box">
+                <h4>Questions to Discover Your Lane:</h4>
+                <ol style="text-align: left; line-height: 2; margin-top: 15px;">
+                    <li>What makes you come alive?</li>
+                    <li>What problems do you feel called to solve?</li>
+                    <li>What do people consistently ask you for help with?</li>
+                    <li>What would you do for free because you love it?</li>
+                    <li>Where do you see fruit without striving?</li>
+                </ol>
+            </div>
+            <div style="background: #7b1fa2; padding: 20px; border-radius: 15px; margin-top: 25px;">
+                <p style="font-size: 1.1em;">"Stay in your lane and run your race at your pace"</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: Gratitude Exercise -->
+        <div class="slide practice-slide">
+            <h2>Gratitude for Others' Gifts</h2>
+            <p style="font-size: 1.2em; margin-bottom: 25px;">Transform jealousy into joy through gratitude</p>
+            <div class="celebration-exercise">
+                <div class="celebration-box">
+                    <h4 style="color: #ba68c8;">Step 1: Identify</h4>
+                    <p>Think of someone whose success triggers comparison in you</p>
+                </div>
+                <div class="celebration-box">
+                    <h4 style="color: #ba68c8;">Step 2: Appreciate</h4>
+                    <p>List 3 ways their gift benefits the Kingdom</p>
+                </div>
+                <div class="celebration-box">
+                    <h4 style="color: #ba68c8;">Step 3: Pray</h4>
+                    <p>Thank God for their calling and ask Him to increase their impact</p>
+                </div>
+                <div class="celebration-box">
+                    <h4 style="color: #ba68c8;">Step 4: Encourage</h4>
+                    <p>Send them a message celebrating their gift</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Commitment -->
+        <div class="slide content-slide">
+            <h2>Your Comparison-Free Commitment</h2>
+            <div class="lane-box">
+                <h4>This Week's Challenge:</h4>
+                <p style="font-size: 1.1em; line-height: 1.8; margin-top: 15px;">
+                    1. <strong>Social Media Detox:</strong> Take a 3-day break from scrolling<br><br>
+                    2. <strong>Identity Reset:</strong> Write 10 things God says about you<br><br>
+                    3. <strong>Celebration Practice:</strong> Publicly celebrate 3 people's purposes<br><br>
+                    4. <strong>Lane Definition:</strong> Write a one-page "My Unique Lane" manifesto<br><br>
+                    5. <strong>Accountability:</strong> Share with a friend when comparison strikes
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 10: Closing -->
+        <div class="slide title-slide">
+            <h2>You Are Incomparable</h2>
+            <p style="font-size: 1.8em; margin: 30px 0;">God doesn't make duplicates</p>
+            <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px;">
+                <p style="font-size: 1.3em;">"I praise you because I am fearfully and wonderfully made"</p>
+                <p style="margin-top: 15px;">- Psalm 139:14</p>
+            </div>
+            <p style="margin-top: 30px; font-size: 1.2em;">Your unique purpose is needed in this world</p>
+            <p style="margin-top: 25px;">Next: Friday - Patience in the Process</p>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">Previous</button>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 10;
+
+        function changeSlide(direction) {
+            const slides = document.querySelectorAll('.slide');
+            slides[currentSlide - 1].classList.remove('active');
+            
+            currentSlide += direction;
+            if (currentSlide > totalSlides) currentSlide = totalSlides;
+            if (currentSlide < 1) currentSlide = 1;
+            
+            slides[currentSlide - 1].classList.add('active');
+            document.getElementById('currentSlide').textContent = currentSlide;
+            
+            updateProgressBar();
+            updateNavButtons();
+        }
+
+        function updateProgressBar() {
+            const progress = (currentSlide / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function updateNavButtons() {
+            document.getElementById('prevBtn').disabled = currentSlide === 1;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
+            document.getElementById('nextBtn').textContent = currentSlide === totalSlides ? 'Complete' : 'Next';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+        });
+
+        updateProgressBar();
+        updateNavButtons();
+    </script>
+</body>
+</html>

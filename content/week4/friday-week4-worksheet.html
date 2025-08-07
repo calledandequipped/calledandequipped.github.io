@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patience Plan - Patience in the Process</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f3e5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #7b1fa2 0%, #9c27b0 100%);
+            color: white;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #7b1fa2;
+            font-size: 20px;
+            margin: 25px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e1bee7;
+        }
+
+        h3 {
+            color: #9c27b0;
+            font-size: 16px;
+            margin: 15px 0 10px;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .subtitle {
+            font-style: italic;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .intro-box {
+            background: #f3e5f5;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #ba68c8;
+        }
+
+        .scripture-box {
+            background: #f5f5f5;
+            border-left: 4px solid #7b1fa2;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .scripture-ref {
+            display: block;
+            text-align: right;
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .form-group {
+            margin: 20px 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: 'Georgia', serif;
+            resize: vertical;
+        }
+
+        textarea {
+            min-height: 100px;
+        }
+
+        .waiting-section {
+            background: #fafafa;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .reflection-box {
+            background: #fff3e0;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #ff9800;
+        }
+
+        .season-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .season-card {
+            background: #f3e5f5;
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid #ce93d8;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .season-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .season-card input[type="radio"] {
+            margin-bottom: 10px;
+        }
+
+        .timeline-box {
+            background: #e8f5e9;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #66bb6a;
+        }
+
+        .patience-practices {
+            display: grid;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .practice-item {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .checkbox-group {
+            display: grid;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: start;
+            cursor: pointer;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .ishmael-warning {
+            background: #ffebee;
+            border: 2px solid #ef5350;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+            z-index: 1000;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #7b1fa2;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .submit-button {
+            background: #7b1fa2;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background: #4a148c;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .submit-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .success-message,
+        .error-message {
+            display: none;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .success-message {
+            background: #4caf50;
+            color: white;
+        }
+
+        .error-message {
+            background: #f44336;
+            color: white;
+        }
+
+        .trust-scale {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0;
+        }
+
+        .trust-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .trust-option input[type="radio"] {
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                border-radius: 0;
+            }
+            
+            .header, .content {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+
+            .season-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressBar"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Creating Your Patience Plan</h1>
+            <p class="subtitle">Trusting God's Timing for Your Purpose</p>
+            <p>Week 4, Day 5: Patience in the Process</p>
+        </div>
+
+        <div class="content">
+            <div class="intro-box">
+                <p><strong>Purpose:</strong> Like Abraham who waited 25 years for Isaac, God often uses waiting seasons to prepare us for our purpose. Today, you'll assess your current waiting season, identify patience-building practices, and create a plan to trust God's perfect timing.</p>
+            </div>
+
+            <div class="scripture-box">
+                "For the vision is yet for an appointed time; but at the end it will speak, and it will not lie. Though it tarries, wait for it; because it will surely come, it will not tarry."
+                <span class="scripture-ref">- Habakkuk 2:3 (NKJV)</span>
+            </div>
+
+            <form id="patienceForm" onsubmit="handleSubmit(event)">
+                <!-- User Information -->
+                <div class="waiting-section">
+                    <h2>Your Information</h2>
+                    <div class="form-group">
+                        <label for="userName">Name:</label>
+                        <input type="text" id="userName" name="userName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userEmail">Email:</label>
+                        <input type="email" id="userEmail" name="userEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date:</label>
+                        <input type="text" id="date" name="date" value="" readonly>
+                    </div>
+                </div>
+
+                <!-- Part 1: Your Waiting Season -->
+                <div class="waiting-section">
+                    <h2>Part 1: Identifying Your Waiting Season</h2>
+                    
+                    <div class="form-group">
+                        <label for="waitingFor">What aspect of your purpose are you waiting for?</label>
+                        <textarea id="waitingFor" name="waitingFor" required placeholder="Be specific - what door hasn't opened yet? What promise hasn't manifested?"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="waitingLength">How long have you been waiting?</label>
+                        <input type="text" id="waitingLength" name="waitingLength" required placeholder="e.g., 6 months, 2 years, since college">
+                    </div>
+
+                    <h3>Which Biblical waiting room resonates with you?</h3>
+                    <div class="season-grid">
+                        <label class="season-card">
+                            <input type="radio" name="biblicalExample" value="abraham" required>
+                            <strong>Abraham</strong><br>
+                            Waiting for a promise<br>
+                            (25 years for Isaac)
+                        </label>
+                        <label class="season-card">
+                            <input type="radio" name="biblicalExample" value="joseph">
+                            <strong>Joseph</strong><br>
+                            Waiting in preparation<br>
+                            (13 years in slavery/prison)
+                        </label>
+                        <label class="season-card">
+                            <input type="radio" name="biblicalExample" value="moses">
+                            <strong>Moses</strong><br>
+                            Waiting in the wilderness<br>
+                            (40 years before calling)
+                        </label>
+                        <label class="season-card">
+                            <input type="radio" name="biblicalExample" value="david">
+                            <strong>David</strong><br>
+                            Waiting while anointed<br>
+                            (15 years to throne)
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="whyResonates">Why does this biblical example resonate with your situation?</label>
+                        <textarea id="whyResonates" name="whyResonates" required></textarea>
+                    </div>
+                </div>
+
+                <!-- Part 2: Lessons in the Waiting -->
+                <div class="reflection-box">
+                    <h2>Part 2: What God is Teaching You</h2>
+                    
+                    <div class="form-group">
+                        <label for="characterDevelopment">What character traits is God developing in you during this wait?</label>
+                        <textarea id="characterDevelopment" name="characterDevelopment" required placeholder="e.g., patience, trust, humility, perseverance, faith"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="skillsDeveloping">What skills are you developing while you wait?</label>
+                        <textarea id="skillsDeveloping" name="skillsDeveloping" required placeholder="What are you learning that will serve you when the door opens?"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="relationshipsFormed">What relationships has God brought during this season?</label>
+                        <textarea id="relationshipsFormed" name="relationshipsFormed" required placeholder="Who has He connected you with? What community has formed?"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hiddenBlessings">What hidden blessings have come from the delay?</label>
+                        <textarea id="hiddenBlessings" name="hiddenBlessings" required placeholder="Looking back, what are you grateful for about the timing?"></textarea>
+                    </div>
+                </div>
+
+                <!-- Part 3: Avoiding Shortcuts -->
+                <div class="ishmael-warning">
+                    <h2>Part 3: Avoiding "Ishmael" Decisions</h2>
+                    <p><strong>Remember:</strong> Abraham's impatience led to Ishmael—a shortcut that caused generations of conflict.</p>
+                    
+                    <div class="form-group">
+                        <label for="temptedShortcuts">What shortcuts are you tempted to take?</label>
+                        <textarea id="temptedShortcuts" name="temptedShortcuts" required placeholder="What 'Ishmael' options look appealing right now?"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="shortcutCost">What would be the long-term cost of taking these shortcuts?</label>
+                        <textarea id="shortcutCost" name="shortcutCost" required placeholder="Consider spiritual, relational, and purpose implications..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="godsTiming">How will you discern between God's timing and good opportunities?</label>
+                        <textarea id="godsTiming" name="godsTiming" required placeholder="What criteria will you use to evaluate opportunities?"></textarea>
+                    </div>
+                </div>
+
+                <!-- Part 4: Trust Assessment -->
+                <div class="waiting-section">
+                    <h2>Part 4: Trusting God's Timing</h2>
+                    
+                    <div class="form-group">
+                        <label>Rate your current trust level in God's timing:</label>
+                        <div class="trust-scale">
+                            <div class="trust-option">
+                                <input type="radio" id="trust1" name="trustLevel" value="1" required>
+                                <label for="trust1">1<br>Struggling</label>
+                            </div>
+                            <div class="trust-option">
+                                <input type="radio" id="trust2" name="trustLevel" value="2">
+                                <label for="trust2">2<br>Wavering</label>
+                            </div>
+                            <div class="trust-option">
+                                <input type="radio" id="trust3" name="trustLevel" value="3">
+                                <label for="trust3">3<br>Growing</label>
+                            </div>
+                            <div class="trust-option">
+                                <input type="radio" id="trust4" name="trustLevel" value="4">
+                                <label for="trust4">4<br>Steady</label>
+                            </div>
+                            <div class="trust-option">
+                                <input type="radio" id="trust5" name="trustLevel" value="5">
+                                <label for="trust5">5<br>Confident</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="trustStruggles">What makes it hardest to trust God's timing?</label>
+                        <textarea id="trustStruggles" name="trustStruggles" required placeholder="Be honest about your struggles..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pastFaithfulness">How has God proven faithful in past waiting seasons?</label>
+                        <textarea id="pastFaithfulness" name="pastFaithfulness" required placeholder="Remember specific times God's timing was perfect..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Part 5: Patience Practices -->
+                <div class="timeline-box">
+                    <h2>Part 5: Your Patience-Building Practices</h2>
+                    <p>Choose practices that will help you wait well:</p>
+                    
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="practice1" name="patiencePractices" value="daily_gratitude">
+                            <label for="practice1">Daily gratitude journaling for present blessings</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="practice2" name="patiencePractices" value="scripture_meditation">
+                            <label for="practice2">Memorizing scriptures about waiting and trust</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="practice3" name="patiencePractices" value="testimony_journal">
+                            <label for="practice3">Recording testimonies of God's perfect timing</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="practice4" name="patiencePractices" value="worship_focus">
+                            <label for="practice4">Shifting focus from waiting to worship</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="practice5" name="patiencePractices" value="serve_others">
+                            <label for="practice5">Serving others in their purpose while waiting</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="practice6" name="patiencePractices" value="sabbath_rest">
+                            <label for="practice6">Practicing Sabbath rest and presence</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="practice7" name="patiencePractices" value="counseling_support">
+                            <label for="practice7">Seeking counseling or spiritual direction</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="practiceSchedule">Create your weekly patience practice schedule:</label>
+                        <textarea id="practiceSchedule" name="practiceSchedule" required placeholder="Example: Monday - Gratitude journal, Tuesday - Scripture meditation, Wednesday - Serve at church..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Part 6: While You Wait Action Plan -->
+                <div class="waiting-section">
+                    <h2>Part 6: Maximizing Your Waiting Season</h2>
+                    <p>Don't waste your waiting - use it for preparation!</p>
+                    
+                    <h3>What will you do while you wait?</h3>
+                    <div class="patience-practices">
+                        <div class="practice-item">
+                            <div class="form-group">
+                                <label for="prepareAction1">Preparation Action #1:</label>
+                                <input type="text" id="prepareAction1" name="prepareAction1" required placeholder="e.g., Get additional training/certification">
+                            </div>
+                            <div class="form-group">
+                                <label for="prepareDeadline1">Complete by:</label>
+                                <input type="date" id="prepareDeadline1" name="prepareDeadline1" required>
+                            </div>
+                        </div>
+
+                        <div class="practice-item">
+                            <div class="form-group">
+                                <label for="prepareAction2">Preparation Action #2:</label>
+                                <input type="text" id="prepareAction2" name="prepareAction2" required placeholder="e.g., Build relationships in the field">
+                            </div>
+                            <div class="form-group">
+                                <label for="prepareDeadline2">Complete by:</label>
+                                <input type="date" id="prepareDeadline2" name="prepareDeadline2" required>
+                            </div>
+                        </div>
+
+                        <div class="practice-item">
+                            <div class="form-group">
+                                <label for="prepareAction3">Preparation Action #3:</label>
+                                <input type="text" id="prepareAction3" name="prepareAction3" required placeholder="e.g., Develop necessary skills">
+                            </div>
+                            <div class="form-group">
+                                <label for="prepareDeadline3">Complete by:</label>
+                                <input type="date" id="prepareDeadline3" name="prepareDeadline3" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Part 7: Vision Keeping -->
+                <div class="reflection-box">
+                    <h2>Part 7: Keeping the Vision Alive</h2>
+                    
+                    <div class="form-group">
+                        <label for="visionStatement">Write your vision in present tense (as if it's already happening):</label>
+                        <textarea id="visionStatement" name="visionStatement" required placeholder="Example: 'I am leading a thriving ministry that transforms lives...' Write it as if you're living it now."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="visionReminders">How will you keep this vision before you daily?</label>
+                        <textarea id="visionReminders" name="visionReminders" required placeholder="Vision board? Daily declarations? Written reminders?"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="celebrateProgress">What small wins will you celebrate while waiting for the big vision?</label>
+                        <textarea id="celebrateProgress" name="celebrateProgress" required placeholder="List milestones to acknowledge along the way..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Part 8: Support System -->
+                <div class="waiting-section">
+                    <h2>Part 8: Your Waiting Season Support</h2>
+                    
+                    <div class="form-group">
+                        <label for="waitingPartner">Who will walk with you through this waiting season?</label>
+                        <input type="text" id="waitingPartner" name="waitingPartner" required placeholder="Name of accountability partner/mentor">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="checkInFrequency">How often will you check in about your patience journey?</label>
+                        <select id="checkInFrequency" name="checkInFrequency" required>
+                            <option value="">Select frequency</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="biweekly">Bi-weekly</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="supportNeeded">What specific support do you need during this season?</label>
+                        <textarea id="supportNeeded" name="supportNeeded" required placeholder="Prayer? Encouragement? Practical help? Be specific..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Part 9: Declaration of Trust -->
+                <div class="timeline-box">
+                    <h2>Part 9: Your Patience Declaration</h2>
+                    
+                    <div class="form-group">
+                        <label for="trustDeclaration">Write your declaration of trust in God's timing:</label>
+                        <textarea id="trustDeclaration" name="trustDeclaration" required placeholder="Example: 'I declare that God's timing is perfect. I trust that He is working all things for my good. I will wait with patience and purpose, knowing that at the appointed time, the vision will come to pass. I choose faith over frustration, preparation over passivity, and trust over anxiety.'"></textarea>
+                    </div>
+
+                    <div class="scripture-box">
+                        "But those who wait on the Lord shall renew their strength; they shall mount up with wings like eagles, they shall run and not be weary, they shall walk and not faint."
+                        <span class="scripture-ref">- Isaiah 40:31 (NKJV)</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signature">Type your name as a commitment to patient trust:</label>
+                        <input type="text" id="signature" name="signature" required placeholder="Your full name">
+                    </div>
+                </div>
+
+                <div class="success-message" id="successMessage">
+                    ✓ Your Patience Plan has been saved successfully!
+                </div>
+
+                <div class="error-message" id="errorMessage">
+                    ✗ There was an error saving your plan. Please try again.
+                </div>
+
+                <button type="submit" class="submit-button" id="submitButton">Submit Patience Plan</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Set today's date
+        document.getElementById('date').value = new Date().toLocaleDateString();
+
+        // Progress bar functionality
+        function updateProgress() {
+            const form = document.getElementById('patienceForm');
+            const requiredFields = form.querySelectorAll('[required]');
+            const checkboxGroups = form.querySelectorAll('.checkbox-group');
+            
+            let completed = 0;
+            let total = requiredFields.length + checkboxGroups.length;
+            
+            // Check required fields
+            requiredFields.forEach(field => {
+                if (field.type === 'radio') {
+                    const radioGroup = form.querySelectorAll(`input[name="${field.name}"]:checked`);
+                    if (radioGroup.length > 0) {
+                        completed++;
+                    }
+                } else if (field.value.trim() !== '') {
+                    completed++;
+                }
+            });
+            
+            // Check checkbox groups (at least 2 checked)
+            checkboxGroups.forEach(group => {
+                const checkedBoxes = group.querySelectorAll('input[type="checkbox"]:checked').length;
+                if (checkedBoxes >= 2) completed++;
+            });
+            
+            const progress = (completed / total) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        // Add event listeners
+        document.querySelectorAll('input, textarea, select').forEach(field => {
+            field.addEventListener('input', updateProgress);
+            field.addEventListener('change', updateProgress);
+        });
+
+        // Google Sheets Integration
+        const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
+
+        async function handleSubmit(event) {
+            event.preventDefault();
+            
+            const submitButton = document.getElementById('submitButton');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            submitButton.disabled = true;
+            submitButton.textContent = 'Submitting...';
+            
+            // Collect form data
+            const formData = new FormData(event.target);
+            const data = {
+                timestamp: new Date().toISOString(),
+                week: 4,
+                day: 'Friday',
+                exercise: 'Patience Plan - Patience in the Process',
+                responses: {}
+            };
+            
+            // Process form data
+            for (let [key, value] of formData.entries()) {
+                if (data.responses[key]) {
+                    if (!Array.isArray(data.responses[key])) {
+                        data.responses[key] = [data.responses[key]];
+                    }
+                    data.responses[key].push(value);
+                } else {
+                    data.responses[key] = value;
+                }
+            }
+            
+            // Convert checkbox arrays to strings
+            if (Array.isArray(data.responses.patiencePractices)) {
+                data.responses.patiencePractices = data.responses.patiencePractices.join(', ');
+            }
+            
+            // Create preparation summary
+            data.responses.preparationSummary = `1. ${data.responses.prepareAction1} (by ${data.responses.prepareDeadline1}), 2. ${data.responses.prepareAction2} (by ${data.responses.prepareDeadline2}), 3. ${data.responses.prepareAction3} (by ${data.responses.prepareDeadline3})`;
+            
+            try {
+                // Submit to Google Sheets
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                // Show success message
+                successMessage.style.display = 'block';
+                errorMessage.style.display = 'none';
+                
+                // Save to localStorage as backup
+                const savedPlans = JSON.parse(localStorage.getItem('patiencePlans') || '[]');
+                savedPlans.push(data);
+                localStorage.setItem('patiencePlans', JSON.stringify(savedPlans));
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Submit Patience Plan';
+            }
+        }
+
+        // Initialize progress
+        updateProgress();
+    </script>
+</body>
+</html>

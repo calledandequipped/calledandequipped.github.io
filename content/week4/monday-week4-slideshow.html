@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conquering Fear and Doubt - Week 4 Monday</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #0a1929; color: #fff; overflow: hidden; height: 100vh; }
+        .slideshow-container { position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .slide { display: none; width: 90%; max-width: 1200px; height: 85vh; text-align: center; animation: fadeIn 0.5s; overflow-y: auto; overflow-x: hidden; }
+        .slide.active { display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .title-slide { background: linear-gradient(135deg, #d32f2f 0%, #f44336 100%); border-radius: 20px; padding: 40px; }
+        .title-slide h1 { font-size: 3.5em; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .content-slide { background: #1a2f3f; border-radius: 20px; padding: 40px; overflow-y: auto; }
+        .content-slide h2 { font-size: 2.5em; color: #ef5350; margin-bottom: 30px; }
+        .content-slide h3 { font-size: 1.6em; color: #e57373; margin-bottom: 15px; }
+        .content-slide p { font-size: 1.2em; line-height: 1.6; margin-bottom: 15px; }
+        .content-slide ul { text-align: left; font-size: 1.1em; line-height: 1.8; max-width: 700px; margin: 0 auto; list-style: none; }
+        .content-slide ul li { margin-bottom: 15px; padding-left: 40px; position: relative; }
+        .content-slide ul li::before { content: "⚔️"; position: absolute; left: 0; font-size: 1.3em; }
+        
+        .scripture-slide { background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%); border-radius: 20px; padding: 40px; }
+        .scripture-slide .verse { font-size: 1.8em; line-height: 1.6; margin-bottom: 20px; font-style: italic; }
+        .scripture-slide .reference { font-size: 1.3em; font-weight: bold; }
+        
+        .fear-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; max-width: 800px; margin: 0 auto; }
+        .fear-card { background: #2a3f5f; padding: 20px; border-radius: 15px; border: 2px solid #d32f2f; transition: transform 0.3s; }
+        .fear-card:hover { transform: translateY(-5px); }
+        .fear-card h4 { color: #ef5350; margin-bottom: 10px; font-size: 1.2em; }
+        .fear-card p { font-size: 0.95em; line-height: 1.5; }
+        
+        .practice-slide { background: #1a2f3f; border-radius: 20px; padding: 40px; overflow-y: auto; }
+        .declaration-box { background: #2a3f5f; padding: 25px; border-radius: 15px; margin: 15px auto; max-width: 700px; }
+        .declaration-box h4 { color: #e57373; margin-bottom: 15px; }
+        .declaration-box p { font-size: 1.1em; line-height: 1.6; }
+        .declaration-box ol { text-align: left; line-height: 2; }
+        
+        .nav-buttons { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; }
+        .nav-btn { background: #d32f2f; color: white; border: none; padding: 15px 30px; font-size: 1.1em; border-radius: 50px; cursor: pointer; }
+        .nav-btn:hover { background: #b71c1c; }
+        .nav-btn:disabled { background: #4a5568; cursor: not-allowed; }
+        
+        .progress-bar { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); width: 300px; height: 6px; background: #4a5568; border-radius: 3px; overflow: hidden; }
+        .progress { height: 100%; background: #d32f2f; transition: width 0.3s; }
+        .slide-counter { position: absolute; top: 30px; right: 30px; font-size: 1.2em; }
+        
+        @media (max-width: 768px) {
+            .slide { width: 95%; padding: 30px; }
+            .title-slide h1 { font-size: 2.5em; }
+            .fear-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <div class="progress-bar"><div class="progress" id="progressBar"></div></div>
+        <div class="slide-counter"><span id="currentSlide">1</span> / 10</div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <h1>Conquering Fear and Doubt</h1>
+            <p style="font-size: 1.8em;">Breaking Through Barriers to Your Destiny</p>
+            <p style="font-size: 1.2em; margin-top: 40px;">Week 4, Monday - Session 10</p>
+        </div>
+
+        <!-- Slide 2: Scripture -->
+        <div class="slide scripture-slide">
+            <p class="verse">"Have I not commanded you? Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go."</p>
+            <p class="reference">Joshua 1:9 (NIV)</p>
+        </div>
+
+        <!-- Slide 3: Introduction -->
+        <div class="slide content-slide">
+            <h2>Fear: The Purpose Killer</h2>
+            <p style="font-size: 1.5em; color: #ef5350; margin-bottom: 30px;">Fear is the enemy of destiny</p>
+            <ul>
+                <li>Fear keeps more people from their purpose than any other factor</li>
+                <li>It disguises itself as wisdom, caution, or being "realistic"</li>
+                <li>Fear creates paralysis when God calls for action</li>
+                <li>Every hero of faith had to conquer fear</li>
+            </ul>
+            <p style="margin-top: 40px;">Today: Learn to recognize, confront, and overcome the fears blocking your purpose</p>
+        </div>
+
+        <!-- Slide 4: Identifying Fear-Based Decisions -->
+        <div class="slide content-slide">
+            <h2>Identifying Fear-Based Decisions</h2>
+            <h3 style="color: #ef5350; margin-bottom: 30px;">Signs you're operating in fear:</h3>
+            <ul>
+                <li>Avoiding opportunities that stretch you</li>
+                <li>Making excuses about timing or readiness</li>
+                <li>Focusing on what could go wrong</li>
+                <li>Comparing yourself to others constantly</li>
+                <li>Waiting for "perfect" conditions</li>
+                <li>Staying in your comfort zone</li>
+            </ul>
+            <div style="background: #2a3f5f; padding: 20px; border-radius: 15px; margin-top: 30px;">
+                <p style="font-style: italic;">"Fear says 'What if I fail?' Faith says 'What if I fly?'"</p>
+            </div>
+        </div>
+
+        <!-- Slide 5: The Israelites at the Edge -->
+        <div class="slide content-slide">
+            <h2>The Israelites at the Edge of Promise</h2>
+            <div style="background: #2a3f5f; padding: 30px; border-radius: 15px; margin-bottom: 30px;">
+                <p style="font-size: 1.3em;">Numbers 13-14: When fear cost a generation their destiny</p>
+            </div>
+            <h3>Lessons from their failure:</h3>
+            <ul>
+                <li>10 spies saw giants; 2 saw God's promise</li>
+                <li>Fear is contagious and spreads quickly</li>
+                <li>Fear causes us to forget God's past faithfulness</li>
+                <li>Fear leads to rebellion and wandering</li>
+                <li>What we focus on grows larger</li>
+            </ul>
+            <p style="margin-top: 30px; font-size: 1.3em; color: #e57373;">Which report are you believing about your purpose?</p>
+        </div>
+
+        <!-- Slide 6: Common Purpose Fears -->
+        <div class="slide content-slide">
+            <h2>Common Fears That Block Purpose</h2>
+            <div class="fear-grid">
+                <div class="fear-card">
+                    <h4>Fear of Failure</h4>
+                    <p>"What if I try and fall short?"<br>"What if I'm not good enough?"<br>"What if I disappoint God/others?"</p>
+                </div>
+                <div class="fear-card">
+                    <h4>Fear of Success</h4>
+                    <p>"What if I can't handle it?"<br>"What if people expect too much?"<br>"What if I lose myself?"</p>
+                </div>
+                <div class="fear-card">
+                    <h4>Fear of Rejection</h4>
+                    <p>"What if people don't accept me?"<br>"What if I'm criticized?"<br>"What if I lose relationships?"</p>
+                </div>
+                <div class="fear-card">
+                    <h4>Fear of the Unknown</h4>
+                    <p>"What if I make the wrong choice?"<br>"What if God stops providing?"<br>"What if I miss His will?"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Faith vs Presumption -->
+        <div class="slide content-slide">
+            <h2>Faith versus Presumption</h2>
+            <h3 style="color: #ef5350; margin-bottom: 30px;">Walking in wisdom while conquering fear</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 900px; margin: 0 auto;">
+                <div style="background: #2a3f5f; padding: 30px; border-radius: 15px;">
+                    <h4 style="color: #4caf50; margin-bottom: 20px;">TRUE FAITH</h4>
+                    <ul style="padding-left: 20px;">
+                        <li>Based on God's Word</li>
+                        <li>Confirmed by peace</li>
+                        <li>Submitted to timing</li>
+                        <li>Open to counsel</li>
+                        <li>Produces fruit</li>
+                    </ul>
+                </div>
+                <div style="background: #2a3f5f; padding: 30px; border-radius: 15px;">
+                    <h4 style="color: #ff9800; margin-bottom: 20px;">PRESUMPTION</h4>
+                    <ul style="padding-left: 20px;">
+                        <li>Based on emotion</li>
+                        <li>Driven by anxiety</li>
+                        <li>Impatient with process</li>
+                        <li>Resists accountability</li>
+                        <li>Leads to confusion</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="margin-top: 30px;">Faith takes risks; presumption is reckless</p>
+        </div>
+
+        <!-- Slide 8: Deliverance Session -->
+        <div class="slide practice-slide">
+            <h2>Deliverance from Fear</h2>
+            <p style="font-size: 1.3em; margin-bottom: 30px;">It's time to break fear's hold on your destiny</p>
+            <div class="declaration-box">
+                <h4>Steps to Freedom:</h4>
+                <ol style="text-align: left; line-height: 2.5;">
+                    <li><strong>Identify:</strong> Name your specific fears honestly</li>
+                    <li><strong>Confess:</strong> Bring them into the light (1 John 1:9)</li>
+                    <li><strong>Renounce:</strong> Break agreement with fear</li>
+                    <li><strong>Replace:</strong> Fill your mind with truth</li>
+                    <li><strong>Act:</strong> Take one faith step today</li>
+                </ol>
+            </div>
+            <div style="background: #d32f2f; padding: 25px; border-radius: 15px; margin-top: 30px;">
+                <p style="font-size: 1.2em;">"For God has not given us a spirit of fear, but of power and of love and of a sound mind." - 2 Timothy 1:7</p>
+            </div>
+        </div>
+
+        <!-- Slide 9: Faith Declarations -->
+        <div class="slide content-slide">
+            <h2>Your Faith Declarations</h2>
+            <div class="declaration-box">
+                <h4>Speak these truths over your life:</h4>
+                <p style="font-size: 1.1em; line-height: 2;">
+                    "I am not afraid, for God is with me"<br>
+                    "I am strong and courageous in Christ"<br>
+                    "Perfect love casts out all fear"<br>
+                    "I can do all things through Christ"<br>
+                    "God's plans for me are good"<br>
+                    "I walk by faith, not by sight"<br>
+                    "Greater is He that is in me"
+                </p>
+            </div>
+            <h3 style="margin-top: 30px;">This Week's Assignment:</h3>
+            <ul style="font-size: 1em;">
+                <li>Write 10 personal faith declarations</li>
+                <li>Speak them aloud every morning</li>
+                <li>Record yourself saying them</li>
+                <li>Share one breakthrough with the group</li>
+            </ul>
+        </div>
+
+        <!-- Slide 10: Closing -->
+        <div class="slide title-slide">
+            <h2>Your Courage Moment</h2>
+            <p style="font-size: 2em; margin: 40px 0;">Fear ends where faith begins</p>
+            <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px;">
+                <p style="font-size: 1.5em; margin-bottom: 20px;">What would you do if you knew you couldn't fail?</p>
+                <p style="font-size: 1.3em;">That's your next faith step.</p>
+            </div>
+            <p style="margin-top: 40px; font-size: 1.2em;">Challenge: Take ONE courageous action this week toward your purpose</p>
+            <p style="margin-top: 30px;">Next: Wednesday - Breaking Comparison and Competition</p>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">Previous</button>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 10;
+
+        function changeSlide(direction) {
+            const slides = document.querySelectorAll('.slide');
+            slides[currentSlide - 1].classList.remove('active');
+            
+            currentSlide += direction;
+            if (currentSlide > totalSlides) currentSlide = totalSlides;
+            if (currentSlide < 1) currentSlide = 1;
+            
+            slides[currentSlide - 1].classList.add('active');
+            document.getElementById('currentSlide').textContent = currentSlide;
+            
+            updateProgressBar();
+            updateNavButtons();
+        }
+
+        function updateProgressBar() {
+            const progress = (currentSlide / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function updateNavButtons() {
+            document.getElementById('prevBtn').disabled = currentSlide === 1;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
+            document.getElementById('nextBtn').textContent = currentSlide === totalSlides ? 'Complete' : 'Next';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+        });
+
+        updateProgressBar();
+        updateNavButtons();
+    </script>
+</body>
+</html>

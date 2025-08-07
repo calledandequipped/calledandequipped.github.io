@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breaking Comparison Identity Reset - Week 4</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        h1 { color: #00b4d8; font-size: 2.5em; text-align: center; margin-bottom: 10px; }
+        .subtitle { text-align: center; color: #666; margin-bottom: 30px; }
+        .scripture-box { background: #e7f6ff; padding: 20px; border-left: 4px solid #00b4d8; margin: 20px 0; border-radius: 5px; }
+        .section { margin: 30px 0; padding: 20px; background: #fafafa; border-radius: 8px; }
+        h2 { color: #00b4d8; margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; color: #555; font-weight: 600; }
+        input[type="text"], input[type="email"], textarea { width: 100%; padding: 10px; margin-bottom: 15px; border: 2px solid #ddd; border-radius: 5px; }
+        input:focus, textarea:focus { outline: none; border-color: #00b4d8; }
+        .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+        .comparison-box { padding: 20px; border-radius: 10px; }
+        .toxic-box { background: #ffe4e4; border: 2px solid #ff6b6b; }
+        .healthy-box { background: #e4ffe4; border: 2px solid #4caf50; }
+        .gratitude-exercise { background: #fff9e6; padding: 25px; border-radius: 10px; margin: 20px 0; }
+        .lane-visual { display: flex; justify-content: space-around; margin: 20px 0; }
+        .lane { width: 80px; height: 200px; background: #e0e0e0; border-radius: 40px; display: flex; align-items: center; justify-content: center; writing-mode: vertical-rl; font-weight: bold; color: #666; }
+        .lane.yours { background: #00b4d8; color: white; transform: scale(1.1); }
+        .social-detox { background: #f5f5f5; padding: 20px; border-radius: 10px; border: 2px dashed #00b4d8; }
+        .submit-btn { background: #00b4d8; color: white; padding: 15px 40px; border: none; border-radius: 5px; font-size: 1.1em; cursor: pointer; display: block; margin: 30px auto 0; }
+        .submit-btn:hover { background: #0096c7; }
+        #successMessage { display: none; background: #d4edda; color: #155724; padding: 20px; border-radius: 5px; margin-top: 20px; text-align: center; }
+        .loading { display: none; text-align: center; margin: 20px 0; }
+        .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #00b4d8; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Breaking Comparison & Competition</h1>
+        <p class="subtitle">Week 4, Wednesday - Finding Your Unique Lane</p>
+
+        <div class="scripture-box">
+            <p>"Each one should test their own actions. Then they can take pride in themselves alone, without comparing themselves to someone else, for each one should carry their own load."</p>
+            <p style="text-align: right; font-weight: bold;">Galatians 6:4-5 (NIV)</p>
+        </div>
+
+        <form id="comparisonBreakingForm">
+            <div class="section">
+                <h2>1. Personal Information</h2>
+                <label for="fullName">Full Name *</label>
+                <input type="text" id="fullName" name="fullName" required>
+                
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="section">
+                <h2>2. Comparison Confession</h2>
+                <label for="compareWho">Who do you find yourself comparing yourself to most often? *</label>
+                <textarea id="compareWho" name="compareWho" required placeholder="Be honest - names not required, but roles/relationships..."></textarea>
+
+                <label for="compareWhat">What specific areas trigger comparison for you? *</label>
+                <textarea id="compareWhat" name="compareWhat" required placeholder="Career success, ministry impact, social media presence, etc..."></textarea>
+
+                <label for="compareFeeling">How does comparison make you feel about your own calling? *</label>
+                <textarea id="compareFeeling" name="compareFeeling" required placeholder="Describe the emotions and thoughts..."></textarea>
+            </div>
+
+            <div class="section">
+                <h2>3. Toxic vs. Healthy Comparison</h2>
+                <div class="comparison-grid">
+                    <div class="comparison-box toxic-box">
+                        <h3 style="color: #ff6b6b;">Toxic Comparison Says:</h3>
+                        <textarea name="toxicThoughts" placeholder="List the lies comparison tells you..." rows="6"></textarea>
+                    </div>
+                    <div class="comparison-box healthy-box">
+                        <h3 style="color: #4caf50;">God's Truth Says:</h3>
+                        <textarea name="godsTruth" placeholder="Write the truth about your unique design..." rows="6"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section gratitude-exercise">
+                <h2>4. Gratitude for Others' Gifts</h2>
+                <p style="margin-bottom: 15px;">Transform jealousy into celebration! List 3 people whose success you'll celebrate:</p>
+                
+                <label for="celebrate1">Person 1: Name & what you'll celebrate about them</label>
+                <input type="text" id="celebrate1" name="celebrate1" placeholder="E.g., Sarah - her amazing teaching gift">
+                
+                <label for="celebrate2">Person 2: Name & what you'll celebrate about them</label>
+                <input type="text" id="celebrate2" name="celebrate2">
+                
+                <label for="celebrate3">Person 3: Name & what you'll celebrate about them</label>
+                <input type="text" id="celebrate3" name="celebrate3">
+                
+                <label for="prayerBlessing">Write a prayer of blessing for those you typically compare yourself to:</label>
+                <textarea id="prayerBlessing" name="prayerBlessing" rows="4" placeholder="Lord, I bless..."></textarea>
+            </div>
+
+            <div class="section">
+                <h2>5. Finding Your Unique Lane</h2>
+                <p style="text-align: center; margin-bottom: 20px;">God has given you a specific lane to run in!</p>
+                
+                <div class="lane-visual">
+                    <div class="lane">Their Lane</div>
+                    <div class="lane">Their Lane</div>
+                    <div class="lane yours">YOUR LANE</div>
+                    <div class="lane">Their Lane</div>
+                    <div class="lane">Their Lane</div>
+                </div>
+
+                <label for="uniqueLane">What makes your lane unique? What can ONLY you bring? *</label>
+                <textarea id="uniqueLane" name="uniqueLane" required rows="4" placeholder="Your specific experiences, perspective, gifts, calling..."></textarea>
+
+                <label for="laneCommitment">Complete this commitment: "I will stay in my lane by..." *</label>
+                <textarea id="laneCommitment" name="laneCommitment" required placeholder="Specific actions to avoid comparison..."></textarea>
+            </div>
+
+            <div class="section social-detox">
+                <h2>6. Social Media Detox Commitment</h2>
+                <p style="margin-bottom: 15px;">Social media often fuels comparison. Choose your detox level:</p>
+                
+                <div style="margin: 20px 0;">
+                    <label><input type="radio" name="detoxLevel" value="24 hours" required> 24-hour complete social media fast</label><br><br>
+                    <label><input type="radio" name="detoxLevel" value="3 days"> 3-day social media fast</label><br><br>
+                    <label><input type="radio" name="detoxLevel" value="1 week"> 1-week social media fast</label><br><br>
+                    <label><input type="radio" name="detoxLevel" value="Unfollow triggers"> Unfollow accounts that trigger comparison</label><br><br>
+                    <label><input type="radio" name="detoxLevel" value="Time limits"> Set daily time limits (specify below)</label>
+                </div>
+
+                <label for="detoxPlan">My specific social media boundaries:</label>
+                <textarea id="detoxPlan" name="detoxPlan" placeholder="When, how long, which platforms, etc..."></textarea>
+            </div>
+
+            <div class="section">
+                <h2>7. Identity Reset Declaration</h2>
+                <p style="margin-bottom: 15px;">Write your identity statement based on who GOD says you are:</p>
+                
+                <textarea id="identityDeclaration" name="identityDeclaration" required rows="6" placeholder="I am uniquely created by God to..."></textarea>
+
+                <label for="dailyReminder">How will you remind yourself of this truth daily?</label>
+                <input type="text" id="dailyReminder" name="dailyReminder" placeholder="Mirror note, phone wallpaper, etc...">
+            </div>
+
+            <button type="submit" class="submit-btn">Complete My Identity Reset</button>
+            
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Processing your identity reset...</p>
+            </div>
+            
+            <div id="successMessage">
+                <h3>🎉 Identity Reset Complete!</h3>
+                <p>You're free to run in YOUR unique lane! No more comparison!</p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('comparisonBreakingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            document.querySelector('.loading').style.display = 'block';
+            document.querySelector('.submit-btn').style.display = 'none';
+            
+            const formData = new FormData(e.target);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            data['timestamp'] = new Date().toLocaleString();
+            
+            console.log('Form Data:', data);
+            
+            setTimeout(() => {
+                document.querySelector('.loading').style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+                document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

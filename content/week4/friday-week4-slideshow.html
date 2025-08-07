@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patience in the Process - Week 4 Friday</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #0a0a0a; color: #fff; overflow: hidden; height: 100vh; }
+        .slideshow-container { position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .slide { display: none; width: 90%; max-width: 1200px; height: 85vh; text-align: center; animation: fadeIn 0.5s; }
+        .slide.active { display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .title-slide { background: linear-gradient(135deg, #4a90e2 0%, #7b68ee 100%); border-radius: 20px; padding: 60px; }
+        .title-slide h1 { font-size: 4em; margin-bottom: 20px; }
+        .content-slide { background: #1a1a1a; border-radius: 20px; padding: 50px; }
+        .content-slide h2 { font-size: 3em; color: #7b68ee; margin-bottom: 40px; }
+        .content-slide p { font-size: 1.4em; line-height: 1.8; margin-bottom: 20px; }
+        .content-slide ul { text-align: left; font-size: 1.3em; line-height: 2; max-width: 800px; margin: 0 auto; }
+        .content-slide ul li { margin-bottom: 15px; list-style: none; padding-left: 40px; position: relative; }
+        .content-slide ul li::before { content: "⏳"; position: absolute; left: 0; font-size: 1.2em; }
+        
+        .scripture-slide { background: linear-gradient(135deg, #7b68ee 0%, #4a90e2 100%); border-radius: 20px; padding: 60px; }
+        .timeline { display: flex; align-items: center; justify-content: space-between; margin: 40px 0; position: relative; }
+        .timeline::before { content: ''; position: absolute; width: 100%; height: 4px; background: #444; top: 50%; }
+        .timeline-item { background: #7b68ee; padding: 20px; border-radius: 10px; z-index: 1; width: 150px; }
+        .waiting-room { background: #2a2a2a; padding: 30px; border-radius: 15px; margin: 20px 0; }
+        
+        .nav-buttons { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; }
+        .nav-btn { background: #7b68ee; color: white; border: none; padding: 15px 30px; font-size: 1.1em; border-radius: 50px; cursor: pointer; }
+        .nav-btn:hover { background: #6b5bee; }
+        .nav-btn:disabled { background: #4a5568; cursor: not-allowed; }
+        
+        .progress-bar { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); width: 300px; height: 6px; background: #4a5568; border-radius: 3px; overflow: hidden; }
+        .progress { height: 100%; background: #7b68ee; transition: width 0.3s; }
+        .slide-counter { position: absolute; top: 30px; right: 30px; font-size: 1.2em; }
+        
+        @media (max-width: 768px) {
+            .slide { width: 95%; padding: 30px; }
+            .title-slide h1 { font-size: 2.5em; }
+            .timeline { flex-direction: column; gap: 20px; }
+            .timeline::before { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <div class="progress-bar"><div class="progress" id="progressBar"></div></div>
+        <div class="slide-counter"><span id="currentSlide">1</span> / 10</div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <h1>Patience in the Process</h1>
+            <p style="font-size: 1.8em;">Trusting God's Perfect Timing</p>
+            <p style="font-size: 1.2em; margin-top: 40px;">Week 4, Friday - Session 12</p>
+        </div>
+
+        <!-- Slide 2: Scripture -->
+        <div class="slide scripture-slide">
+            <p style="font-size: 2.2em; line-height: 1.8; font-style: italic;">"For the vision is yet for an appointed time; but at the end it will speak, and it will not lie. Though it tarries, wait for it; because it will surely come."</p>
+            <p style="font-size: 1.5em; margin-top: 30px; font-weight: bold;">Habakkuk 2:3 (NKJV)</p>
+        </div>
+
+        <!-- Slide 3: Abraham's Timeline -->
+        <div class="slide content-slide">
+            <h2>Abraham's 25-Year Wait</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Age 75</h4>
+                    <p>Promise Given</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Age 86</h4>
+                    <p>Ishmael Born</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Age 99</h4>
+                    <p>Covenant Renewed</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Age 100</h4>
+                    <p>Isaac Born</p>
+                </div>
+            </div>
+            <p style="margin-top: 40px;">25 years between promise and fulfillment!</p>
+        </div>
+
+        <!-- Slide 4: Waiting Rooms -->
+        <div class="slide content-slide">
+            <h2>Biblical Waiting Rooms</h2>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 900px; margin: 0 auto;">
+                <div class="waiting-room">
+                    <h3 style="color: #4a90e2;">Joseph</h3>
+                    <p>13 years from dream to palace</p>
+                </div>
+                <div class="waiting-room">
+                    <h3 style="color: #4a90e2;">Moses</h3>
+                    <p>40 years in the wilderness</p>
+                </div>
+                <div class="waiting-room">
+                    <h3 style="color: #4a90e2;">David</h3>
+                    <p>15 years from anointing to throne</p>
+                </div>
+                <div class="waiting-room">
+                    <h3 style="color: #4a90e2;">Jesus</h3>
+                    <p>30 years of preparation</p>
+                </div>
+            </div>
+            <p style="margin-top: 40px; font-size: 1.5em; color: #7b68ee;">God uses waiting to prepare, not punish!</p>
+        </div>
+
+        <!-- Slide 5: Ishmael Decisions -->
+        <div class="slide content-slide">
+            <h2>Avoiding Ishmael Decisions</h2>
+            <p style="font-size: 1.5em; color: #4a90e2; margin-bottom: 30px;">When we try to "help" God...</p>
+            <ul>
+                <li>Taking matters into our own hands</li>
+                <li>Forcing doors that God hasn't opened</li>
+                <li>Settling for less than God's best</li>
+                <li>Creating complications for generations</li>
+                <li>Missing the miracle of divine timing</li>
+            </ul>
+            <p style="margin-top: 40px; font-size: 1.4em;">Remember: God's delays are not His denials!</p>
+        </div>
+
+        <!-- Slide 6: What Happens in Waiting -->
+        <div class="slide content-slide">
+            <h2>The Purpose of the Process</h2>
+            <div style="background: #2a2a2a; padding: 40px; border-radius: 20px; max-width: 800px; margin: 0 auto;">
+                <h3 style="color: #7b68ee; margin-bottom: 30px;">God is Working While You Wait:</h3>
+                <ul style="font-size: 1.3em;">
+                    <li>Character Development</li>
+                    <li>Skill Refinement</li>
+                    <li>Relationship Building</li>
+                    <li>Faith Strengthening</li>
+                    <li>Platform Preparation</li>
+                    <li>Divine Connections</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 7: Trust Exercise -->
+        <div class="slide content-slide">
+            <h2>Trusting God's Timing</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 900px; margin: 0 auto;">
+                <div style="background: #2a2a2a; padding: 30px; border-radius: 15px;">
+                    <h3 style="color: #ff6b6b;">Human Timing</h3>
+                    <ul style="list-style: none;">
+                        <li>NOW!</li>
+                        <li>My way</li>
+                        <li>Visible path</li>
+                        <li>Comfortable</li>
+                        <li>Makes sense</li>
+                    </ul>
+                </div>
+                <div style="background: #2a2a2a; padding: 30px; border-radius: 15px;">
+                    <h3 style="color: #7b68ee;">Divine Timing</h3>
+                    <ul style="list-style: none;">
+                        <li>Perfect moment</li>
+                        <li>Best way</li>
+                        <li>Faith required</li>
+                        <li>Stretching</li>
+                        <li>Miraculous</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Practical Patience -->
+        <div class="slide content-slide">
+            <h2>While You Wait...</h2>
+            <div style="background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%); padding: 40px; border-radius: 20px;">
+                <h3 style="color: #4a90e2; margin-bottom: 30px;">Your Patience Action Plan:</h3>
+                <ol style="text-align: left; font-size: 1.3em; line-height: 2.5;">
+                    <li>✓ Stay faithful in the small things</li>
+                    <li>✓ Develop your skills and character</li>
+                    <li>✓ Serve where you are now</li>
+                    <li>✓ Document the journey</li>
+                    <li>✓ Celebrate small victories</li>
+                    <li>✓ Keep your vision fresh</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Slide 9: Declaration -->
+        <div class="slide scripture-slide">
+            <h2>Patience Declaration</h2>
+            <p style="font-size: 1.8em; line-height: 2; max-width: 800px;">
+                "I trust God's perfect timing for my life. I will not rush His process or lag behind. I embrace this season of preparation, knowing that He who promised is faithful. My waiting is not wasted - it's working for my good!"
+            </p>
+        </div>
+
+        <!-- Slide 10: Assignment -->
+        <div class="slide title-slide">
+            <h2>This Week's Challenge</h2>
+            <div style="background: rgba(255,255,255,0.1); padding: 40px; border-radius: 20px; margin-top: 40px;">
+                <h3 style="margin-bottom: 30px;">Create Your Patience Plan:</h3>
+                <p style="font-size: 1.3em; line-height: 2;">
+                    1. Identify what you're waiting for<br>
+                    2. List 3 ways to grow during this season<br>
+                    3. Set milestones to celebrate progress<br>
+                    4. Find an accountability partner<br>
+                    5. Journal your journey
+                </p>
+            </div>
+            <p style="margin-top: 40px;">Next Week: Practical Purpose Implementation</p>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">Previous</button>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 10;
+
+        function changeSlide(direction) {
+            const slides = document.querySelectorAll('.slide');
+            slides[currentSlide - 1].classList.remove('active');
+            
+            currentSlide += direction;
+            if (currentSlide > totalSlides) currentSlide = totalSlides;
+            if (currentSlide < 1) currentSlide = 1;
+            
+            slides[currentSlide - 1].classList.add('active');
+            document.getElementById('currentSlide').textContent = currentSlide;
+            
+            updateProgressBar();
+            updateNavButtons();
+        }
+
+        function updateProgressBar() {
+            const progress = (currentSlide / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function updateNavButtons() {
+            document.getElementById('prevBtn').disabled = currentSlide === 1;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
+            document.getElementById('nextBtn').textContent = currentSlide === totalSlides ? 'Complete' : 'Next';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+        });
+
+        updateProgressBar();
+        updateNavButtons();
+    </script>
+</body>
+</html>
