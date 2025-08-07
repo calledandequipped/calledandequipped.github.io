@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purpose Support System Builder - Week 5</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #f2994a 0%, #f2c94c 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        h1 { color: #f2994a; font-size: 2.5em; text-align: center; margin-bottom: 10px; }
+        .subtitle { text-align: center; color: #666; margin-bottom: 30px; }
+        .scripture-box { background: #fff8e6; padding: 20px; border-left: 4px solid #f2994a; margin: 20px 0; border-radius: 5px; }
+        .section { margin: 30px 0; padding: 20px; background: #fafafa; border-radius: 8px; }
+        h2 { color: #f2994a; margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; color: #555; font-weight: 600; }
+        input[type="text"], input[type="email"], textarea, select { width: 100%; padding: 10px; margin-bottom: 15px; border: 2px solid #ddd; border-radius: 5px; }
+        input:focus, textarea:focus { outline: none; border-color: #f2994a; }
+        .team-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 20px 0; }
+        .team-member { background: white; padding: 20px; border-radius: 10px; border: 2px solid #f2994a; }
+        .team-member h4 { color: #f2994a; margin-bottom: 10px; }
+        .connection-map { background: #fff8e6; padding: 30px; border-radius: 15px; margin: 20px 0; text-align: center; }
+        .circle { width: 120px; height: 120px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin: 10px; font-weight: bold; color: white; }
+        .circle.center { background: #f2994a; width: 150px; height: 150px; }
+        .circle.mentor { background: #3498db; }
+        .circle.peer { background: #2ecc71; }
+        .circle.mentee { background: #9b59b6; }
+        .circle.coach { background: #e74c3c; }
+        .outreach-tracker { background: #f8f8f8; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .outreach-item { display: flex; align-items: center; margin: 10px 0; padding: 15px; background: white; border-radius: 8px; }
+        .checkbox-large { width: 25px; height: 25px; margin-right: 15px; }
+        .submit-btn { background: #f2994a; color: white; padding: 15px 40px; border: none; border-radius: 5px; font-size: 1.1em; cursor: pointer; display: block; margin: 30px auto 0; }
+        .submit-btn:hover { background: #e67e22; }
+        #successMessage { display: none; background: #d4edda; color: #155724; padding: 20px; border-radius: 5px; margin-top: 20px; text-align: center; }
+        .loading { display: none; text-align: center; margin: 20px 0; }
+        .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #f2994a; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Building Your Purpose Support System</h1>
+        <p class="subtitle">Week 5, Wednesday - Two Are Better Than One</p>
+
+        <div class="scripture-box">
+            <p>"Two are better than one, because they have a good return for their labor: If either of them falls down, one can help the other up."</p>
+            <p style="text-align: right; font-weight: bold;">Ecclesiastes 4:9-10 (NIV)</p>
+        </div>
+
+        <form id="supportSystemForm">
+            <div class="section">
+                <h2>1. Personal Information</h2>
+                <label for="fullName">Full Name *</label>
+                <input type="text" id="fullName" name="fullName" required>
+                
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="section">
+                <h2>2. Your Current Support Assessment</h2>
+                <label for="currentSupport">Who currently supports your purpose journey? List them:</label>
+                <textarea id="currentSupport" name="currentSupport" rows="4" placeholder="Names and how they support you..."></textarea>
+
+                <label for="supportGaps">Where do you feel unsupported or need more help? *</label>
+                <textarea id="supportGaps" name="supportGaps" required rows="3" placeholder="Be honest about your needs..."></textarea>
+            </div>
+
+            <div class="section connection-map">
+                <h2>3. Your Purpose Dream Team</h2>
+                <p style="margin-bottom: 20px;">Visualize your ideal support network:</p>
+                <div>
+                    <div class="circle center">YOU</div>
+                    <br>
+                    <div class="circle mentor">Mentor</div>
+                    <div class="circle coach">Coach</div>
+                    <div class="circle peer">Peers</div>
+                    <div class="circle mentee">Mentees</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>4. Identify Your Dream Team Members</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <h4>Mentor (Someone ahead of you)</h4>
+                        <label>Name/Description:</label>
+                        <input type="text" name="mentor_name" placeholder="Who could guide you?">
+                        <label>What you need from them:</label>
+                        <textarea name="mentor_need" rows="3" placeholder="Wisdom, experience, connections..."></textarea>
+                    </div>
+                    
+                    <div class="team-member">
+                        <h4>Coach (Skills developer)</h4>
+                        <label>Name/Type needed:</label>
+                        <input type="text" name="coach_name" placeholder="Business coach, life coach, etc.">
+                        <label>Specific help needed:</label>
+                        <textarea name="coach_need" rows="3" placeholder="Strategy, accountability, skills..."></textarea>
+                    </div>
+                    
+                    <div class="team-member">
+                        <h4>Accountability Partner</h4>
+                        <label>Name:</label>
+                        <input type="text" name="accountability_name" placeholder="Peer on similar journey">
+                        <label>Meeting frequency:</label>
+                        <select name="accountability_frequency">
+                            <option value="">Select frequency</option>
+                            <option value="Daily">Daily check-ins</option>
+                            <option value="Weekly">Weekly meetings</option>
+                            <option value="Biweekly">Every two weeks</option>
+                            <option value="Monthly">Monthly</option>
+                        </select>
+                    </div>
+                    
+                    <div class="team-member">
+                        <h4>Prayer Partner</h4>
+                        <label>Name:</label>
+                        <input type="text" name="prayer_name" placeholder="Spiritual covering">
+                        <label>Prayer focus:</label>
+                        <textarea name="prayer_focus" rows="3" placeholder="Specific prayer needs..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>5. Additional Support Needs</h2>
+                <div class="team-grid">
+                    <div>
+                        <label for="cheerleaders">Cheerleaders/Encouragers:</label>
+                        <textarea id="cheerleaders" name="cheerleaders" rows="3" placeholder="Who celebrates your wins?"></textarea>
+                    </div>
+                    <div>
+                        <label for="advisors">Expert Advisors:</label>
+                        <textarea id="advisors" name="advisors" rows="3" placeholder="Legal, financial, technical, etc."></textarea>
+                    </div>
+                    <div>
+                        <label for="connectors">Connectors/Networkers:</label>
+                        <textarea id="connectors" name="connectors" rows="3" placeholder="Who can open doors?"></textarea>
+                    </div>
+                    <div>
+                        <label for="collaborators">Potential Collaborators:</label>
+                        <textarea id="collaborators" name="collaborators" rows="3" placeholder="Who shares your vision?"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>6. Finding Spiritual Covering</h2>
+                <label for="spiritualCovering">Who provides spiritual oversight for your calling? *</label>
+                <input type="text" id="spiritualCovering" name="spiritualCovering" required placeholder="Pastor, ministry leader, spiritual mentor...">
+                
+                <label for="spiritualAccountability">How often will you check in with them about your purpose?</label>
+                <select id="spiritualAccountability" name="spiritualAccountability">
+                    <option value="">Select frequency</option>
+                    <option value="Weekly">Weekly</option>
+                    <option value="Biweekly">Every two weeks</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Quarterly">Quarterly</option>
+                </select>
+            </div>
+
+            <div class="section outreach-tracker">
+                <h2>7. Outreach Action Plan</h2>
+                <p style="margin-bottom: 20px;">This week, I commit to reaching out to:</p>
+                
+                <div class="outreach-item">
+                    <input type="checkbox" class="checkbox-large" name="outreach1_check">
+                    <div style="flex: 1;">
+                        <input type="text" name="outreach1_person" placeholder="Person's name" style="margin-bottom: 5px;">
+                        <input type="text" name="outreach1_action" placeholder="Specific action (email, call, coffee meeting...)">
+                    </div>
+                </div>
+                
+                <div class="outreach-item">
+                    <input type="checkbox" class="checkbox-large" name="outreach2_check">
+                    <div style="flex: 1;">
+                        <input type="text" name="outreach2_person" placeholder="Person's name" style="margin-bottom: 5px;">
+                        <input type="text" name="outreach2_action" placeholder="Specific action">
+                    </div>
+                </div>
+                
+                <div class="outreach-item">
+                    <input type="checkbox" class="checkbox-large" name="outreach3_check">
+                    <div style="flex: 1;">
+                        <input type="text" name="outreach3_person" placeholder="Person's name" style="margin-bottom: 5px;">
+                        <input type="text" name="outreach3_action" placeholder="Specific action">
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>8. Giving Back</h2>
+                <label for="menteeCommitment">Who can YOU mentor or support in their purpose journey?</label>
+                <textarea id="menteeCommitment" name="menteeCommitment" rows="3" placeholder="Remember: we're blessed to be a blessing..."></textarea>
+                
+                <label for="supportOffering">What specific support can you offer others?</label>
+                <textarea id="supportOffering" name="supportOffering" rows="3" placeholder="Skills, experience, encouragement, connections..."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Build My Support System</button>
+            
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Building your support network...</p>
+            </div>
+            
+            <div id="successMessage">
+                <h3>🎉 Support System Plan Created!</h3>
+                <p>Now take action! Reach out to your potential team members this week!</p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('supportSystemForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            document.querySelector('.loading').style.display = 'block';
+            document.querySelector('.submit-btn').style.display = 'none';
+            
+            const formData = new FormData(e.target);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            // Handle checkboxes
+            const checkboxes = ['outreach1_check', 'outreach2_check', 'outreach3_check'];
+            checkboxes.forEach(cb => {
+                data[cb] = document.querySelector(`input[name="${cb}"]`).checked;
+            });
+            
+            data['timestamp'] = new Date().toLocaleString();
+            
+            console.log('Form Data:', data);
+            
+            setTimeout(() => {
+                document.querySelector('.loading').style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+                document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

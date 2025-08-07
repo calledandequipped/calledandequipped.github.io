@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Your Purpose Support System - Week 5 Wednesday</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #0a1929; color: #fff; overflow: hidden; height: 100vh; }
+        .slideshow-container { position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .slide { display: none; width: 90%; max-width: 1200px; height: 85vh; text-align: center; animation: fadeIn 0.5s; overflow-y: auto; overflow-x: hidden; }
+        .slide.active { display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .title-slide { background: linear-gradient(135deg, #00796b 0%, #00897b 100%); border-radius: 20px; padding: 40px; }
+        .title-slide h1 { font-size: 3.5em; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .content-slide { background: #1a2f3f; border-radius: 20px; padding: 40px; overflow-y: auto; }
+        .content-slide h2 { font-size: 2.5em; color: #4db6ac; margin-bottom: 30px; }
+        .content-slide h3 { font-size: 1.6em; color: #80cbc4; margin-bottom: 15px; }
+        .content-slide p { font-size: 1.2em; line-height: 1.6; margin-bottom: 15px; }
+        .content-slide ul { text-align: left; font-size: 1.1em; line-height: 1.8; max-width: 700px; margin: 0 auto; list-style: none; }
+        .content-slide ul li { margin-bottom: 10px; padding-left: 35px; position: relative; }
+        .content-slide ul li::before { content: "🤝"; position: absolute; left: 0; font-size: 1.2em; }
+        
+        .scripture-slide { background: linear-gradient(135deg, #00897b 0%, #00796b 100%); border-radius: 20px; padding: 40px; }
+        .scripture-slide .verse { font-size: 1.8em; line-height: 1.6; margin-bottom: 20px; font-style: italic; }
+        .scripture-slide .reference { font-size: 1.3em; font-weight: bold; }
+        
+        .support-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; max-width: 800px; margin: 0 auto; }
+        .support-card { background: #2a3f5f; padding: 20px; border-radius: 15px; border: 2px solid #00796b; }
+        .support-card h4 { color: #4db6ac; margin-bottom: 10px; font-size: 1.2em; }
+        .support-card p { font-size: 0.95em; line-height: 1.5; }
+        
+        .practice-slide { background: #1a2f3f; border-radius: 20px; padding: 40px; overflow-y: auto; }
+        .team-box { background: #2a3f5f; padding: 25px; border-radius: 15px; margin: 15px auto; max-width: 700px; }
+        .team-box h4 { color: #80cbc4; margin-bottom: 15px; }
+        
+        .nav-buttons { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; }
+        .nav-btn { background: #00796b; color: white; border: none; padding: 15px 30px; font-size: 1.1em; border-radius: 50px; cursor: pointer; }
+        .nav-btn:hover { background: #004d40; }
+        .nav-btn:disabled { background: #4a5568; cursor: not-allowed; }
+        
+        .progress-bar { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); width: 300px; height: 6px; background: #4a5568; border-radius: 3px; overflow: hidden; }
+        .progress { height: 100%; background: #00796b; transition: width 0.3s; }
+        .slide-counter { position: absolute; top: 30px; right: 30px; font-size: 1.2em; }
+        
+        .mentor-qualities { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin: 20px 0; }
+        .quality-badge { background: #00796b; padding: 10px 20px; border-radius: 25px; font-size: 1em; }
+        
+        @media (max-width: 768px) {
+            .slide { width: 95%; padding: 30px; }
+            .title-slide h1 { font-size: 2.5em; }
+            .support-grid { grid-template-columns: 1fr; }
+            .mentor-qualities { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <div class="progress-bar"><div class="progress" id="progressBar"></div></div>
+        <div class="slide-counter"><span id="currentSlide">1</span> / 10</div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <h1>Building Your Purpose Support System</h1>
+            <p style="font-size: 1.8em;">No One Fulfills Their Purpose Alone</p>
+            <p style="font-size: 1.2em; margin-top: 40px;">Week 5, Wednesday - Session 14</p>
+        </div>
+
+        <!-- Slide 2: Scripture -->
+        <div class="slide scripture-slide">
+            <p class="verse">"Two are better than one, because they have a good return for their labor: If either of them falls down, one can help the other up."</p>
+            <p class="reference">Ecclesiastes 4:9-10 (NIV)</p>
+        </div>
+
+        <!-- Slide 3: Introduction -->
+        <div class="slide content-slide">
+            <h2>You Need a Dream Team</h2>
+            <p style="font-size: 1.3em; color: #4db6ac; margin-bottom: 25px;">Purpose is personal but not private</p>
+            <ul>
+                <li>God designed us for community</li>
+                <li>Every great leader had a support system</li>
+                <li>Iron sharpens iron (Proverbs 27:17)</li>
+                <li>We see blind spots through others' eyes</li>
+                <li>Accountability accelerates growth</li>
+            </ul>
+            <p style="margin-top: 30px;">Today: Build your purpose support system strategically</p>
+        </div>
+
+        <!-- Slide 4: Finding Mentors and Coaches -->
+        <div class="slide content-slide">
+            <h2>Finding Mentors and Coaches</h2>
+            <div style="background: #2a3f5f; padding: 25px; border-radius: 15px; margin-bottom: 25px;">
+                <p style="font-size: 1.2em;">"Walk with the wise and become wise" - Proverbs 13:20</p>
+            </div>
+            <h3>Types of Mentors You Need:</h3>
+            <ul>
+                <li><strong>Spiritual Mentor:</strong> Guides your faith journey</li>
+                <li><strong>Industry Expert:</strong> Has succeeded in your field</li>
+                <li><strong>Life Coach:</strong> Helps with personal development</li>
+                <li><strong>Peer Mentor:</strong> Slightly ahead on similar path</li>
+                <li><strong>Reverse Mentor:</strong> Younger person with fresh perspective</li>
+            </ul>
+        </div>
+
+        <!-- Slide 5: Qualities to Look For -->
+        <div class="slide content-slide">
+            <h2>Qualities of Great Mentors</h2>
+            <p style="font-size: 1.2em; margin-bottom: 25px;">Choose your mentors wisely</p>
+            <div class="mentor-qualities">
+                <span class="quality-badge">Fruit in their life</span>
+                <span class="quality-badge">Alignment with your values</span>
+                <span class="quality-badge">Willing to be honest</span>
+                <span class="quality-badge">Available and accessible</span>
+                <span class="quality-badge">Celebrates your wins</span>
+                <span class="quality-badge">Challenges your growth</span>
+                <span class="quality-badge">Models what they teach</span>
+                <span class="quality-badge">Invests without agenda</span>
+            </div>
+            <p style="margin-top: 25px; color: #80cbc4;">Remember: Mentors are guides, not gods</p>
+        </div>
+
+        <!-- Slide 6: Creating Accountability -->
+        <div class="slide content-slide">
+            <h2>Creating Accountability Structures</h2>
+            <div class="support-grid">
+                <div class="support-card">
+                    <h4>Weekly Check-ins</h4>
+                    <p>Regular meetings with accountability partner<br>Share wins, struggles, and next steps</p>
+                </div>
+                <div class="support-card">
+                    <h4>Goal Partners</h4>
+                    <p>Someone pursuing similar objectives<br>Mutual encouragement and progress tracking</p>
+                </div>
+                <div class="support-card">
+                    <h4>Prayer Partners</h4>
+                    <p>Committed to praying for your purpose<br>Spiritual warfare support</p>
+                </div>
+                <div class="support-card">
+                    <h4>Mastermind Groups</h4>
+                    <p>Small group of purpose-driven peers<br>Collective wisdom and resources</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Spiritual Covering -->
+        <div class="slide content-slide">
+            <h2>The Importance of Spiritual Covering</h2>
+            <div style="background: #2a3f5f; padding: 25px; border-radius: 15px; margin-bottom: 25px;">
+                <p style="font-size: 1.2em;">"Obey your leaders and submit to them" - Hebrews 13:17</p>
+            </div>
+            <h3>What spiritual covering provides:</h3>
+            <ul>
+                <li>Protection through prayer and wisdom</li>
+                <li>Correction when you're off course</li>
+                <li>Confirmation of God's direction</li>
+                <li>Connection to greater resources</li>
+                <li>Credibility through endorsement</li>
+            </ul>
+            <p style="margin-top: 25px;">Find a church/leader who champions your purpose</p>
+        </div>
+
+        <!-- Slide 8: Your Dream Team Activity -->
+        <div class="slide practice-slide">
+            <h2>Identify Your Purpose Dream Team</h2>
+            <div class="team-box">
+                <h4>Map out these key relationships:</h4>
+                <ol style="text-align: left; line-height: 2; margin-top: 15px;">
+                    <li><strong>Mentor:</strong> Who's where you want to be?</li>
+                    <li><strong>Coach:</strong> Who can train specific skills?</li>
+                    <li><strong>Accountability Partner:</strong> Who will keep you on track?</li>
+                    <li><strong>Prayer Warrior:</strong> Who will intercede for you?</li>
+                    <li><strong>Encourager:</strong> Who believes in your dream?</li>
+                    <li><strong>Truth-Teller:</strong> Who will be honest with you?</li>
+                    <li><strong>Connector:</strong> Who can open doors?</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Slide 9: Assignment -->
+        <div class="slide content-slide">
+            <h2>This Week's Action Steps</h2>
+            <div class="team-box">
+                <h4>Building Your Support System:</h4>
+                <p style="font-size: 1.1em; line-height: 1.8; margin-top: 15px;">
+                    1. <strong>List 10 potential mentors</strong> in different areas<br><br>
+                    2. <strong>Research their work</strong> and values alignment<br><br>
+                    3. <strong>Craft personalized outreach</strong> messages<br><br>
+                    4. <strong>Reach out to at least 3</strong> this week<br><br>
+                    5. <strong>Join one community</strong> aligned with your purpose<br><br>
+                    6. <strong>Schedule coffee</strong> with a potential accountability partner
+                </p>
+            </div>
+            <p style="margin-top: 25px; color: #4db6ac;">Remember: Be specific about what you're asking for!</p>
+        </div>
+
+        <!-- Slide 10: Closing -->
+        <div class="slide title-slide">
+            <h2>Together We Go Further</h2>
+            <p style="font-size: 1.8em; margin: 30px 0;">Your network is your net worth in the Kingdom</p>
+            <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px;">
+                <p style="font-size: 1.3em;">"As iron sharpens iron, so one person sharpens another."</p>
+                <p style="margin-top: 15px;">- Proverbs 27:17</p>
+            </div>
+            <p style="margin-top: 30px; font-size: 1.2em;">Don't journey alone - build your team!</p>
+            <p style="margin-top: 25px;">Next: Friday - Financial Stewardship for Purpose</p>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">Previous</button>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 10;
+
+        function changeSlide(direction) {
+            const slides = document.querySelectorAll('.slide');
+            slides[currentSlide - 1].classList.remove('active');
+            
+            currentSlide += direction;
+            if (currentSlide > totalSlides) currentSlide = totalSlides;
+            if (currentSlide < 1) currentSlide = 1;
+            
+            slides[currentSlide - 1].classList.add('active');
+            document.getElementById('currentSlide').textContent = currentSlide;
+            
+            updateProgressBar();
+            updateNavButtons();
+        }
+
+        function updateProgressBar() {
+            const progress = (currentSlide / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function updateNavButtons() {
+            document.getElementById('prevBtn').disabled = currentSlide === 1;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
+            document.getElementById('nextBtn').textContent = currentSlide === totalSlides ? 'Complete' : 'Next';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+        });
+
+        updateProgressBar();
+        updateNavButtons();
+    </script>
+</body>
+</html>

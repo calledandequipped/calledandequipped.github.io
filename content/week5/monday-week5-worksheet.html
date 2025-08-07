@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategic Planning with God - Week 5</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        h1 { color: #667eea; font-size: 2.5em; text-align: center; margin-bottom: 10px; }
+        .subtitle { text-align: center; color: #666; margin-bottom: 30px; }
+        .scripture-box { background: #f3f0ff; padding: 20px; border-left: 4px solid #667eea; margin: 20px 0; border-radius: 5px; }
+        .section { margin: 30px 0; padding: 20px; background: #fafafa; border-radius: 8px; }
+        h2 { color: #667eea; margin-bottom: 15px; }
+        h3 { color: #666; margin: 20px 0 10px; }
+        label { display: block; margin-bottom: 5px; color: #555; font-weight: 600; }
+        input[type="text"], input[type="email"], input[type="date"], textarea, select { width: 100%; padding: 10px; margin-bottom: 15px; border: 2px solid #ddd; border-radius: 5px; }
+        input:focus, textarea:focus { outline: none; border-color: #667eea; }
+        .goal-builder { background: #f3f0ff; padding: 25px; border-radius: 10px; margin: 20px 0; }
+        .smart-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .smart-item { background: white; padding: 15px; border-radius: 8px; border: 2px solid #667eea; }
+        .timeline-section { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 20px 0; }
+        .timeline-box { background: white; padding: 20px; border-radius: 10px; border: 2px solid #ddd; text-align: center; }
+        .timeline-box h4 { color: #667eea; margin-bottom: 10px; }
+        .divine-interruption { background: #fff9e6; padding: 20px; border-radius: 10px; border: 2px dashed #ffc107; margin: 20px 0; }
+        .submit-btn { background: #667eea; color: white; padding: 15px 40px; border: none; border-radius: 5px; font-size: 1.1em; cursor: pointer; display: block; margin: 30px auto 0; }
+        .submit-btn:hover { background: #5a67d8; }
+        #successMessage { display: none; background: #d4edda; color: #155724; padding: 20px; border-radius: 5px; margin-top: 20px; text-align: center; }
+        .loading { display: none; text-align: center; margin: 20px 0; }
+        .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #667eea; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Strategic Planning with God</h1>
+        <p class="subtitle">Week 5, Monday - Moving from Revelation to Manifestation</p>
+
+        <div class="scripture-box">
+            <p>"In their hearts humans plan their course, but the Lord establishes their steps."</p>
+            <p style="text-align: right; font-weight: bold;">Proverbs 16:9 (NIV)</p>
+        </div>
+
+        <form id="strategicPlanningForm">
+            <div class="section">
+                <h2>1. Personal Information</h2>
+                <label for="fullName">Full Name *</label>
+                <input type="text" id="fullName" name="fullName" required>
+                
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="purposeStatement">Your Purpose Statement (from previous weeks) *</label>
+                <textarea id="purposeStatement" name="purposeStatement" required placeholder="Summarize your divine purpose..."></textarea>
+            </div>
+
+            <div class="section">
+                <h2>2. Vision Clarification</h2>
+                <label for="visionStatement">Where is God leading you? Paint the picture of your preferred future: *</label>
+                <textarea id="visionStatement" name="visionStatement" required rows="4" placeholder="In 3-5 years, I see myself..."></textarea>
+
+                <label for="kingdomImpact">What Kingdom impact will this vision create? *</label>
+                <textarea id="kingdomImpact" name="kingdomImpact" required placeholder="Lives changed, communities transformed, etc..."></textarea>
+            </div>
+
+            <div class="section goal-builder">
+                <h2>3. SMART Goals Aligned with Calling</h2>
+                <p style="margin-bottom: 20px;">Transform your vision into actionable SMART goals:</p>
+                
+                <h3>Goal #1 (Primary Focus)</h3>
+                <div class="smart-grid">
+                    <div class="smart-item">
+                        <strong>S</strong>pecific
+                        <input type="text" name="goal1_specific" placeholder="What exactly?">
+                    </div>
+                    <div class="smart-item">
+                        <strong>M</strong>easurable
+                        <input type="text" name="goal1_measurable" placeholder="How will you measure?">
+                    </div>
+                    <div class="smart-item">
+                        <strong>A</strong>chievable
+                        <input type="text" name="goal1_achievable" placeholder="Is it realistic?">
+                    </div>
+                    <div class="smart-item">
+                        <strong>R</strong>elevant
+                        <input type="text" name="goal1_relevant" placeholder="Aligns with purpose?">
+                    </div>
+                    <div class="smart-item">
+                        <strong>T</strong>ime-bound
+                        <input type="date" name="goal1_timebound">
+                    </div>
+                </div>
+
+                <h3>Goal #2</h3>
+                <textarea name="goal2" rows="2" placeholder="Write your second SMART goal..."></textarea>
+
+                <h3>Goal #3</h3>
+                <textarea name="goal3" rows="2" placeholder="Write your third SMART goal..."></textarea>
+            </div>
+
+            <div class="section">
+                <h2>4. 90-Day Purpose Action Plan</h2>
+                <div class="timeline-section">
+                    <div class="timeline-box">
+                        <h4>Days 1-30</h4>
+                        <textarea name="days1_30" rows="4" required placeholder="Foundation laying actions..."></textarea>
+                    </div>
+                    <div class="timeline-box">
+                        <h4>Days 31-60</h4>
+                        <textarea name="days31_60" rows="4" required placeholder="Building momentum actions..."></textarea>
+                    </div>
+                    <div class="timeline-box">
+                        <h4>Days 61-90</h4>
+                        <textarea name="days61_90" rows="4" required placeholder="Acceleration actions..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>5. Weekly Commitments</h2>
+                <label for="weeklyActions">What 3 actions will you take EVERY week toward your purpose? *</label>
+                <textarea id="weeklyActions" name="weeklyActions" required rows="4" placeholder="1. &#10;2. &#10;3. "></textarea>
+
+                <label for="sabbathPlan">How will you build in rest and renewal?</label>
+                <input type="text" id="sabbathPlan" name="sabbathPlan" placeholder="Sabbath practices, boundaries, etc...">
+            </div>
+
+            <div class="divine-interruption">
+                <h2>6. Space for Divine Interruptions</h2>
+                <p style="margin-bottom: 15px;">God's plans often include surprises! How will you stay flexible?</p>
+                
+                <label for="flexibility">I commit to staying open to God's redirections by:</label>
+                <textarea id="flexibility" name="flexibility" rows="3" placeholder="Daily prayer, regular check-ins, accountability, etc..."></textarea>
+                
+                <label for="discernment">Signs I'll look for that God is redirecting:</label>
+                <textarea id="discernment" name="discernment" rows="3" placeholder="Closed doors, peace/unrest, counsel, etc..."></textarea>
+            </div>
+
+            <div class="section">
+                <h2>7. Resources & Support Needed</h2>
+                <label for="resources">What resources do you need to accomplish your 90-day plan? *</label>
+                <textarea id="resources" name="resources" required placeholder="Time, money, training, connections, etc..."></textarea>
+
+                <label for="obstacles">What obstacles might you face and how will you overcome them?</label>
+                <textarea id="obstacles" name="obstacles" placeholder="Be specific and proactive..."></textarea>
+            </div>
+
+            <div class="section">
+                <h2>8. Accountability & Tracking</h2>
+                <label for="accountability">Who will review this plan with you weekly?</label>
+                <input type="text" id="accountability" name="accountability" placeholder="Name and relationship">
+                
+                <label for="trackingMethod">How will you track your progress?</label>
+                <select id="trackingMethod" name="trackingMethod" required>
+                    <option value="">Select a method</option>
+                    <option value="Journal">Daily journal</option>
+                    <option value="Spreadsheet">Progress spreadsheet</option>
+                    <option value="App">Tracking app</option>
+                    <option value="Calendar">Calendar system</option>
+                    <option value="Other">Other method</option>
+                </select>
+
+                <label for="celebrationPlan">How will you celebrate milestones?</label>
+                <input type="text" id="celebrationPlan" name="celebrationPlan" placeholder="Be specific about rewards/celebrations">
+            </div>
+
+            <button type="submit" class="submit-btn">Submit My Strategic Plan</button>
+            
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Submitting your strategic plan...</p>
+            </div>
+            
+            <div id="successMessage">
+                <h3>🎉 Strategic Plan Submitted!</h3>
+                <p>Your 90-day purpose action plan is ready! Time to move from revelation to manifestation!</p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('strategicPlanningForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            document.querySelector('.loading').style.display = 'block';
+            document.querySelector('.submit-btn').style.display = 'none';
+            
+            const formData = new FormData(e.target);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            data['timestamp'] = new Date().toLocaleString();
+            
+            console.log('Form Data:', data);
+            
+            setTimeout(() => {
+                document.querySelector('.loading').style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+                document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

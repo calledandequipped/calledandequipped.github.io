@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purpose Funding Strategy - Financial Stewardship for Purpose</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background: #e8f5e9;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #2e7d32 0%, #4caf50 100%);
+            color: white;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #2e7d32;
+            font-size: 20px;
+            margin: 25px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #a5d6a7;
+        }
+
+        h3 {
+            color: #4caf50;
+            font-size: 16px;
+            margin: 15px 0 10px;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .subtitle {
+            font-style: italic;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .intro-box {
+            background: #e8f5e9;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #66bb6a;
+        }
+
+        .scripture-box {
+            background: #f5f5f5;
+            border-left: 4px solid #2e7d32;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .scripture-ref {
+            display: block;
+            text-align: right;
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .form-group {
+            margin: 20px 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: 'Georgia', serif;
+            resize: vertical;
+        }
+
+        textarea {
+            min-height: 100px;
+        }
+
+        .financial-section {
+            background: #fafafa;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .reflection-box {
+            background: #fff3e0;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #ff9800;
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .principle-card {
+            background: #e8f5e9;
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid #81c784;
+        }
+
+        .principle-card h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+
+        .budget-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .budget-table th,
+        .budget-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .budget-table th {
+            background: #e8f5e9;
+            font-weight: bold;
+        }
+
+        .budget-table input {
+            width: 100%;
+            border: none;
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        .streams-container {
+            background: #f1f8e9;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #aed581;
+        }
+
+        .stream-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+        }
+
+        .checkbox-group {
+            display: grid;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: start;
+            cursor: pointer;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .stewardship-scale {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0;
+        }
+
+        .scale-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .scale-option input[type="radio"] {
+            margin-bottom: 5px;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+            z-index: 1000;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #2e7d32;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .submit-button {
+            background: #2e7d32;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background: #1b5e20;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .submit-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .success-message,
+        .error-message {
+            display: none;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .success-message {
+            background: #4caf50;
+            color: white;
+        }
+
+        .error-message {
+            background: #f44336;
+            color: white;
+        }
+
+        .cost-warning {
+            background: #ffebee;
+            border: 2px solid #ef5350;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                border-radius: 0;
+            }
+            
+            .header, .content {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+
+            .principles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressBar"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Purpose Funding Strategy</h1>
+            <p class="subtitle">Stewarding Finances for Kingdom Impact</p>
+            <p>Week 5, Day 5: Financial Stewardship for Purpose</p>
+        </div>
+
+        <div class="content">
+            <div class="intro-box">
+                <p><strong>Purpose:</strong> Your divine purpose requires financial wisdom and stewardship. Today, you'll assess your current financial position, learn biblical principles for funding your calling, and create a strategic plan to finance your God-given purpose without compromising your values or family.</p>
+            </div>
+
+            <div class="scripture-box">
+                "Suppose one of you wants to build a tower. Won't you first sit down and estimate the cost to see if you have enough money to complete it?"
+                <span class="scripture-ref">- Luke 14:28 (NIV)</span>
+            </div>
+
+            <form id="financialForm" onsubmit="handleSubmit(event)">
+                <!-- User Information -->
+                <div class="financial-section">
+                    <h2>Your Information</h2>
+                    <div class="form-group">
+                        <label for="userName">Name:</label>
+                        <input type="text" id="userName" name="userName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userEmail">Email:</label>
+                        <input type="email" id="userEmail" name="userEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date:</label>
+                        <input type="text" id="date" name="date" value="" readonly>
+                    </div>
+                </div>
+
+                <!-- Part 1: Counting the Cost -->
+                <div class="cost-warning">
+                    <h2>Part 1: Counting the Cost of Your Calling</h2>
+                    
+                    <div class="form-group">
+                        <label for="purposeVision">Briefly describe your purpose/calling:</label>
+                        <textarea id="purposeVision" name="purposeVision" required placeholder="What is God calling you to do?"></textarea>
+                    </div>
+
+                    <h3>Initial Investment Needs</h3>
+                    <div class="form-group">
+                        <label for="startupCosts">What are the startup costs for your purpose? (training, equipment, etc.)</label>
+                        <textarea id="startupCosts" name="startupCosts" required placeholder="List major expenses needed to begin..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="estimatedTotal">Estimated total initial investment needed:</label>
+                        <input type="number" id="estimatedTotal" name="estimatedTotal" required placeholder="$" min="0">
+                    </div>
+
+                    <h3>Ongoing Financial Needs</h3>
+                    <div class="form-group">
+                        <label for="monthlyNeeds">Estimated monthly operating costs:</label>
+                        <input type="number" id="monthlyNeeds" name="monthlyNeeds" required placeholder="$" min="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="timeToSustainable">How long until this becomes financially sustainable?</label>
+                        <input type="text" id="timeToSustainable" name="timeToSustainable" required placeholder="e.g., 6 months, 1 year, 2 years">
+                    </div>
+                </div>
+
+                <!-- Part 2: Current Financial Assessment -->
+                <div class="financial-section">
+                    <h2>Part 2: Your Current Financial Position</h2>
+                    
+                    <div class="form-group">
+                        <label>Rate your current financial health:</label>
+                        <div class="stewardship-scale">
+                            <div class="scale-option">
+                                <input type="radio" id="health1" name="financialHealth" value="1" required>
+                                <label for="health1">1<br>Struggling</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="health2" name="financialHealth" value="2">
+                                <label for="health2">2<br>Paycheck to<br>Paycheck</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="health3" name="financialHealth" value="3">
+                                <label for="health3">3<br>Stable</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="health4" name="financialHealth" value="4">
+                                <label for="health4">4<br>Building</label>
+                            </div>
+                            <div class="scale-option">
+                                <input type="radio" id="health5" name="financialHealth" value="5">
+                                <label for="health5">5<br>Abundant</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="currentSavings">Current savings available for purpose:</label>
+                        <input type="number" id="currentSavings" name="currentSavings" required placeholder="$" min="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="monthlyMargin">Monthly margin (income minus expenses):</label>
+                        <input type="number" id="monthlyMargin" name="monthlyMargin" required placeholder="$">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="debtSituation">Current debt situation:</label>
+                        <textarea id="debtSituation" name="debtSituation" required placeholder="List any debts and monthly payments..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Part 3: Biblical Financial Principles -->
+                <div class="reflection-box">
+                    <h2>Part 3: Biblical Financial Principles</h2>
+                    <p>Check the principles you need to implement:</p>
+                    
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="principle1" name="biblicalPrinciples" value="tithing_first">
+                            <label for="principle1"><strong>Tithing First:</strong> "Bring the whole tithe into the storehouse" (Malachi 3:10)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="principle2" name="biblicalPrinciples" value="debt_freedom">
+                            <label for="principle2"><strong>Debt Freedom:</strong> "The borrower is slave to the lender" (Proverbs 22:7)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="principle3" name="biblicalPrinciples" value="saving_wisdom">
+                            <label for="principle3"><strong>Saving Wisdom:</strong> "In the house of the wise are stores of choice food" (Proverbs 21:20)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="principle4" name="biblicalPrinciples" value="generous_living">
+                            <label for="principle4"><strong>Generous Living:</strong> "Give, and it will be given to you" (Luke 6:38)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="principle5" name="biblicalPrinciples" value="contentment">
+                            <label for="principle5"><strong>Contentment:</strong> "Godliness with contentment is great gain" (1 Timothy 6:6)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="principle6" name="biblicalPrinciples" value="diligent_work">
+                            <label for="principle6"><strong>Diligent Work:</strong> "Diligent hands will rule" (Proverbs 12:24)</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="principleGaps">Which principle is most challenging for you and why?</label>
+                        <textarea id="principleGaps" name="principleGaps" required></textarea>
+                    </div>
+                </div>
+
+                <!-- Part 4: Creating Multiple Streams -->
+                <div class="streams-container">
+                    <h2>Part 4: Multiple Streams for Ministry</h2>
+                    <div class="scripture-box">
+                        "Cast your bread upon the waters, for after many days you will find it again. Give portions to seven, yes to eight, for you do not know what disaster may come upon the land."
+                        <span class="scripture-ref">- Ecclesiastes 11:1-2</span>
+                    </div>
+
+                    <h3>Identify Potential Income Streams</h3>
+                    <div class="stream-item">
+                        <div class="form-group">
+                            <label for="stream1Name">Income Stream #1:</label>
+                            <input type="text" id="stream1Name" name="stream1Name" required placeholder="e.g., Current job, freelancing, product sales">
+                        </div>
+                        <div class="form-group">
+                            <label for="stream1Income">Potential monthly income:</label>
+                            <input type="number" id="stream1Income" name="stream1Income" required placeholder="$" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="stream1Time">Time commitment (hours/week):</label>
+                            <input type="number" id="stream1Time" name="stream1Time" required min="0" max="168">
+                        </div>
+                    </div>
+
+                    <div class="stream-item">
+                        <div class="form-group">
+                            <label for="stream2Name">Income Stream #2:</label>
+                            <input type="text" id="stream2Name" name="stream2Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="stream2Income">Potential monthly income:</label>
+                            <input type="number" id="stream2Income" name="stream2Income" required placeholder="$" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="stream2Time">Time commitment (hours/week):</label>
+                            <input type="number" id="stream2Time" name="stream2Time" required min="0" max="168">
+                        </div>
+                    </div>
+
+                    <div class="stream-item">
+                        <div class="form-group">
+                            <label for="stream3Name">Income Stream #3 (optional):</label>
+                            <input type="text" id="stream3Name" name="stream3Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="stream3Income">Potential monthly income:</label>
+                            <input type="number" id="stream3Income" name="stream3Income" placeholder="$" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="stream3Time">Time commitment (hours/week):</label>
+                            <input type="number" id="stream3Time" name="stream3Time" min="0" max="168">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Part 5: Purpose Budget Plan -->
+                <div class="financial-section">
+                    <h2>Part 5: Your Purpose Budget Plan</h2>
+                    <p>Create a monthly budget that funds your purpose:</p>
+                    
+                    <table class="budget-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Current Amount</th>
+                                <th>Proposed Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Tithe/Giving</td>
+                                <td><input type="number" id="currentTithe" name="currentTithe" placeholder="$" min="0"></td>
+                                <td><input type="number" id="proposedTithe" name="proposedTithe" required placeholder="$" min="0"></td>
+                            </tr>
+                            <tr>
+                                <td>Purpose Investment</td>
+                                <td><input type="number" id="currentPurpose" name="currentPurpose" placeholder="$" min="0"></td>
+                                <td><input type="number" id="proposedPurpose" name="proposedPurpose" required placeholder="$" min="0"></td>
+                            </tr>
+                            <tr>
+                                <td>Emergency Savings</td>
+                                <td><input type="number" id="currentSavingsAmount" name="currentSavingsAmount" placeholder="$" min="0"></td>
+                                <td><input type="number" id="proposedSavings" name="proposedSavings" required placeholder="$" min="0"></td>
+                            </tr>
+                            <tr>
+                                <td>Living Expenses</td>
+                                <td><input type="number" id="currentExpenses" name="currentExpenses" placeholder="$" min="0"></td>
+                                <td><input type="number" id="proposedExpenses" name="proposedExpenses" required placeholder="$" min="0"></td>
+                            </tr>
+                            <tr>
+                                <td>Debt Payment</td>
+                                <td><input type="number" id="currentDebt" name="currentDebt" placeholder="$" min="0"></td>
+                                <td><input type="number" id="proposedDebt" name="proposedDebt" placeholder="$" min="0"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="form-group">
+                        <label for="budgetChanges">What lifestyle changes will you make to fund your purpose?</label>
+                        <textarea id="budgetChanges" name="budgetChanges" required placeholder="What will you cut back on? What sacrifices will you make?"></textarea>
+                    </div>
+                </div>
+
+                <!-- Part 6: Funding Timeline -->
+                <div class="reflection-box">
+                    <h2>Part 6: Your Funding Timeline</h2>
+                    
+                    <h3>Phase 1: Foundation (Next 90 Days)</h3>
+                    <div class="form-group">
+                        <label for="phase1Goals">Financial goals for next 90 days:</label>
+                        <textarea id="phase1Goals" name="phase1Goals" required placeholder="e.g., Save $X, reduce expenses by Y%, start side income..."></textarea>
+                    </div>
+
+                    <h3>Phase 2: Building (6 Months)</h3>
+                    <div class="form-group">
+                        <label for="phase2Goals">Where will you be financially in 6 months?</label>
+                        <textarea id="phase2Goals" name="phase2Goals" required placeholder="Specific financial milestones..."></textarea>
+                    </div>
+
+                    <h3>Phase 3: Launch (1 Year)</h3>
+                    <div class="form-group">
+                        <label for="phase3Goals">Financial position needed to fully launch your purpose:</label>
+                        <textarea id="phase3Goals" name="phase3Goals" required placeholder="What needs to be in place financially?"></textarea>
+                    </div>
+                </div>
+
+                <!-- Part 7: Faith and Provision -->
+                <div class="financial-section">
+                    <h2>Part 7: Trusting God's Provision</h2>
+                    <div class="scripture-box">
+                        "And my God will meet all your needs according to the riches of his glory in Christ Jesus."
+                        <span class="scripture-ref">- Philippians 4:19</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="provisionTestimony">Share a time when God provided financially for you:</label>
+                        <textarea id="provisionTestimony" name="provisionTestimony" required placeholder="Remember His faithfulness..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="faithVsFear">What financial fears do you need to surrender to God?</label>
+                        <textarea id="faithVsFear" name="faithVsFear" required placeholder="Be honest about your concerns..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="supernaturalExpectation">How are you making room for supernatural provision?</label>
+                        <textarea id="supernaturalExpectation" name="supernaturalExpectation" required placeholder="While being wise, how are you trusting God for miracles?"></textarea>
+                    </div>
+                </div>
+
+                <!-- Part 8: Accountability Plan -->
+                <div class="streams-container">
+                    <h2>Part 8: Financial Accountability</h2>
+                    
+                    <div class="form-group">
+                        <label for="financialMentor">Who will be your financial accountability partner/mentor?</label>
+                        <input type="text" id="financialMentor" name="financialMentor" required placeholder="Name of person">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reviewFrequency">How often will you review your financial progress?</label>
+                        <select id="reviewFrequency" name="reviewFrequency" required>
+                            <option value="">Select frequency</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="biweekly">Bi-weekly</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="accountabilityMeasures">What tools will you use for financial tracking?</label>
+                        <textarea id="accountabilityMeasures" name="accountabilityMeasures" required placeholder="Apps, spreadsheets, envelopes, etc."></textarea>
+                    </div>
+                </div>
+
+                <!-- Part 9: Commitment Declaration -->
+                <div class="reflection-box">
+                    <h2>Part 9: Your Financial Stewardship Commitment</h2>
+                    
+                    <div class="form-group">
+                        <label for="commitment">Write your declaration of financial stewardship:</label>
+                        <textarea id="commitment" name="commitment" required placeholder="Example: 'I commit to being a faithful steward of the resources God has entrusted to me. I will honor Him with my tithe, save diligently, spend wisely, and invest courageously in the purpose He has given me. I trust His provision and commit to managing money with Kingdom priorities.'"></textarea>
+                    </div>
+
+                    <h3>Action Commitments</h3>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="action1" name="actionCommitments" value="create_budget" required>
+                            <label for="action1">I will create and follow a written budget</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="action2" name="actionCommitments" value="track_spending" required>
+                            <label for="action2">I will track all spending for the next 30 days</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="action3" name="actionCommitments" value="increase_income" required>
+                            <label for="action3">I will actively pursue additional income streams</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="action4" name="actionCommitments" value="education" required>
+                            <label for="action4">I will invest in financial education</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signature">Type your name to seal this commitment:</label>
+                        <input type="text" id="signature" name="signature" required placeholder="Your full name">
+                    </div>
+                </div>
+
+                <div class="success-message" id="successMessage">
+                    ✓ Your Purpose Funding Strategy has been saved successfully!
+                </div>
+
+                <div class="error-message" id="errorMessage">
+                    ✗ There was an error saving your strategy. Please try again.
+                </div>
+
+                <button type="submit" class="submit-button" id="submitButton">Submit Purpose Funding Strategy</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Set today's date
+        document.getElementById('date').value = new Date().toLocaleDateString();
+
+        // Progress bar functionality
+        function updateProgress() {
+            const form = document.getElementById('financialForm');
+            const requiredFields = form.querySelectorAll('[required]');
+            const checkboxGroups = form.querySelectorAll('.checkbox-group');
+            
+            let completed = 0;
+            let total = requiredFields.length + 1; // +1 for biblical principles checkboxes
+            
+            // Check required fields
+            requiredFields.forEach(field => {
+                if (field.type === 'radio') {
+                    const radioGroup = form.querySelectorAll(`input[name="${field.name}"]:checked`);
+                    if (radioGroup.length > 0) {
+                        completed++;
+                    }
+                } else if (field.type === 'checkbox') {
+                    // Handle required checkboxes separately
+                    if (field.checked) {
+                        completed++;
+                    }
+                } else if (field.value.trim() !== '') {
+                    completed++;
+                }
+            });
+            
+            // Check biblical principles (at least 3 checked)
+            const biblicalChecked = form.querySelectorAll('input[name="biblicalPrinciples"]:checked').length;
+            if (biblicalChecked >= 3) completed++;
+            
+            const progress = (completed / total) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        // Add event listeners
+        document.querySelectorAll('input, textarea, select').forEach(field => {
+            field.addEventListener('input', updateProgress);
+            field.addEventListener('change', updateProgress);
+        });
+
+        // Google Sheets Integration
+        const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
+
+        async function handleSubmit(event) {
+            event.preventDefault();
+            
+            const submitButton = document.getElementById('submitButton');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Validate at least 3 biblical principles checked
+            const biblicalChecked = document.querySelectorAll('input[name="biblicalPrinciples"]:checked').length;
+            if (biblicalChecked < 3) {
+                alert('Please select at least 3 biblical financial principles to implement.');
+                return;
+            }
+            
+            // Validate all action commitments checked
+            const actionChecked = document.querySelectorAll('input[name="actionCommitments"]:checked').length;
+            if (actionChecked < 4) {
+                alert('Please check all action commitments to proceed.');
+                return;
+            }
+            
+            submitButton.disabled = true;
+            submitButton.textContent = 'Submitting...';
+            
+            // Collect form data
+            const formData = new FormData(event.target);
+            const data = {
+                timestamp: new Date().toISOString(),
+                week: 5,
+                day: 'Friday',
+                exercise: 'Purpose Funding Strategy - Financial Stewardship',
+                responses: {}
+            };
+            
+            // Process form data
+            for (let [key, value] of formData.entries()) {
+                if (data.responses[key]) {
+                    if (!Array.isArray(data.responses[key])) {
+                        data.responses[key] = [data.responses[key]];
+                    }
+                    data.responses[key].push(value);
+                } else {
+                    data.responses[key] = value;
+                }
+            }
+            
+            // Convert checkbox arrays to strings
+            if (Array.isArray(data.responses.biblicalPrinciples)) {
+                data.responses.biblicalPrinciples = data.responses.biblicalPrinciples.join(', ');
+            }
+            if (Array.isArray(data.responses.actionCommitments)) {
+                data.responses.actionCommitments = data.responses.actionCommitments.join(', ');
+            }
+            
+            // Calculate total proposed income
+            const stream1 = parseInt(data.responses.stream1Income) || 0;
+            const stream2 = parseInt(data.responses.stream2Income) || 0;
+            const stream3 = parseInt(data.responses.stream3Income) || 0;
+            data.responses.totalProposedIncome = stream1 + stream2 + stream3;
+            
+            // Create income streams summary
+            data.responses.incomeStreamsSummary = `1. ${data.responses.stream1Name} (${stream1}/mo), 2. ${data.responses.stream2Name} (${stream2}/mo)`;
+            if (data.responses.stream3Name) {
+                data.responses.incomeStreamsSummary += `, 3. ${data.responses.stream3Name} (${stream3}/mo)`;
+            }
+            
+            try {
+                // Submit to Google Sheets
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                // Show success message
+                successMessage.style.display = 'block';
+                errorMessage.style.display = 'none';
+                
+                // Save to localStorage as backup
+                const savedStrategies = JSON.parse(localStorage.getItem('fundingStrategies') || '[]');
+                savedStrategies.push(data);
+                localStorage.setItem('fundingStrategies', JSON.stringify(savedStrategies));
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Submit Purpose Funding Strategy';
+            }
+        }
+
+        // Initialize progress
+        updateProgress();
+    </script>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategic Planning with God - Week 5 Monday</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #0f0f0f; color: #fff; overflow: hidden; height: 100vh; }
+        .slideshow-container { position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .slide { display: none; width: 90%; max-width: 1200px; height: 85vh; text-align: center; animation: fadeIn 0.5s; }
+        .slide.active { display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+        
+        .title-slide { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px; padding: 60px; }
+        .title-slide h1 { font-size: 4em; margin-bottom: 20px; }
+        .content-slide { background: #1a1a1a; border-radius: 20px; padding: 50px; }
+        .content-slide h2 { font-size: 3em; color: #667eea; margin-bottom: 40px; }
+        .content-slide h3 { font-size: 1.8em; color: #764ba2; margin-bottom: 20px; }
+        .content-slide p { font-size: 1.4em; line-height: 1.8; margin-bottom: 20px; }
+        .content-slide ul { text-align: left; font-size: 1.3em; line-height: 2; max-width: 800px; margin: 0 auto; list-style: none; }
+        .content-slide ul li { margin-bottom: 15px; padding-left: 40px; position: relative; }
+        .content-slide ul li::before { content: "✓"; position: absolute; left: 0; color: #667eea; font-size: 1.5em; }
+        
+        .scripture-slide { background: linear-gradient(135deg, #764ba2 0%, #667eea 100%); border-radius: 20px; padding: 60px; }
+        .smart-goals { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; margin: 30px 0; }
+        .smart-box { background: #2a2a2a; padding: 20px; border-radius: 10px; border: 2px solid #667eea; }
+        .smart-box h4 { color: #667eea; margin-bottom: 10px; }
+        .timeline { display: flex; justify-content: space-between; align-items: center; margin: 40px 0; position: relative; }
+        .timeline::before { content: ''; position: absolute; width: 100%; height: 4px; background: #667eea; top: 50%; z-index: 0; }
+        .timeline-item { background: #667eea; padding: 20px; border-radius: 50%; width: 120px; height: 120px; display: flex; align-items: center; justify-content: center; text-align: center; z-index: 1; }
+        .planning-matrix { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 900px; margin: 0 auto; }
+        .matrix-box { background: #2a2a2a; padding: 30px; border-radius: 15px; border: 2px solid #667eea; }
+        
+        .nav-buttons { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; }
+        .nav-btn { background: #667eea; color: white; border: none; padding: 15px 30px; font-size: 1.1em; border-radius: 50px; cursor: pointer; }
+        .nav-btn:hover { background: #5a67d8; }
+        .nav-btn:disabled { background: #4a5568; cursor: not-allowed; }
+        
+        .progress-bar { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); width: 300px; height: 6px; background: #4a5568; border-radius: 3px; overflow: hidden; }
+        .progress { height: 100%; background: #667eea; transition: width 0.3s; }
+        .slide-counter { position: absolute; top: 30px; right: 30px; font-size: 1.2em; }
+        
+        @media (max-width: 768px) {
+            .slide { width: 95%; padding: 30px; }
+            .title-slide h1 { font-size: 2.5em; }
+            .smart-goals { grid-template-columns: 1fr; }
+            .timeline { flex-direction: column; gap: 20px; }
+            .timeline::before { display: none; }
+            .planning-matrix { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <div class="progress-bar"><div class="progress" id="progressBar"></div></div>
+        <div class="slide-counter"><span id="currentSlide">1</span> / 10</div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <h1>Strategic Planning with God</h1>
+            <p style="font-size: 1.8em;">Moving from Revelation to Manifestation</p>
+            <p style="font-size: 1.2em; margin-top: 40px;">Week 5, Monday - Session 13</p>
+        </div>
+
+        <!-- Slide 2: Scripture -->
+        <div class="slide scripture-slide">
+            <p style="font-size: 2.2em; line-height: 1.8; font-style: italic;">"In their hearts humans plan their course, but the Lord establishes their steps."</p>
+            <p style="font-size: 1.5em; margin-top: 30px; font-weight: bold;">Proverbs 16:9 (NIV)</p>
+        </div>
+
+        <!-- Slide 3: Balance -->
+        <div class="slide content-slide">
+            <h2>The Divine Partnership</h2>
+            <div class="planning-matrix">
+                <div class="matrix-box">
+                    <h3 style="color: #764ba2;">Our Part</h3>
+                    <ul>
+                        <li>Plan diligently</li>
+                        <li>Set clear goals</li>
+                        <li>Take action steps</li>
+                        <li>Use our gifts wisely</li>
+                    </ul>
+                </div>
+                <div class="matrix-box">
+                    <h3 style="color: #764ba2;">God's Part</h3>
+                    <ul>
+                        <li>Direct our steps</li>
+                        <li>Open doors</li>
+                        <li>Provide resources</li>
+                        <li>Order divine connections</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: SMART Goals -->
+        <div class="slide content-slide">
+            <h2>SMART Goals for Kingdom Impact</h2>
+            <div class="smart-goals">
+                <div class="smart-box">
+                    <h4>S</h4>
+                    <p>Specific</p>
+                    <small>Clear & defined</small>
+                </div>
+                <div class="smart-box">
+                    <h4>M</h4>
+                    <p>Measurable</p>
+                    <small>Track progress</small>
+                </div>
+                <div class="smart-box">
+                    <h4>A</h4>
+                    <p>Achievable</p>
+                    <small>Faith + reality</small>
+                </div>
+                <div class="smart-box">
+                    <h4>R</h4>
+                    <p>Relevant</p>
+                    <small>Aligns with calling</small>
+                </div>
+                <div class="smart-box">
+                    <h4>T</h4>
+                    <p>Time-bound</p>
+                    <small>Has deadline</small>
+                </div>
+            </div>
+            <p style="margin-top: 30px; font-size: 1.3em;">Transform vision into action!</p>
+        </div>
+
+        <!-- Slide 5: 90-Day Sprint -->
+        <div class="slide content-slide">
+            <h2>Your 90-Day Purpose Sprint</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div>Days 1-30<br><small>Foundation</small></div>
+                </div>
+                <div class="timeline-item">
+                    <div>Days 31-60<br><small>Momentum</small></div>
+                </div>
+                <div class="timeline-item">
+                    <div>Days 61-90<br><small>Acceleration</small></div>
+                </div>
+            </div>
+            <p style="margin-top: 40px; font-size: 1.4em;">Short sprints create lasting momentum!</p>
+        </div>
+
+        <!-- Slide 6: Divine Interruptions -->
+        <div class="slide content-slide">
+            <h2>Planning for Divine Interruptions</h2>
+            <p style="font-size: 1.5em; color: #764ba2; margin-bottom: 30px;">"Many are the plans in a person's heart..."</p>
+            <ul>
+                <li>Build margin into your schedule</li>
+                <li>Stay sensitive to Holy Spirit redirection</li>
+                <li>Hold plans with open hands</li>
+                <li>See interruptions as divine appointments</li>
+                <li>Trust God's timing over your timeline</li>
+            </ul>
+            <p style="margin-top: 40px; font-size: 1.3em;">Flexibility + Faith = Kingdom Success</p>
+        </div>
+
+        <!-- Slide 7: Luke 14:28 -->
+        <div class="slide content-slide">
+            <h2>Count the Cost</h2>
+            <div style="background: #2a2a2a; padding: 40px; border-radius: 20px; max-width: 800px; margin: 0 auto;">
+                <p style="font-size: 1.4em; margin-bottom: 30px;">"Suppose one of you wants to build a tower. Won't you first sit down and estimate the cost?" - Luke 14:28</p>
+                <h3 style="color: #667eea; margin-bottom: 20px;">Resource Assessment:</h3>
+                <ul>
+                    <li>Time investment required</li>
+                    <li>Financial resources needed</li>
+                    <li>Skills to develop</li>
+                    <li>Support system required</li>
+                    <li>Spiritual preparation</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 8: Action Planning -->
+        <div class="slide content-slide">
+            <h2>From Vision to Action</h2>
+            <div style="background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%); padding: 40px; border-radius: 20px;">
+                <h3 style="color: #764ba2; margin-bottom: 30px;">This Week's Planning Challenge:</h3>
+                <ol style="text-align: left; font-size: 1.3em; line-height: 2.5;">
+                    <li>Write your 3-year vision statement</li>
+                    <li>Break it into 3 SMART goals</li>
+                    <li>Create your 90-day action plan</li>
+                    <li>Identify needed resources</li>
+                    <li>Schedule weekly progress reviews</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Slide 9: Prayer -->
+        <div class="slide scripture-slide">
+            <h2>Strategic Prayer</h2>
+            <p style="font-size: 1.8em; line-height: 2; max-width: 800px;">
+                "Lord, I submit my plans to You. Guide my steps, order my priorities, and help me steward this season well. Give me wisdom to plan and flexibility to follow Your lead. May my strategies serve Your Kingdom purposes. In Jesus' name, Amen."
+            </p>
+        </div>
+
+        <!-- Slide 10: Assignment -->
+        <div class="slide title-slide">
+            <h2>Your Strategic Assignment</h2>
+            <div style="background: rgba(255,255,255,0.1); padding: 40px; border-radius: 20px; margin-top: 40px;">
+                <p style="font-size: 1.5em; margin-bottom: 30px;">Complete your 90-Day Purpose Action Plan</p>
+                <p style="font-size: 1.2em; line-height: 2;">
+                    ✓ Set 3 SMART goals<br>
+                    ✓ Map out weekly actions<br>
+                    ✓ Identify accountability partner<br>
+                    ✓ Begin implementation TODAY!
+                </p>
+            </div>
+            <p style="margin-top: 40px;">Wednesday: Building Your Purpose Support System</p>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">Previous</button>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 10;
+
+        function changeSlide(direction) {
+            const slides = document.querySelectorAll('.slide');
+            slides[currentSlide - 1].classList.remove('active');
+            
+            currentSlide += direction;
+            if (currentSlide > totalSlides) currentSlide = totalSlides;
+            if (currentSlide < 1) currentSlide = 1;
+            
+            slides[currentSlide - 1].classList.add('active');
+            document.getElementById('currentSlide').textContent = currentSlide;
+            
+            updateProgressBar();
+            updateNavButtons();
+        }
+
+        function updateProgressBar() {
+            const progress = (currentSlide / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function updateNavButtons() {
+            document.getElementById('prevBtn').disabled = currentSlide === 1;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
+            document.getElementById('nextBtn').textContent = currentSlide === totalSlides ? 'Complete' : 'Next';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+        });
+
+        updateProgressBar();
+        updateNavButtons();
+    </script>
+</body>
+</html>
