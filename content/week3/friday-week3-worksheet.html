@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talent Development Plan - Stewardship of Talents</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background: #e3f2fd;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #1565c0 0%, #42a5f5 100%);
+            color: white;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #1565c0;
+            font-size: 20px;
+            margin: 25px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #bbdefb;
+        }
+
+        h3 {
+            color: #42a5f5;
+            font-size: 16px;
+            margin: 15px 0 10px;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .subtitle {
+            font-style: italic;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .intro-box {
+            background: #e3f2fd;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #64b5f6;
+        }
+
+        .scripture-box {
+            background: #f5f5f5;
+            border-left: 4px solid #1565c0;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .scripture-ref {
+            display: block;
+            text-align: right;
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .form-group {
+            margin: 20px 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: 'Georgia', serif;
+            resize: vertical;
+        }
+
+        textarea {
+            min-height: 100px;
+        }
+
+        .talent-section {
+            background: #fafafa;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .reflection-box {
+            background: #fff3e0;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #ff9800;
+        }
+
+        .talent-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .talent-card {
+            background: #e3f2fd;
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid #90caf9;
+        }
+
+        .rating-scale {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .rating-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .rating-option input[type="radio"] {
+            margin-bottom: 5px;
+        }
+
+        .excellence-box {
+            background: #e8f5e9;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #66bb6a;
+        }
+
+        .action-grid {
+            display: grid;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .action-item {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .timeline-container {
+            background: #fafafa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+            z-index: 1000;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #1565c0;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .submit-button {
+            background: #1565c0;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background: #0d47a1;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .submit-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .success-message,
+        .error-message {
+            display: none;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .success-message {
+            background: #4caf50;
+            color: white;
+        }
+
+        .error-message {
+            background: #f44336;
+            color: white;
+        }
+
+        .checkbox-group {
+            display: grid;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: start;
+            cursor: pointer;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                border-radius: 0;
+            }
+            
+            .header, .content {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+
+            .rating-scale {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressBar"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Talent Development Plan</h1>
+            <p class="subtitle">Multiplying What God Has Given You</p>
+            <p>Week 3, Day 5: Stewardship of Talents</p>
+        </div>
+
+        <div class="content">
+            <div class="intro-box">
+                <p><strong>Purpose:</strong> God has entrusted you with specific talents—not to bury them, but to multiply them for His glory. Today, you'll identify your talents, assess their current use, and create a strategic plan for development and deployment in your divine purpose.</p>
+            </div>
+
+            <div class="scripture-box">
+                "His master replied, 'Well done, good and faithful servant! You have been faithful with a few things; I will put you in charge of many things. Come and share your master's happiness!'"
+                <span class="scripture-ref">- Matthew 25:21</span>
+            </div>
+
+            <form id="talentForm" onsubmit="handleSubmit(event)">
+                <!-- User Information -->
+                <div class="talent-section">
+                    <h2>Your Information</h2>
+                    <div class="form-group">
+                        <label for="userName">Name:</label>
+                        <input type="text" id="userName" name="userName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userEmail">Email:</label>
+                        <input type="email" id="userEmail" name="userEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date:</label>
+                        <input type="text" id="date" name="date" value="" readonly>
+                    </div>
+                </div>
+
+                <!-- Part 1: Talent Inventory -->
+                <div class="talent-section">
+                    <h2>Part 1: Your Talent Inventory</h2>
+                    <p>List your God-given talents, skills, and abilities. Include both natural abilities and developed skills.</p>
+                    
+                    <h3>Natural Talents (What comes easily to you?)</h3>
+                    <div class="form-group">
+                        <label for="naturalTalent1">Natural Talent #1:</label>
+                        <input type="text" id="naturalTalent1" name="naturalTalent1" required placeholder="e.g., Teaching, organizing, creativity, problem-solving">
+                    </div>
+                    <div class="form-group">
+                        <label for="naturalTalent2">Natural Talent #2:</label>
+                        <input type="text" id="naturalTalent2" name="naturalTalent2" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="naturalTalent3">Natural Talent #3:</label>
+                        <input type="text" id="naturalTalent3" name="naturalTalent3">
+                    </div>
+
+                    <h3>Developed Skills (What have you learned/trained in?)</h3>
+                    <div class="form-group">
+                        <label for="developedSkill1">Developed Skill #1:</label>
+                        <input type="text" id="developedSkill1" name="developedSkill1" required placeholder="e.g., Public speaking, coding, counseling, management">
+                    </div>
+                    <div class="form-group">
+                        <label for="developedSkill2">Developed Skill #2:</label>
+                        <input type="text" id="developedSkill2" name="developedSkill2" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="developedSkill3">Developed Skill #3:</label>
+                        <input type="text" id="developedSkill3" name="developedSkill3">
+                    </div>
+
+                    <h3>Hidden or Underused Talents</h3>
+                    <div class="form-group">
+                        <label for="hiddenTalents">What talents have you been hiding or underusing?</label>
+                        <textarea id="hiddenTalents" name="hiddenTalents" required placeholder="Be honest - what are you capable of that you're not currently doing?"></textarea>
+                    </div>
+                </div>
+
+                <!-- Part 2: Current Stewardship Assessment -->
+                <div class="reflection-box">
+                    <h2>Part 2: Current Stewardship Assessment</h2>
+                    <p>Rate how well you're currently using each talent (1 = Buried, 5 = Fully Multiplied)</p>
+                    
+                    <div class="form-group">
+                        <label for="talent1Assessment">Primary Talent Assessment:</label>
+                        <input type="text" id="talent1Assessment" name="talent1Assessment" required placeholder="Which talent will you assess?">
+                        <div class="rating-scale">
+                            <div class="rating-option">
+                                <input type="radio" id="rating1_1" name="talent1Rating" value="1" required>
+                                <label for="rating1_1">1<br>Buried</label>
+                            </div>
+                            <div class="rating-option">
+                                <input type="radio" id="rating1_2" name="talent1Rating" value="2">
+                                <label for="rating1_2">2<br>Minimal</label>
+                            </div>
+                            <div class="rating-option">
+                                <input type="radio" id="rating1_3" name="talent1Rating" value="3">
+                                <label for="rating1_3">3<br>Moderate</label>
+                            </div>
+                            <div class="rating-option">
+                                <input type="radio" id="rating1_4" name="talent1Rating" value="4">
+                                <label for="rating1_4">4<br>Active</label>
+                            </div>
+                            <div class="rating-option">
+                                <input type="radio" id="rating1_5" name="talent1Rating" value="5">
+                                <label for="rating1_5">5<br>Multiplied</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="whyNotUsing">What's preventing you from fully using your talents?</label>
+                        <textarea id="whyNotUsing" name="whyNotUsing" required placeholder="Fear? Lack of opportunity? Time? Resources? Be specific..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="talentFruit">Where have you seen fruit from using your talents?</label>
+                        <textarea id="talentFruit" name="talentFruit" required placeholder="Share specific examples of impact or blessing..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Part 3: Excellence as Worship -->
+                <div class="excellence-box">
+                    <h2>Part 3: Excellence as Worship</h2>
+                    <div class="scripture-box">
+                        "Whatever you do, work at it with all your heart, as working for the Lord, not for human masters"
+                        <span class="scripture-ref">- Colossians 3:23</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="excellenceGap">Where is there a gap between your current performance and excellence?</label>
+                        <textarea id="excellenceGap" name="excellenceGap" required placeholder="Be honest about areas needing improvement..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="excellencePlan">How can you pursue excellence in your primary talent?</label>
+                        <textarea id="excellencePlan" name="excellencePlan" required placeholder="What would it look like to offer God your very best?"></textarea>
+                    </div>
+
+                    <h3>Excellence Commitments</h3>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="commit1" name="excellenceCommitments" value="seek_training">
+                            <label for="commit1">I will seek additional training or education</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="commit2" name="excellenceCommitments" value="find_mentor">
+                            <label for="commit2">I will find a mentor who excels in this area</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="commit3" name="excellenceCommitments" value="daily_practice">
+                            <label for="commit3">I will practice/develop this talent daily</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="commit4" name="excellenceCommitments" value="seek_feedback">
+                            <label for="commit4">I will actively seek feedback for improvement</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="commit5" name="excellenceCommitments" value="teach_others">
+                            <label for="commit5">I will teach others to multiply impact</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Part 4: Talent Development Plan -->
+                <div class="talent-section">
+                    <h2>Part 4: Your Talent Development Plan</h2>
+                    
+                    <h3>Choose Your Focus Talent</h3>
+                    <div class="form-group">
+                        <label for="focusTalent">Which talent will you focus on developing first?</label>
+                        <input type="text" id="focusTalent" name="focusTalent" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="whyThisTalent">Why is this talent crucial for your divine purpose?</label>
+                        <textarea id="whyThisTalent" name="whyThisTalent" required></textarea>
+                    </div>
+
+                    <div class="action-grid">
+                        <div class="action-item">
+                            <h3>30-Day Goal</h3>
+                            <div class="form-group">
+                                <label for="goal30">What will you accomplish in 30 days?</label>
+                                <textarea id="goal30" name="goal30" required placeholder="Be specific and measurable..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="action30">Action steps for next 30 days:</label>
+                                <textarea id="action30" name="action30" required placeholder="List 3-5 concrete actions..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="action-item">
+                            <h3>90-Day Vision</h3>
+                            <div class="form-group">
+                                <label for="goal90">Where will this talent be in 90 days?</label>
+                                <textarea id="goal90" name="goal90" required placeholder="Describe the transformation..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="resources90">Resources needed (courses, mentors, tools):</label>
+                                <textarea id="resources90" name="resources90" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="action-item">
+                            <h3>1-Year Multiplication</h3>
+                            <div class="form-group">
+                                <label for="goal1year">How will this talent be multiplied in one year?</label>
+                                <textarea id="goal1year" name="goal1year" required placeholder="Dream big - how many will be impacted?"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="legacy1year">What legacy will this create?</label>
+                                <textarea id="legacy1year" name="legacy1year" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Part 5: Avoiding Buried Potential -->
+                <div class="reflection-box">
+                    <h2>Part 5: The Danger of Buried Potential</h2>
+                    <div class="scripture-box">
+                        "But the one who had received one bag went off, dug a hole in the ground and hid his master's money."
+                        <span class="scripture-ref">- Matthew 25:18</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="buriedConsequences">What are the consequences of not developing your talents?</label>
+                        <textarea id="buriedConsequences" name="buriedConsequences" required placeholder="Consider impact on yourself, others, and the Kingdom..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="accountabilityPlan">How will you ensure you don't bury your talents?</label>
+                        <textarea id="accountabilityPlan" name="accountabilityPlan" required placeholder="Specific accountability measures..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Part 6: Partnership Formation -->
+                <div class="talent-section">
+                    <h2>Part 6: Talent Multiplication Partnership</h2>
+                    
+                    <div class="form-group">
+                        <label for="accountabilityPartner">Who will be your talent development partner?</label>
+                        <input type="text" id="accountabilityPartner" name="accountabilityPartner" required placeholder="Name of person who will hold you accountable">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="meetingFrequency">How often will you meet/check in?</label>
+                        <select id="meetingFrequency" name="meetingFrequency" required>
+                            <option value="">Select frequency</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="biweekly">Bi-weekly</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="firstMeeting">When is your first accountability meeting?</label>
+                        <input type="text" id="firstMeeting" name="firstMeeting" required placeholder="Specific date and time">
+                    </div>
+                </div>
+
+                <!-- Part 7: Declaration -->
+                <div class="excellence-box">
+                    <h2>Part 7: Your Stewardship Declaration</h2>
+                    
+                    <div class="form-group">
+                        <label for="declaration">Write your personal declaration of faithful stewardship:</label>
+                        <textarea id="declaration" name="declaration" required placeholder="Example: 'I declare that I will not bury what God has given me. I commit to developing my gift of _____ with excellence, knowing that one day I will give an account. I will multiply what He has entrusted to me for His glory and the advancement of His Kingdom.'"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signature">Type your name as a signature of commitment:</label>
+                        <input type="text" id="signature" name="signature" required placeholder="Your full name">
+                    </div>
+                </div>
+
+                <div class="success-message" id="successMessage">
+                    ✓ Your Talent Development Plan has been saved successfully!
+                </div>
+
+                <div class="error-message" id="errorMessage">
+                    ✗ There was an error saving your plan. Please try again.
+                </div>
+
+                <button type="submit" class="submit-button" id="submitButton">Submit Talent Development Plan</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Set today's date
+        document.getElementById('date').value = new Date().toLocaleDateString();
+
+        // Progress bar functionality
+        function updateProgress() {
+            const form = document.getElementById('talentForm');
+            const requiredFields = form.querySelectorAll('[required]');
+            const checkboxGroups = form.querySelectorAll('.checkbox-group');
+            
+            let completed = 0;
+            let total = requiredFields.length + checkboxGroups.length;
+            
+            // Check required fields
+            requiredFields.forEach(field => {
+                if (field.type === 'radio') {
+                    const radioGroup = form.querySelectorAll(`input[name="${field.name}"]:checked`);
+                    if (radioGroup.length > 0) {
+                        completed++;
+                    }
+                } else if (field.value.trim() !== '') {
+                    completed++;
+                }
+            });
+            
+            // Check checkbox groups (at least one checked)
+            checkboxGroups.forEach(group => {
+                const checkedBoxes = group.querySelectorAll('input[type="checkbox"]:checked').length;
+                if (checkedBoxes > 0) completed++;
+            });
+            
+            const progress = (completed / total) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        // Add event listeners
+        document.querySelectorAll('input, textarea, select').forEach(field => {
+            field.addEventListener('input', updateProgress);
+            field.addEventListener('change', updateProgress);
+        });
+
+        // Google Sheets Integration
+        const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
+
+        async function handleSubmit(event) {
+            event.preventDefault();
+            
+            const submitButton = document.getElementById('submitButton');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            submitButton.disabled = true;
+            submitButton.textContent = 'Submitting...';
+            
+            // Collect form data
+            const formData = new FormData(event.target);
+            const data = {
+                timestamp: new Date().toISOString(),
+                week: 3,
+                day: 'Friday',
+                exercise: 'Talent Development Plan - Stewardship of Talents',
+                responses: {}
+            };
+            
+            // Process form data
+            for (let [key, value] of formData.entries()) {
+                if (data.responses[key]) {
+                    if (!Array.isArray(data.responses[key])) {
+                        data.responses[key] = [data.responses[key]];
+                    }
+                    data.responses[key].push(value);
+                } else {
+                    data.responses[key] = value;
+                }
+            }
+            
+            // Convert checkbox arrays to strings
+            if (Array.isArray(data.responses.excellenceCommitments)) {
+                data.responses.excellenceCommitments = data.responses.excellenceCommitments.join(', ');
+            }
+            
+            // Create talent summary
+            data.responses.talentSummary = `Natural: ${data.responses.naturalTalent1}, ${data.responses.naturalTalent2}, ${data.responses.naturalTalent3 || 'N/A'} | Developed: ${data.responses.developedSkill1}, ${data.responses.developedSkill2}, ${data.responses.developedSkill3 || 'N/A'}`;
+            
+            try {
+                // Submit to Google Sheets
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                // Show success message
+                successMessage.style.display = 'block';
+                errorMessage.style.display = 'none';
+                
+                // Save to localStorage as backup
+                const savedPlans = JSON.parse(localStorage.getItem('talentPlans') || '[]');
+                savedPlans.push(data);
+                localStorage.setItem('talentPlans', JSON.stringify(savedPlans));
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Submit Talent Development Plan';
+            }
+        }
+
+        // Initialize progress
+        updateProgress();
+    </script>
+</body>
+</html>

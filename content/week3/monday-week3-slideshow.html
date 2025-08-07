@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 3 Monday - Holy Ambition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .slideshow-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #d32f2f 0%, #f44336 100%);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            color: #ffcdd2;
+        }
+
+        h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #ffebee;
+        }
+
+        p, li {
+            font-size: 1.4em;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto 20px;
+        }
+
+        .scripture {
+            font-size: 1.6em;
+            font-style: italic;
+            color: #ffcdd2;
+            margin: 30px auto;
+            padding: 20px;
+            border-left: 5px solid #ffcdd2;
+            max-width: 800px;
+            text-align: left;
+        }
+
+        .scripture-ref {
+            display: block;
+            text-align: right;
+            font-size: 0.9em;
+            margin-top: 10px;
+            color: #ffebee;
+        }
+
+        ul {
+            list-style: none;
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        li::before {
+            content: "🔥 ";
+            color: #ffcdd2;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 100;
+        }
+
+        button {
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid #fff;
+            color: #fff;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 1.2em;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .section-break {
+            background: radial-gradient(circle, #f44336 0%, #d32f2f 100%);
+        }
+
+        .nehemiah-slide {
+            background: linear-gradient(135deg, #5d4037 0%, #6d4c41 100%);
+        }
+
+        .passion-slide {
+            background: linear-gradient(135deg, #e65100 0%, #ff6f00 100%);
+        }
+
+        .interactive {
+            background: linear-gradient(135deg, #1565c0 0%, #1976d2 100%);
+        }
+
+        .key-point {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            backdrop-filter: blur(10px);
+        }
+
+        .comparison-table {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 900px;
+            margin: 20px auto;
+        }
+
+        .comparison-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .heart-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin: 30px auto;
+        }
+
+        .heart-circle {
+            width: 150px;
+            height: 150px;
+            border: 3px solid #ffcdd2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .arrow {
+            font-size: 36px;
+            color: #ffcdd2;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5em; }
+            h2 { font-size: 2em; }
+            h3 { font-size: 1.5em; }
+            p, li { font-size: 1.2em; }
+            .slide { padding: 30px; }
+            .comparison-table { grid-template-columns: 1fr; }
+            .heart-diagram { flex-direction: column; }
+            .arrow { transform: rotate(90deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <span class="slide-number">1 / 23</span>
+            <h1>Holy Ambition</h1>
+            <h2>Week 3, Day 1</h2>
+            <p>Where Your Deep Gladness Meets the World's Deep Need</p>
+        </div>
+
+        <!-- Slide 2: Welcome to Week 3 -->
+        <div class="slide">
+            <span class="slide-number">2 / 23</span>
+            <h2>Welcome to Week 3!</h2>
+            <p>Journey so far:</p>
+            <ul>
+                <li>Week 1: Discovered your divine design</li>
+                <li>Week 2: Learned to hear God's voice</li>
+                <li>This week: Aligning passion with purpose</li>
+            </ul>
+            <p><strong>Today: Understanding Holy Ambition</strong></p>
+        </div>
+
+        <!-- Slide 3: Opening Prayer -->
+        <div class="slide passion-slide">
+            <span class="slide-number">3 / 23</span>
+            <h2>Opening Prayer</h2>
+            <p>"Father, ignite in us a holy ambition that burns for Your glory, not our own. Show us how to channel our passions for Kingdom purposes. Help us to see where our deep gladness can meet the world's deep need. In Jesus' name, Amen."</p>
+        </div>
+
+        <!-- Slide 4: Foundation Quote -->
+        <div class="slide">
+            <span class="slide-number">4 / 23</span>
+            <h2>Frederick Buechner's Wisdom</h2>
+            <div class="key-point">
+                <p style="font-size: 1.8em; font-style: italic;">"The place God calls you to is the place where your deep gladness and the world's deep hunger meet."</p>
+            </div>
+            <p>This is the essence of holy ambition!</p>
+        </div>
+
+        <!-- Slide 5: Section Break - Nehemiah -->
+        <div class="slide section-break nehemiah-slide">
+            <span class="slide-number">5 / 23</span>
+            <h1>Nehemiah's Model<br>of Holy Ambition</h1>
+        </div>
+
+        <!-- Slide 6: Nehemiah's Story -->
+        <div class="slide nehemiah-slide">
+            <span class="slide-number">6 / 23</span>
+            <h2>A Cupbearer with a Burden</h2>
+            <div class="scripture">
+                "They said to me, 'Those who survived the exile and are back in the province are in great trouble and disgrace. The wall of Jerusalem is broken down, and its gates have been burned with fire.'"
+                <span class="scripture-ref">- Nehemiah 1:3</span>
+            </div>
+        </div>
+
+        <!-- Slide 7: Nehemiah's Response -->
+        <div class="slide nehemiah-slide">
+            <span class="slide-number">7 / 23</span>
+            <h2>From Comfort to Calling</h2>
+            <div class="scripture">
+                "When I heard these things, I sat down and wept. For some days I mourned and fasted and prayed before the God of heaven."
+                <span class="scripture-ref">- Nehemiah 1:4</span>
+            </div>
+            <p><strong>Holy ambition begins with holy discontent</strong></p>
+        </div>
+
+        <!-- Slide 8: Elements of Holy Ambition -->
+        <div class="slide nehemiah-slide">
+            <span class="slide-number">8 / 23</span>
+            <h2>Elements of Nehemiah's Holy Ambition</h2>
+            <ul>
+                <li>Saw a genuine need (broken walls)</li>
+                <li>Felt personal burden (wept and mourned)</li>
+                <li>Sought God first (fasted and prayed)</li>
+                <li>Used his position wisely (cupbearer to king)</li>
+                <li>Took calculated risks (asked for leave)</li>
+                <li>Mobilized others (rallied the people)</li>
+                <li>Persevered through opposition</li>
+            </ul>
+        </div>
+
+        <!-- Slide 9: What is Holy Ambition? -->
+        <div class="slide">
+            <span class="slide-number">9 / 23</span>
+            <h2>Defining Holy Ambition</h2>
+            <div class="key-point">
+                <p><strong>Holy Ambition is:</strong></p>
+                <p>A God-given passion to meet a God-sized need</p>
+                <p>for God's glory, not our own</p>
+            </div>
+        </div>
+
+        <!-- Slide 10: Holy vs Selfish Ambition -->
+        <div class="slide">
+            <span class="slide-number">10 / 23</span>
+            <h2>Holy Ambition vs. Selfish Ambition</h2>
+            <div class="comparison-table">
+                <div class="comparison-card">
+                    <h3>Holy Ambition</h3>
+                    <ul>
+                        <li>God-centered</li>
+                        <li>Others-focused</li>
+                        <li>Kingdom advancement</li>
+                        <li>Sacrificial</li>
+                        <li>Brings unity</li>
+                        <li>Produces lasting fruit</li>
+                    </ul>
+                </div>
+                <div class="comparison-card">
+                    <h3>Selfish Ambition</h3>
+                    <ul>
+                        <li>Self-centered</li>
+                        <li>Personal gain</li>
+                        <li>Platform building</li>
+                        <li>Self-protective</li>
+                        <li>Creates division</li>
+                        <li>Temporary success</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Scripture on Ambition -->
+        <div class="slide">
+            <span class="slide-number">11 / 23</span>
+            <h2>What Scripture Says</h2>
+            <div class="scripture">
+                "Do nothing out of selfish ambition or vain conceit. Rather, in humility value others above yourselves."
+                <span class="scripture-ref">- Philippians 2:3</span>
+            </div>
+            <div class="scripture" style="margin-top: 20px;">
+                "But seek first his kingdom and his righteousness, and all these things will be given to you as well."
+                <span class="scripture-ref">- Matthew 6:33</span>
+            </div>
+        </div>
+
+        <!-- Slide 12: Section Break - Passion -->
+        <div class="slide section-break passion-slide">
+            <span class="slide-number">12 / 23</span>
+            <h1>When Passion<br>Meets Compassion</h1>
+        </div>
+
+        <!-- Slide 13: The Intersection -->
+        <div class="slide passion-slide">
+            <span class="slide-number">13 / 23</span>
+            <h2>The Sweet Spot of Purpose</h2>
+            <div class="heart-diagram">
+                <div class="heart-circle">
+                    <span>Your<br>Passion<br>(What you love)</span>
+                </div>
+                <div class="arrow">+</div>
+                <div class="heart-circle">
+                    <span>World's<br>Need<br>(What breaks God's heart)</span>
+                </div>
+                <div class="arrow">=</div>
+                <div class="heart-circle" style="background: rgba(255,255,255,0.1);">
+                    <span>Your<br>Holy<br>Ambition</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Identifying Your Holy Discontent -->
+        <div class="slide">
+            <span class="slide-number">14 / 23</span>
+            <h2>Identifying Your Holy Discontent</h2>
+            <p><strong>Bill Hybels asks: "What is it that wrecks you?"</strong></p>
+            <ul>
+                <li>What injustice makes you angry?</li>
+                <li>What suffering breaks your heart?</li>
+                <li>What problem do you feel compelled to solve?</li>
+                <li>What potential do you see that others miss?</li>
+                <li>What change must you see in your lifetime?</li>
+            </ul>
+        </div>
+
+        <!-- Slide 15: Biblical Examples -->
+        <div class="slide">
+            <span class="slide-number">15 / 23</span>
+            <h2>Biblical Examples of Holy Ambition</h2>
+            <div class="key-point">
+                <p><strong>Moses:</strong> Freeing God's people from slavery</p>
+                <p><strong>Esther:</strong> Saving her people from genocide</p>
+                <p><strong>David:</strong> Building a house for God's presence</p>
+                <p><strong>Paul:</strong> Taking gospel to the Gentiles</p>
+                <p><strong>Jesus:</strong> Seeking and saving the lost</p>
+            </div>
+        </div>
+
+        <!-- Slide 16: Working for the Lord -->
+        <div class="slide">
+            <span class="slide-number">16 / 23</span>
+            <h2>Excellence as Worship</h2>
+            <div class="scripture">
+                "Whatever you do, work at it with all your heart, as working for the Lord, not for human masters... It is the Lord Christ you are serving."
+                <span class="scripture-ref">- Colossians 3:23-24</span>
+            </div>
+            <p>Holy ambition pursues excellence for God's glory</p>
+        </div>
+
+        <!-- Slide 17: Interactive Exercise -->
+        <div class="slide interactive">
+            <span class="slide-number">17 / 23</span>
+            <h2>🤔 Reflection Exercise</h2>
+            <h3>Identify Your Holy Discontent:</h3>
+            <ul>
+                <li>What makes you righteously angry?</li>
+                <li>What need do you see that others overlook?</li>
+                <li>What would you change if resources were unlimited?</li>
+                <li>What legacy do you want to leave?</li>
+            </ul>
+            <p><em>Take 3 minutes to journal your thoughts</em></p>
+        </div>
+
+        <!-- Slide 18: Dangers to Avoid -->
+        <div class="slide">
+            <span class="slide-number">18 / 23</span>
+            <h2>⚠️ Dangers to Avoid</h2>
+            <ul>
+                <li><strong>Pride:</strong> "Look what I'm doing for God"</li>
+                <li><strong>Comparison:</strong> Measuring against others</li>
+                <li><strong>Burnout:</strong> Ambition without boundaries</li>
+                <li><strong>Compromise:</strong> Results at any cost</li>
+                <li><strong>Isolation:</strong> Lone ranger syndrome</li>
+            </ul>
+            <p>Holy ambition stays humble and healthy</p>
+        </div>
+
+        <!-- Slide 19: Testing Your Ambition -->
+        <div class="slide">
+            <span class="slide-number">19 / 23</span>
+            <h2>Is Your Ambition Holy?</h2>
+            <div class="key-point">
+                <p>✓ Does it glorify God or you?</p>
+                <p>✓ Does it serve others or use them?</p>
+                <p>✓ Does it align with Scripture?</p>
+                <p>✓ Does it produce the fruit of the Spirit?</p>
+                <p>✓ Would you pursue it without recognition?</p>
+                <p>✓ Does it draw you closer to God?</p>
+            </div>
+        </div>
+
+        <!-- Slide 20: Today's Assignment -->
+        <div class="slide interactive">
+            <span class="slide-number">20 / 23</span>
+            <h2>Today's Assignment</h2>
+            <h3>Write Your Nehemiah Prayer</h3>
+            <ul>
+                <li>Identify your "broken wall" (holy discontent)</li>
+                <li>Write a prayer like Nehemiah's (Neh. 1:5-11)</li>
+                <li>Include confession, petition, and commitment</li>
+                <li>Ask God for favor and open doors</li>
+                <li>Share with your accountability partner</li>
+            </ul>
+        </div>
+
+        <!-- Slide 21: Project Preview -->
+        <div class="slide passion-slide">
+            <span class="slide-number">21 / 23</span>
+            <h2>This Week's Project</h2>
+            <h3>Holy Ambition Action Plan</h3>
+            <ul>
+                <li>Define your holy discontent</li>
+                <li>Research the need</li>
+                <li>Identify your unique contribution</li>
+                <li>Create 90-day action steps</li>
+                <li>Build your support team</li>
+            </ul>
+        </div>
+
+        <!-- Slide 22: Wednesday Preview -->
+        <div class="slide">
+            <span class="slide-number">22 / 23</span>
+            <h2>Coming Wednesday:</h2>
+            <h1>Marketplace Ministry</h1>
+            <ul>
+                <li>Being salt and light in your career</li>
+                <li>Daniel's excellence in secular work</li>
+                <li>Tentmaking and bi-vocational ministry</li>
+                <li>Creating Kingdom impact in any profession</li>
+            </ul>
+        </div>
+
+        <!-- Slide 23: Closing -->
+        <div class="slide">
+            <span class="slide-number">23 / 23</span>
+            <h1>Remember:</h1>
+            <h2>God Has Placed a Holy Ambition in You!</h2>
+            <div class="scripture">
+                "For it is God who works in you to will and to act in order to fulfill his good purpose."
+                <span class="scripture-ref">- Philippians 2:13</span>
+            </div>
+            <p><strong>Let it burn for His glory!</strong></p>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button onclick="changeSlide(-1)">← Previous</button>
+        <button onclick="changeSlide(1)">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            // Remove active class from all slides
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Calculate the correct slide index
+            if (n >= totalSlides) {
+                currentSlide = 0;
+            } else if (n < 0) {
+                currentSlide = totalSlides - 1;
+            } else {
+                currentSlide = n;
+            }
+            
+            // Add active class to current slide
+            slides[currentSlide].classList.add('active');
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                changeSlide(-1);
+            } else if (e.key === 'ArrowRight') {
+                changeSlide(1);
+            }
+        });
+
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                changeSlide(1); // Swipe left, go to next slide
+            }
+            if (touchEndX > touchStartX + 50) {
+                changeSlide(-1); // Swipe right, go to previous slide
+            }
+        }
+    </script>
+</body>
+</html>

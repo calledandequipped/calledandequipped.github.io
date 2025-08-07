@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stewardship of Talents - Week 3 Friday</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            display: none;
+            width: 90%;
+            max-width: 1200px;
+            height: 85vh;
+            text-align: center;
+            animation: fadeIn 0.5s;
+            position: relative;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Title Slide */
+        .title-slide {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 60px;
+        }
+
+        .title-slide h1 {
+            font-size: 4em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .title-slide .subtitle {
+            font-size: 1.8em;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .title-slide .date {
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+
+        /* Content Slides */
+        .content-slide {
+            background: #2a2a2a;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .content-slide h2 {
+            font-size: 3em;
+            color: #9f7aea;
+            margin-bottom: 40px;
+        }
+
+        .content-slide h3 {
+            font-size: 2em;
+            color: #b794f4;
+            margin-bottom: 30px;
+        }
+
+        .content-slide p {
+            font-size: 1.4em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #e2e8f0;
+        }
+
+        .content-slide ul {
+            text-align: left;
+            font-size: 1.3em;
+            line-height: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .content-slide ul li {
+            margin-bottom: 15px;
+            list-style: none;
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .content-slide ul li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #9f7aea;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        /* Scripture Slide */
+        .scripture-slide {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 20px;
+            padding: 60px;
+        }
+
+        .scripture-slide .verse {
+            font-size: 2.2em;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            font-style: italic;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .scripture-slide .reference {
+            font-size: 1.5em;
+            font-weight: bold;
+            opacity: 0.9;
+        }
+
+        /* Interactive Elements */
+        .talent-calculator {
+            background: #3a3a3a;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        .talent-input {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+
+        .talent-input input {
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            text-align: center;
+            border-radius: 10px;
+            border: 2px solid #9f7aea;
+            background: #2a2a2a;
+            color: white;
+        }
+
+        .talent-result {
+            font-size: 1.5em;
+            color: #9f7aea;
+            margin-top: 20px;
+        }
+
+        /* Workshop Slide */
+        .workshop-slide {
+            background: #2a2a2a;
+            border-radius: 20px;
+            padding: 40px;
+        }
+
+        .workshop-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+            max-width: 900px;
+        }
+
+        .workshop-card {
+            background: #3a3a3a;
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #9f7aea;
+            transition: transform 0.3s;
+        }
+
+        .workshop-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(159, 122, 234, 0.3);
+        }
+
+        .workshop-card h4 {
+            color: #b794f4;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+
+        .workshop-card p {
+            font-size: 1.1em;
+            color: #cbd5e0;
+        }
+
+        /* Case Study Slide */
+        .case-study {
+            background: #3a3a3a;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            text-align: left;
+            max-width: 800px;
+        }
+
+        .case-study h4 {
+            color: #9f7aea;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .case-study p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #e2e8f0;
+        }
+
+        /* Prayer Slide */
+        .prayer-slide {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            border-radius: 20px;
+            padding: 60px;
+        }
+
+        .prayer-text {
+            font-size: 1.8em;
+            line-height: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* Navigation */
+        .nav-buttons {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            background: #9f7aea;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(159, 122, 234, 0.4);
+        }
+
+        .nav-btn:hover {
+            background: #805ad5;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(159, 122, 234, 0.6);
+        }
+
+        .nav-btn:disabled {
+            background: #4a5568;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 6px;
+            background: #4a5568;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: #9f7aea;
+            transition: width 0.3s;
+        }
+
+        /* Slide Counter */
+        .slide-counter {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 1.2em;
+            color: #cbd5e0;
+        }
+
+        /* Action Items */
+        .action-items {
+            background: #3a3a3a;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 700px;
+            text-align: left;
+        }
+
+        .action-items h4 {
+            color: #9f7aea;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .action-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #2a2a2a;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .action-item:hover {
+            transform: translateX(10px);
+            background: #4a4a4a;
+        }
+
+        .action-number {
+            background: #9f7aea;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        /* Final Slide */
+        .final-slide {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 60px;
+        }
+
+        .final-slide h2 {
+            font-size: 3em;
+            margin-bottom: 30px;
+        }
+
+        .final-slide .challenge {
+            font-size: 1.6em;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .final-slide .next-session {
+            font-size: 1.3em;
+            opacity: 0.9;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                width: 95%;
+                height: 90vh;
+                padding: 30px;
+            }
+
+            .title-slide h1 {
+                font-size: 2.5em;
+            }
+
+            .content-slide h2 {
+                font-size: 2em;
+            }
+
+            .content-slide p {
+                font-size: 1.1em;
+            }
+
+            .workshop-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-btn {
+                padding: 12px 24px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress" id="progressBar"></div>
+        </div>
+
+        <!-- Slide Counter -->
+        <div class="slide-counter">
+            <span id="currentSlide">1</span> / <span id="totalSlides">12</span>
+        </div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <h1>Stewardship of Talents</h1>
+            <p class="subtitle">Multiplying Your God-Given Gifts</p>
+            <p class="date">Week 3, Friday - Session 9</p>
+        </div>
+
+        <!-- Slide 2: Opening Scripture -->
+        <div class="slide scripture-slide">
+            <p class="verse">"For it will be like a man going on a journey, who called his servants and entrusted to them his property. To one he gave five talents, to another two, to another one, to each according to his ability."</p>
+            <p class="reference">Matthew 25:14-15 (ESV)</p>
+        </div>
+
+        <!-- Slide 3: Understanding the Parable -->
+        <div class="slide content-slide">
+            <h2>Understanding the Parable</h2>
+            <p>Jesus teaches us profound truths about stewardship:</p>
+            <ul>
+                <li>God entrusts each of us with unique gifts</li>
+                <li>Our talents vary, but all are valuable</li>
+                <li>We're accountable for how we use them</li>
+                <li>Fear shouldn't paralyze our potential</li>
+                <li>Faithfulness in small things leads to greater opportunities</li>
+            </ul>
+        </div>
+
+        <!-- Slide 4: What Are Your Talents? -->
+        <div class="slide content-slide">
+            <h2>Identifying Your Talents</h2>
+            <h3>More Than You Think!</h3>
+            <div class="workshop-grid">
+                <div class="workshop-card">
+                    <h4>Natural Abilities</h4>
+                    <p>Skills that come easily to you but may be difficult for others</p>
+                </div>
+                <div class="workshop-card">
+                    <h4>Learned Skills</h4>
+                    <p>Expertise you've developed through education and practice</p>
+                </div>
+                <div class="workshop-card">
+                    <h4>Spiritual Gifts</h4>
+                    <p>Divine endowments for building God's Kingdom</p>
+                </div>
+                <div class="workshop-card">
+                    <h4>Life Experiences</h4>
+                    <p>Your testimony and lessons learned become tools for ministry</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Excellence as Worship -->
+        <div class="slide content-slide">
+            <h2>Excellence as Worship</h2>
+            <p style="font-size: 1.6em; color: #b794f4; margin-bottom: 30px;">
+                "Whatever you do, work at it with all your heart"
+            </p>
+            <ul>
+                <li>Excellence honors God and opens doors</li>
+                <li>Your work becomes your worship</li>
+                <li>Mediocrity buries potential</li>
+                <li>Excellence attracts divine opportunities</li>
+                <li>People notice when Christians excel</li>
+            </ul>
+        </div>
+
+        <!-- Slide 6: Case Study -->
+        <div class="slide content-slide">
+            <h2>Modern-Day Talent Multipliers</h2>
+            <div class="case-study">
+                <h4>Sarah's Story: From One Talent to Ten</h4>
+                <p>Sarah discovered her gift for organizing while arranging her church's book club. She developed this talent through online courses and practice. Today, she runs a professional organizing business that tithes 20% to missions and employs three single mothers from her church.</p>
+            </div>
+            <div class="case-study">
+                <h4>Marcus's Journey: Tech Skills for the Kingdom</h4>
+                <p>A software developer who thought his skills were "just secular," Marcus began creating apps for ministries. His free church management app now serves over 500 congregations worldwide.</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: The Danger of Buried Potential -->
+        <div class="slide content-slide">
+            <h2>Breaking the Burial Mindset</h2>
+            <h3>Why We Bury Our Talents:</h3>
+            <ul>
+                <li>Fear of failure or criticism</li>
+                <li>Comparing ourselves to others</li>
+                <li>Perfectionism paralysis</li>
+                <li>False humility</li>
+                <li>Waiting for "perfect" conditions</li>
+            </ul>
+            <p style="margin-top: 40px; font-size: 1.4em; color: #9f7aea;">
+                Remember: God doesn't call the qualified, He qualifies the called!
+            </p>
+        </div>
+
+        <!-- Slide 8: Interactive Reflection -->
+        <div class="slide content-slide">
+            <h2>Your Talent Inventory</h2>
+            <h3>Take a moment to reflect:</h3>
+            <div class="talent-calculator">
+                <p>On a scale of 1-5, rate how well you're currently using:</p>
+                <div class="talent-input">
+                    <div>
+                        <p>Natural Abilities</p>
+                        <input type="number" min="1" max="5" value="3" id="natural">
+                    </div>
+                    <div>
+                        <p>Learned Skills</p>
+                        <input type="number" min="1" max="5" value="3" id="learned">
+                    </div>
+                    <div>
+                        <p>Spiritual Gifts</p>
+                        <input type="number" min="1" max="5" value="3" id="spiritual">
+                    </div>
+                </div>
+                <div class="talent-result" id="talentResult">
+                    Your current stewardship score: <span id="score">9</span>/15
+                </div>
+            </div>
+            <p style="margin-top: 20px;">Where is God calling you to grow?</p>
+        </div>
+
+        <!-- Slide 9: Multiplication Strategy -->
+        <div class="slide content-slide">
+            <h2>Your Multiplication Plan</h2>
+            <div class="action-items">
+                <h4>Action Steps for This Week</h4>
+                <div class="action-item">
+                    <div class="action-number">1</div>
+                    <p>List your top 5 talents/skills in your journal</p>
+                </div>
+                <div class="action-item">
+                    <div class="action-number">2</div>
+                    <p>Choose one talent to develop further this month</p>
+                </div>
+                <div class="action-item">
+                    <div class="action-number">3</div>
+                    <p>Find one way to use a talent for Kingdom impact</p>
+                </div>
+                <div class="action-item">
+                    <div class="action-number">4</div>
+                    <p>Connect with someone who excels in your area</p>
+                </div>
+                <div class="action-item">
+                    <div class="action-number">5</div>
+                    <p>Set a measurable goal for talent growth</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Prayer Focus -->
+        <div class="slide prayer-slide">
+            <h2>Let's Pray Together</h2>
+            <p class="prayer-text">
+                Father, thank You for the talents You've entrusted to me. Forgive me for any fear or laziness that has caused me to bury what You've given. Give me courage to step out in faith, wisdom to develop my gifts excellently, and opportunities to use them for Your glory. Help me to be a faithful steward who hears, "Well done, good and faithful servant." In Jesus' name, Amen.
+            </p>
+        </div>
+
+        <!-- Slide 11: Partnership Formation -->
+        <div class="slide content-slide">
+            <h2>Talent Multiplication Partnerships</h2>
+            <h3>This Week's Challenge:</h3>
+            <p>Find an accountability partner from this cohort who will:</p>
+            <ul>
+                <li>Check in weekly on your talent development</li>
+                <li>Celebrate your progress and victories</li>
+                <li>Pray for divine opportunities</li>
+                <li>Challenge you when you're playing small</li>
+                <li>Share their own journey of stewardship</li>
+            </ul>
+            <p style="margin-top: 40px; font-size: 1.3em; color: #9f7aea;">
+                Iron sharpens iron - don't multiply alone!
+            </p>
+        </div>
+
+        <!-- Slide 12: Closing & Next Steps -->
+        <div class="slide final-slide">
+            <h2>Your Talents Matter!</h2>
+            <p class="challenge">
+                This week, you discovered that excellence is worship and your talents are tools for Kingdom impact. Don't let fear bury what God wants to multiply!
+            </p>
+            <p class="challenge">
+                <strong>This Week's Assignment:</strong><br>
+                Complete your Talent Development Plan and share one "talent experiment" in our online community.
+            </p>
+            <p class="next-session">
+                Next Week: Overcoming Purpose Blockers<br>
+                Monday - Conquering Fear and Doubt
+            </p>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">Previous</button>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = document.querySelectorAll('.slide').length;
+
+        // Initialize
+        document.getElementById('totalSlides').textContent = totalSlides;
+        updateProgressBar();
+        updateNavButtons();
+
+        function changeSlide(direction) {
+            const slides = document.querySelectorAll('.slide');
+            slides[currentSlide - 1].classList.remove('active');
+            
+            currentSlide += direction;
+            
+            if (currentSlide > totalSlides) currentSlide = totalSlides;
+            if (currentSlide < 1) currentSlide = 1;
+            
+            slides[currentSlide - 1].classList.add('active');
+            document.getElementById('currentSlide').textContent = currentSlide;
+            
+            updateProgressBar();
+            updateNavButtons();
+        }
+
+        function updateProgressBar() {
+            const progress = (currentSlide / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function updateNavButtons() {
+            document.getElementById('prevBtn').disabled = currentSlide === 1;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
+            
+            if (currentSlide === totalSlides) {
+                document.getElementById('nextBtn').textContent = 'Complete';
+            } else {
+                document.getElementById('nextBtn').textContent = 'Next';
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+        });
+
+        // Interactive talent calculator
+        const inputs = ['natural', 'learned', 'spiritual'];
+        inputs.forEach(id => {
+            document.getElementById(id)?.addEventListener('input', calculateScore);
+        });
+
+        function calculateScore() {
+            let total = 0;
+            inputs.forEach(id => {
+                const input = document.getElementById(id);
+                if (input) {
+                    total += parseInt(input.value) || 0;
+                }
+            });
+            const scoreElement = document.getElementById('score');
+            if (scoreElement) {
+                scoreElement.textContent = total;
+            }
+        }
+
+        // Touch support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) changeSlide(1); // Swipe left
+            if (touchEndX > touchStartX + 50) changeSlide(-1); // Swipe right
+        }
+    </script>
+</body>
+</html>
