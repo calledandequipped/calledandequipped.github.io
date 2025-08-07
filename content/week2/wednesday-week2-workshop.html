@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guided Listening Prayer Workshop</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background: #ede7f6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, #311b92 0%, #512da8 100%);
+            color: white;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #512da8;
+            font-size: 22px;
+            margin: 25px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #d1c4e9;
+        }
+
+        h3 {
+            color: #673ab7;
+            font-size: 18px;
+            margin: 20px 0 10px;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .subtitle {
+            font-style: italic;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .intro-box {
+            background: #f3e5f5;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #ce93d8;
+        }
+
+        .time-section {
+            background: #fafafa;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .timer-circle {
+            width: 80px;
+            height: 80px;
+            border: 3px solid #512da8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #512da8;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .timer-circle:hover {
+            background: #512da8;
+            color: white;
+        }
+
+        .timer-circle.active {
+            background: #4caf50;
+            color: white;
+            border-color: #4caf50;
+        }
+
+        .scripture-box {
+            background: #f5f5f5;
+            border-left: 4px solid #b39ddb;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .form-group {
+            margin: 20px 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: 'Georgia', serif;
+            resize: vertical;
+        }
+
+        textarea {
+            min-height: 100px;
+        }
+
+        .listening-prompt {
+            color: #673ab7;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .voice-test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .voice-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            background: white;
+        }
+
+        .voice-card h4 {
+            color: #512da8;
+            margin-bottom: 10px;
+        }
+
+        .checklist {
+            background: #e8eaf6;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: start;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .divine-echo-section {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .echo-test {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 15px 0;
+        }
+
+        .echo-column {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ffcc80;
+        }
+
+        .prayer-plan-template {
+            background: #f5f5f5;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .time-slot {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            background: white;
+        }
+
+        .reflection-box {
+            background: #e1f5fe;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #81d4fa;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+            z-index: 1000;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #512da8;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .submit-button {
+            background: #512da8;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            display: block;
+            margin: 40px auto;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background: #311b92;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .submit-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .success-message,
+        .error-message {
+            display: none;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .success-message {
+            background: #4caf50;
+            color: white;
+        }
+
+        .error-message {
+            background: #f44336;
+            color: white;
+        }
+
+        .commitment-section {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        input[type="number"] {
+            width: 60px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                border-radius: 0;
+            }
+            
+            .header, .content {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+            
+            .voice-test-grid,
+            .echo-test,
+            .time-slots {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressBar"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Guided Listening Prayer Workshop</h1>
+            <p class="subtitle">Learning to Distinguish and Trust God's Voice</p>
+            <p>Week 2, Day 3: Cultivating a Listening Heart</p>
+        </div>
+
+        <div class="content">
+            <div class="intro-box">
+                <p><strong>Workshop Purpose:</strong> Through guided exercises, you'll practice listening to God, learn to distinguish His voice from others, and develop confidence in what you hear. This is a safe space to practice and grow.</p>
+                <p><strong>Duration:</strong> 45-60 minutes</p>
+            </div>
+
+            <form id="listeningForm" onsubmit="handleSubmit(event)">
+                <!-- User Information -->
+                <div class="time-section">
+                    <h2>Your Information</h2>
+                    <div class="form-group">
+                        <label for="userName">Name:</label>
+                        <input type="text" id="userName" name="userName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userEmail">Email:</label>
+                        <input type="email" id="userEmail" name="userEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date:</label>
+                        <input type="text" id="date" name="date" value="" readonly>
+                    </div>
+                </div>
+
+                <!-- Opening -->
+                <div class="checklist">
+                    <h2>Opening: Preparing Your Heart</h2>
+                    <h3>Before We Begin:</h3>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="prep1" name="preparation" value="comfortable_position">
+                        <label for="prep1">Find a comfortable position</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="prep2" name="preparation" value="deep_breaths">
+                        <label for="prep2">Take three deep breaths</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="prep3" name="preparation" value="release_concerns">
+                        <label for="prep3">Release the day's concerns</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="prep4" name="preparation" value="open_hands">
+                        <label for="prep4">Open your hands as a sign of receptivity</label>
+                    </div>
+                </div>
+
+                <div class="scripture-box">
+                    "Be still before the Lord and wait patiently for him."
+                    <br><small>- Psalm 37:7</small>
+                </div>
+
+                <!-- Session 1: Quieting the Noise -->
+                <div class="time-section">
+                    <h2>Session 1: Quieting the Noise (10 minutes)</h2>
+                    <div class="timer-circle" id="timer1" onclick="startTimer('timer1', 10)">10min</div>
+                    
+                    <div class="listening-prompt">
+                        "Lord, I give You all the noise in my mind..."
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mindNoise">Write down everything that's crowding your thoughts (tasks, worries, conversations, plans - get it all out):</label>
+                        <textarea id="mindNoise" name="mindNoise" required placeholder="List everything on your mind..."></textarea>
+                    </div>
+                    
+                    <p style="margin-top: 15px; text-align: center; font-style: italic;">Now mentally place all these concerns in God's hands</p>
+                </div>
+
+                <!-- Session 2: Recognizing Different Voices -->
+                <div class="time-section">
+                    <h2>Session 2: Recognizing Different Voices (15 minutes)</h2>
+                    <div class="timer-circle" id="timer2" onclick="startTimer('timer2', 15)">15min</div>
+                    
+                    <div class="form-group">
+                        <label for="specificQuestion">Ask God a specific question about your purpose or a decision you're facing:</label>
+                        <textarea id="specificQuestion" name="specificQuestion" required placeholder="Lord, I need direction about..."></textarea>
+                    </div>
+                    
+                    <p style="margin: 15px 0;">Now listen for 5 minutes, then categorize what you hear:</p>
+                    
+                    <div class="voice-test-grid">
+                        <div class="voice-card">
+                            <h4>God's Voice</h4>
+                            <p style="font-size: 14px;">Peaceful, loving, aligns with Scripture</p>
+                            <textarea name="godsVoice" placeholder="What seems to be from God..."></textarea>
+                        </div>
+                        <div class="voice-card">
+                            <h4>My Voice</h4>
+                            <p style="font-size: 14px;">My desires, fears, or reasoning</p>
+                            <textarea name="myVoice" placeholder="What seems to be my own thoughts..."></textarea>
+                        </div>
+                        <div class="voice-card">
+                            <h4>Other Voices</h4>
+                            <p style="font-size: 14px;">Condemnation, confusion, pressure</p>
+                            <textarea name="otherVoices" placeholder="What doesn't seem to be from God..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Session 3: Divine Echo Test -->
+                <div class="divine-echo-section">
+                    <h2>Session 3: The Divine Echo Test (10 minutes)</h2>
+                    <div class="timer-circle" id="timer3" onclick="startTimer('timer3', 10)">10min</div>
+                    
+                    <h3>🔊 The Divine Echo Test</h3>
+                    <p>God often confirms His voice through multiple sources. Test what you heard:</p>
+                    
+                    <div class="echo-test">
+                        <div class="echo-column">
+                            <h4>Echo 1: Scripture</h4>
+                            <p>Does it align with God's Word?</p>
+                            <textarea name="scriptureEcho" placeholder="Related verses that come to mind..."></textarea>
+                        </div>
+                        <div class="echo-column">
+                            <h4>Echo 2: Peace</h4>
+                            <p>Do you sense God's peace about it?</p>
+                            <textarea name="peaceEcho" placeholder="Describe the peace (or lack of)..."></textarea>
+                        </div>
+                        <div class="echo-column">
+                            <h4>Echo 3: Wise Counsel</h4>
+                            <p>Would mature believers confirm this?</p>
+                            <textarea name="counselEcho" placeholder="Who could you check with?"></textarea>
+                        </div>
+                        <div class="echo-column">
+                            <h4>Echo 4: Fruit</h4>
+                            <p>Will it produce good fruit?</p>
+                            <textarea name="fruitEcho" placeholder="What fruit would this produce?"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Session 4: Extended Listening -->
+                <div class="time-section">
+                    <h2>Session 4: Extended Listening Prayer (15 minutes)</h2>
+                    <div class="timer-circle" id="timer4" onclick="startTimer('timer4', 15)">15min</div>
+                    
+                    <h3>Focus Question: "Lord, what is one thing You want me to know about my calling today?"</h3>
+                    
+                    <p style="margin: 15px 0;"><em>Listen without forcing. Be patient. God may speak through:</em></p>
+                    <ul style="margin-left: 30px;">
+                        <li>A gentle impression or thought</li>
+                        <li>A scripture that comes to mind</li>
+                        <li>A picture or image</li>
+                        <li>A sense of knowing</li>
+                        <li>An emotion or feeling</li>
+                    </ul>
+                    
+                    <div class="form-group">
+                        <label for="whatHeard">What I heard:</label>
+                        <textarea id="whatHeard" name="whatHeard" required style="min-height: 150px;"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="howItCame">How it came (impression, scripture, image, etc.):</label>
+                        <textarea id="howItCame" name="howItCame" required></textarea>
+                    </div>
+                </div>
+
+                <!-- Creating Listening Prayer Plan -->
+                <div class="prayer-plan-template">
+                    <h2>Creating Your Listening Prayer Plan</h2>
+                    <h3>My Daily Listening Prayer Rhythm</h3>
+                    
+                    <div class="time-slots">
+                        <div class="time-slot">
+                            <h4>Morning</h4>
+                            <label>Minutes: <input type="number" name="morningMinutes" min="5" max="60" required></label>
+                            <label>Time: <input type="text" name="morningTime" placeholder="6:00 AM"></label>
+                            <label>Location: <input type="text" name="morningLocation" placeholder="Living room"></label>
+                        </div>
+                        <div class="time-slot">
+                            <h4>Midday</h4>
+                            <label>Minutes: <input type="number" name="middayMinutes" min="5" max="60"></label>
+                            <label>Check-in method: <input type="text" name="middayMethod" placeholder="Quick prayer walk"></label>
+                        </div>
+                        <div class="time-slot">
+                            <h4>Evening</h4>
+                            <label>Minutes: <input type="number" name="eveningMinutes" min="5" max="60"></label>
+                            <label>Review question: <input type="text" name="eveningQuestion" placeholder="Where did I see God today?"></label>
+                        </div>
+                        <div class="time-slot">
+                            <h4>Weekly Extended</h4>
+                            <label>Minutes: <input type="number" name="weeklyMinutes" min="30" max="120"></label>
+                            <label>Day: <input type="text" name="weeklyDay" placeholder="Saturday"></label>
+                            <label>Focus: <input type="text" name="weeklyFocus" placeholder="Deeper listening"></label>
+                        </div>
+                    </div>
+                    
+                    <h3>My Listening Aids:</h3>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="listeningAids" value="journal">
+                        <label for="journal">Journal</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="listeningAids" value="worship_music">
+                        <label for="worship">Worship music</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="listeningAids" value="nature_walks">
+                        <label for="nature">Nature/walks</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="listeningAids" value="candle">
+                        <label for="candle">Candle</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="otherAids">Other aids:</label>
+                        <input type="text" id="otherAids" name="otherAids" placeholder="Quiet music, art, etc.">
+                    </div>
+                </div>
+
+                <!-- Workshop Reflection -->
+                <div class="reflection-box">
+                    <h2>Workshop Reflection</h2>
+                    
+                    <div class="form-group">
+                        <label for="surprised">1. What surprised me about listening to God today?</label>
+                        <textarea id="surprised" name="surprised" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="easiestVoice">2. Which voice (God's, mine, others) was easiest to identify? Why?</label>
+                        <textarea id="easiestVoice" name="easiestVoice" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="barriers">3. What barriers to listening did I discover?</label>
+                        <textarea id="barriers" name="barriers" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="practiceThis">4. One thing I want to practice this week:</label>
+                        <textarea id="practiceThis" name="practiceThis" required></textarea>
+                    </div>
+                </div>
+
+                <!-- Closing Exercise -->
+                <div class="scripture-box">
+                    <p>Let's close by praying Samuel's prayer together:</p>
+                    <p style="margin-top: 15px; font-size: 20px; text-align: center;">
+                        <strong>"Speak, Lord, for Your servant is listening."</strong>
+                    </p>
+                    <p style="text-align: right; margin-top: 10px;">- 1 Samuel 3:9</p>
+                </div>
+
+                <!-- Commitment -->
+                <div class="commitment-section">
+                    <h3>My Commitment:</h3>
+                    <p>This week, I commit to:</p>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="commit1" name="commitments" value="daily_practice">
+                        <label for="commit1">Practice daily listening prayer for <input type="number" name="dailyCommitMinutes" min="5" max="60" style="width: 50px;"> minutes</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="commit2" name="commitments" value="media_fast">
+                        <label for="commit2">Complete the 24-hour media fast on <input type="text" name="fastDay" placeholder="Thursday" style="width: 100px;"></label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="commit3" name="commitments" value="echo_test">
+                        <label for="commit3">Test what I hear with the Divine Echo Test</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="commit4" name="commitments" value="share_friend">
+                        <label for="commit4">Share one thing I hear with a trusted friend</label>
+                    </div>
+                </div>
+
+                <div class="success-message" id="successMessage">
+                    ✓ Your Listening Prayer Workshop has been saved successfully!
+                </div>
+
+                <div class="error-message" id="errorMessage">
+                    ✗ There was an error saving your workshop. Please try again.
+                </div>
+
+                <button type="submit" class="submit-button" id="submitButton">Submit Workshop Responses</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Set today's date
+        document.getElementById('date').value = new Date().toLocaleDateString();
+
+        // Timer functionality
+        let activeTimers = {};
+        
+        function startTimer(elementId, minutes) {
+            const element = document.getElementById(elementId);
+            
+            // Clear existing timer if any
+            if (activeTimers[elementId]) {
+                clearInterval(activeTimers[elementId]);
+            }
+            
+            let seconds = minutes * 60;
+            element.classList.add('active');
+            
+            activeTimers[elementId] = setInterval(() => {
+                const mins = Math.floor(seconds / 60);
+                const secs = seconds % 60;
+                element.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+                
+                if (seconds === 0) {
+                    clearInterval(activeTimers[elementId]);
+                    element.textContent = '✓';
+                    element.style.background = '#4caf50';
+                    element.style.borderColor = '#4caf50';
+                    delete activeTimers[elementId];
+                }
+                
+                seconds--;
+            }, 1000);
+        }
+
+        // Progress bar functionality
+        function updateProgress() {
+            const form = document.getElementById('listeningForm');
+            const requiredFields = form.querySelectorAll('[required]');
+            const checkboxGroups = form.querySelectorAll('input[type="checkbox"]');
+            
+            let completed = 0;
+            let total = requiredFields.length + 2; // +2 for checkbox groups
+            
+            requiredFields.forEach(field => {
+                if (field.value.trim() !== '') {
+                    completed++;
+                }
+            });
+            
+            // Check preparation checkboxes (at least 2)
+            const prepChecked = form.querySelectorAll('input[name="preparation"]:checked').length;
+            if (prepChecked >= 2) completed++;
+            
+            // Check commitment checkboxes (at least 2)
+            const commitChecked = form.querySelectorAll('input[name="commitments"]:checked').length;
+            if (commitChecked >= 2) completed++;
+            
+            const progress = (completed / total) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        // Add event listeners
+        document.querySelectorAll('input, textarea').forEach(field => {
+            field.addEventListener('input', updateProgress);
+            field.addEventListener('change', updateProgress);
+        });
+
+        // Google Sheets Integration
+        const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
+
+        async function handleSubmit(event) {
+            event.preventDefault();
+            
+            const submitButton = document.getElementById('submitButton');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            submitButton.disabled = true;
+            submitButton.textContent = 'Submitting...';
+            
+            // Collect form data
+            const formData = new FormData(event.target);
+            const data = {
+                timestamp: new Date().toISOString(),
+                week: 2,
+                day: 'Wednesday',
+                exercise: 'Guided Listening Prayer Workshop',
+                responses: {}
+            };
+            
+            // Process form data
+            for (let [key, value] of formData.entries()) {
+                if (data.responses[key]) {
+                    if (!Array.isArray(data.responses[key])) {
+                        data.responses[key] = [data.responses[key]];
+                    }
+                    data.responses[key].push(value);
+                } else {
+                    data.responses[key] = value;
+                }
+            }
+            
+            // Convert checkbox arrays to strings
+            ['preparation', 'listeningAids', 'commitments'].forEach(field => {
+                if (Array.isArray(data.responses[field])) {
+                    data.responses[field] = data.responses[field].join(', ');
+                }
+            });
+            
+            try {
+                // Submit to Google Sheets
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                // Show success message
+                successMessage.style.display = 'block';
+                errorMessage.style.display = 'none';
+                
+                // Save to localStorage as backup
+                const savedWorkshops = JSON.parse(localStorage.getItem('listeningWorkshops') || '[]');
+                savedWorkshops.push(data);
+                localStorage.setItem('listeningWorkshops', JSON.stringify(savedWorkshops));
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Submit Workshop Responses';
+            }
+        }
+
+        // Initialize progress
+        updateProgress();
+    </script>
+</body>
+</html>

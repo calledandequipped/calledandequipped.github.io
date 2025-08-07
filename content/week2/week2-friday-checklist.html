@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calling Confirmation Checklist - Week 2</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #00695c 0%, #4db6ac 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        h1 { color: #00695c; font-size: 2.5em; text-align: center; margin-bottom: 10px; }
+        .subtitle { text-align: center; color: #666; margin-bottom: 30px; }
+        .scripture-box { background: #e0f2f1; padding: 20px; border-left: 4px solid #00695c; margin: 20px 0; border-radius: 5px; }
+        .section { margin: 30px 0; padding: 20px; background: #fafafa; border-radius: 8px; }
+        h2 { color: #00695c; margin-bottom: 15px; display: flex; align-items: center; gap: 15px; }
+        .test-number { background: #00695c; color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        h3 { color: #666; margin: 20px 0 10px; }
+        label { display: block; margin-bottom: 5px; color: #555; font-weight: 600; }
+        input[type="text"], input[type="email"], textarea { width: 100%; padding: 10px; margin-bottom: 15px; border: 2px solid #ddd; border-radius: 5px; }
+        input:focus, textarea:focus { outline: none; border-color: #00695c; }
+        textarea { resize: vertical; min-height: 100px; }
+        
+        .checkbox-list { margin: 20px 0; }
+        .checkbox-item { display: flex; align-items: flex-start; margin: 10px 0; }
+        .checkbox-item input[type="checkbox"] { margin-right: 10px; margin-top: 3px; width: 18px; height: 18px; cursor: pointer; }
+        .checkbox-item label { font-weight: normal; cursor: pointer; }
+        
+        .rating-section { background: #f5f5f5; padding: 15px; border-radius: 8px; margin: 20px 0; }
+        .rating-circles { display: flex; gap: 15px; justify-content: center; margin: 15px 0; }
+        .rating-circle { width: 45px; height: 45px; border: 2px solid #00695c; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; font-weight: bold; }
+        .rating-circle:hover { background: #e0f2f1; }
+        .rating-circle.selected { background: #00695c; color: white; }
+        .rating-circle input[type="radio"] { display: none; }
+        
+        .confirmation-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0; }
+        .confirmation-box { background: white; padding: 20px; border-radius: 8px; border: 2px solid #e0e0e0; }
+        .confirmation-box h4 { color: #00695c; margin-bottom: 10px; }
+        
+        .warning-box { background: #fff3cd; padding: 25px; border-radius: 10px; border: 2px solid #ffc107; margin: 30px 0; }
+        .warning-box h2 { color: #856404; }
+        
+        .summary-section { background: #e8f5e9; padding: 25px; border-radius: 10px; border: 2px solid #4caf50; margin: 30px 0; }
+        .score-display { font-size: 3em; font-weight: bold; color: #00695c; text-align: center; margin: 20px 0; }
+        
+        .action-plan { background: #f5f5f5; padding: 25px; border-radius: 10px; margin: 30px 0; }
+        .prayer-section { background: #e0f2f1; padding: 25px; border-radius: 10px; margin: 30px 0; }
+        
+        .submit-btn { background: #00695c; color: white; padding: 15px 40px; border: none; border-radius: 5px; font-size: 1.1em; cursor: pointer; display: block; margin: 30px auto 0; transition: all 0.3s; }
+        .submit-btn:hover { background: #004d40; transform: translateY(-2px); }
+        .submit-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+        
+        #successMessage { display: none; background: #d4edda; color: #155724; padding: 20px; border-radius: 5px; margin-top: 20px; text-align: center; }
+        .loading { display: none; text-align: center; margin: 20px 0; }
+        .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #00695c; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calling Confirmation Checklist</h1>
+        <p class="subtitle">Week 2, Friday - Confirming Your Calling</p>
+
+        <div class="scripture-box">
+            <p>"Test all things; hold fast what is good."</p>
+            <p style="text-align: right; font-weight: bold;">1 Thessalonians 5:21 (NKJV)</p>
+        </div>
+
+        <form id="confirmationForm">
+            <div class="section">
+                <h2>Your Information</h2>
+                <label for="fullName">Full Name *</label>
+                <input type="text" id="fullName" name="fullName" required>
+                
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="callingStatement">My Calling Statement: *</label>
+                <textarea id="callingStatement" name="callingStatement" required placeholder="I believe God is calling me to..."></textarea>
+            </div>
+
+            <!-- Test 1: Scripture Test -->
+            <div class="section">
+                <h2><span class="test-number">1</span> The Scripture Test</h2>
+                <p style="margin-bottom: 20px;"><strong>Question: Does this calling align with God's Word?</strong></p>
+                
+                <div class="checkbox-list">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="script1" name="scriptureTest" value="no_contradiction">
+                        <label for="script1">It does not contradict any biblical principles</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="script2" name="scriptureTest" value="promotes_values">
+                        <label for="script2">It promotes values consistent with Scripture</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="script3" name="scriptureTest" value="advances_kingdom">
+                        <label for="script3">It will advance God's Kingdom</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="script4" name="scriptureTest" value="requires_faith">
+                        <label for="script4">It requires faith and dependence on God</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="script5" name="scriptureTest" value="serves_others">
+                        <label for="script5">It serves others, not just myself</label>
+                    </div>
+                </div>
+                
+                <label for="supportingScriptures">Supporting Scriptures:</label>
+                <textarea id="supportingScriptures" name="supportingScriptures" placeholder="List verses that support your calling"></textarea>
+                
+                <div class="rating-section">
+                    <p><strong>Confidence Level:</strong></p>
+                    <div class="rating-circles">
+                        <div class="rating-circle" onclick="selectRating('scripture', 1)">
+                            <input type="radio" name="scriptureRating" value="1" required>
+                            <span>1</span>
+                        </div>
+                        <div class="rating-circle" onclick="selectRating('scripture', 2)">
+                            <input type="radio" name="scriptureRating" value="2">
+                            <span>2</span>
+                        </div>
+                        <div class="rating-circle" onclick="selectRating('scripture', 3)">
+                            <input type="radio" name="scriptureRating" value="3">
+                            <span>3</span>
+                        </div>
+                        <div class="rating-circle" onclick="selectRating('scripture', 4)">
+                            <input type="radio" name="scriptureRating" value="4">
+                            <span>4</span>
+                        </div>
+                        <div class="rating-circle" onclick="selectRating('scripture', 5)">
+                            <input type="radio" name="scriptureRating" value="5">
+                            <span>5</span>
+                        </div>
+                    </div>
+                    <p style="text-align: center; color: #666; font-size: 0.9em;">(1=Low, 5=High)</p>
+                </div>
+            </div>
+
+            <!-- Test 2: Peace Test -->
+            <div class="section">
+                <h2><span class="test-number">2</span> The Peace Test</h2>
+                <p style="margin-bottom: 20px;"><strong>Question: Do I have God's peace about this calling?</strong></p>
+                
+                <div class="checkbox-list">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="peace1" name="peaceTest" value="deep_peace">
+                        <label for="peace1">I feel a deep, settled peace when I pray about it</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="peace2" name="peaceTest" value="remains_challenges">
+                        <label for="peace2">The peace remains even when challenges arise</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="peace3" name="peaceTest" value="spirit_rest">
+                        <label for="peace3">My spirit feels at rest, not anxious or rushed</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="peace4" name="peaceTest" value="consistent_time">
+                        <label for="peace4">The peace is consistent over time</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="peace5" name="peaceTest" value="others_notice">
+                        <label for="peace5">Others notice a peace about me regarding this</label>
+                    </div>
+                </div>
+                
+                <label for="peaceDescription">Describe the peace (or lack thereof):</label>
+                <textarea id="peaceDescription" name="peaceDescription"></textarea>
+                
+                <div class="rating-section">
+                    <p><strong>Peace Level:</strong></p>
+                    <div class="rating-circles">
+                        <div class="rating-circle" onclick="selectRating('peace', 1)">
+                            <input type="radio" name="peaceRating" value="1" required>
+                            <span>1</span>
+                        </div>
+                        <div class="rating-circle" onclick="selectRating('peace', 2)">
+                            <input type="radio" name="peaceRating" value="2">
+                            <span>2</span>
+                        </div>
+                        <div class="rating-circle" onclick="selectRating('peace', 3)">
+                            <input type="radio" name="peaceRating" value="3">
+                            <span>3</span>
+                        </div>
+                        <div class="rating-circle" onclick="selectRating('peace', 4)">
+                            <input type="radio" name="peaceRating" value="4">
+                            <span>4</span>
+                        </div>
+                        <div class="rating-circle" onclick="selectRating('peace', 5)">
+                            <input type="radio" name="peaceRating" value="5">
+                            <span>5</span>
+                        </div>
+                    </div>
+                    <p style="text-align: center; color: #666; font-size: 0.9em;">(1=Low, 5=High)</p>
+                </div>
+            </div>
+
+            <!-- Test 3: Wise Counsel Test -->
+            <div class="section">
+                <h2><span class="test-number">3</span> The Wise Counsel Test</h2>
+                <p style="margin-bottom: 20px;"><strong>Question: What do trusted spiritual advisors say?</strong></p>
+                
+                <div class="confirmation-grid">
+                    <div class="confirmation-box">
+                        <h4>Counselor 1:</h4>
+                        <input type="text" name="counselor1Name" placeholder="Name">
+                        <label>Their feedback:</label>
+                        <textarea name="counselor1Feedback" rows="3"></textarea>
+                    </div>
+                    <div class="confirmation-box">
+                        <h4>Counselor 2:</h4>
+                        <input type="text" name="counselor2Name" placeholder="Name">
+                        <label>Their feedback:</label>
+                        <textarea name="counselor2Feedback" rows="3"></textarea>
+                    </div>
+                </div>
+                
+                <label for="counselCommonThemes">Common Themes:</label>
+                <textarea id="counselCommonThemes" name="counselCommonThemes" placeholder="What patterns do you see in their feedback?"></textarea>
+                
+                <div class="rating-section">
+                    <p><strong>Counsel Confirmation:</strong></p>
+                    <div class="rating-circles">
+                        <div class="rating-circle" onclick="selectRating('counsel', 1)">
+                            <input type="radio" name="counselRating" value="1" required>
+                            <span>1</span>
+                        </div>
+                        <div class="rating-circle" onclick="selectRating('counsel', 2)">
+                            <input type="radio" name="counselRating" value="2">
+                            <span>2</span>
+                        </div>
+                        <div class="rating-circle" onclick="selectRating('counsel', 3)">
+                            <input type="radio" name="counselRating" value="3">
+                            <span>3</span>
+                        </div>
+                        <div class="rating-circle" onclick="selectRating('counsel', 4)">
+                            <input type="radio" name="counselRating" value="4">
+                            <span>4</span>
+                        </div>
+                        <div class="rating-circle" onclick="selectRating('counsel', 5)">
+                            <input type="radio" name="counselRating" value="5">
+                            <span>5</span>
+                        </div>
+                    </div>
+                    <p style="text-align: center; color: #666; font-size: 0.9em;">(1=Low, 5=High)</p>
+                </div>
+            </div>
+
+            <!-- Test 4: Fruit Test -->
+            <div class="section">
+                <h2><span class="test-number">4</span> The Fruit Test</h2>
+                <p style="margin-bottom: 20px;"><strong>Question: What fruit will this calling produce?</strong></p>
+                
+                <h3>Expected Good Fruit:</h3>
+                <div class="checkbox-list">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="fruit1" name="fruitTest" value="draw_closer">
+                        <label for="fruit1">People will be drawn closer to God</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="fruit2" name="fruitTest" value="love_joy_peace">
+                        <label for="fruit2">Love, joy, peace will increase</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="fruit3" name="fruitTest" value="build_body">
+                        <label for="fruit3">The body of Christ will be built up</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="fruit4" name="fruitTest" value="glorify_god">
+                        <label for="fruit4">God will be glorified</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="fruit5" name="fruitTest" value="transform_lives">
+                        <label for="fruit5">Lives will be transformed</label>
+                    </div>
+                </div>
+                
+                <label for="specificFruit">Specific fruit I expect to see:</label>
+                <textarea id="specificFruit" name="specificFruit"></textarea>
+                
+                <div class="rating-section">
+                    <p><strong>Fruit Quality:</strong></p>
+                    <div class="rating-circles">
+                        <div class="rating-circle" onclick="selectRating('fruit', 1)">
+                            <input type="radio" name="fruitRating" value="1" required>
+                            <span>1</span>
+                        </div>
+                        <div class="rating-circle" onclick="selectRating('fruit', 2)">
+                            <input type="radio" name="fruitRating" value="2">
+                            <span>2</span>
+                        </div>
+                        <div class="rating-circle" onclick="selectRating('fruit', 3)">
+                            <input type="radio" name="fruitRating" value="3">
+                            <span>3</span>
+                        </div>
+                        <div class="rating-circle" onclick="selectRating('fruit', 4)">
+                            <input type="radio" name="fruitRating" value="4">
+                            <span>4</span>
+                        </div>
+                        <div class="rating-circle" onclick="selectRating('fruit', 5)">
+                            <input type="radio" name="fruitRating" value="5">
+                            <span>5</span>
+                        </div>
+                    </div>
+                    <p style="text-align: center; color: #666; font-size: 0.9em;">(1=Low, 5=High)</p>
+                </div>
+            </div>
+
+            <!-- Test 5: Timing & Doors Test -->
+            <div class="section">
+                <h2><span class="test-number">5</span> The Timing & Doors Test</h2>
+                <p style="margin-bottom: 20px;"><strong>Question: Is God opening doors and confirming the timing?</strong></p>
+                
+                <label for="openDoors">Open Doors I'm Seeing:</label>
+                <textarea id="openDoors" name="openDoors" placeholder="Opportunities, resources, connections..."></textarea>
+                
+                <label for="closedDoors">Closed Doors or Obstacles:</label>
+                <textarea id="closedDoors" name="closedDoors" placeholder="Challenges, delays, barriers..."></textarea>
+                
+                <div class="checkbox-list">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="timing1" name="timingTest" value="resources_available">
+                        <label for="timing1">Resources are becoming available</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="timing2" name="timingTest" value="relationships_forming">
+                        <label for="timing2">Key relationships are forming</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="timing3" name="timingTest" value="opportunities_arising">
+                        <label for="timing3">Opportunities are arising</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="timing4" name="timingTest" value="timing_right">
+                        <label for="timing4">The timing feels right</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="timing5" name="timingTest" value="not_forcing">
+                        <label for="timing5">I'm not forcing anything</label>
+                    </div>
+                </div>
+                
+                <div class="rating-section">
+                    <p><strong>Open Door Clarity:</strong></p>
+                    <div class="rating-circles">
+                        <div class="rating-circle" onclick="selectRating('timing', 1)">
+                            <input type="radio" name="timingRating" value="1" required>
+                            <span>1</span>
+                        </div>
+                        <div class="rating-circle" onclick="selectRating('timing', 2)">
+                            <input type="radio" name="timingRating" value="2">
+                            <span>2</span>
+                        </div>
+                        <div class="rating-circle" onclick="selectRating('timing', 3)">
+                            <input type="radio" name="timingRating" value="3">
+                            <span>3</span>
+                        </div>
+                        <div class="rating-circle" onclick="selectRating('timing', 4)">
+                            <input type="radio" name="timingRating" value="4">
+                            <span>4</span>
+                        </div>
+                        <div class="rating-circle" onclick="selectRating('timing', 5)">
+                            <input type="radio" name="timingRating" value="5">
+                            <span>5</span>
+                        </div>
+                    </div>
+                    <p style="text-align: center; color: #666; font-size: 0.9em;">(1=Low, 5=High)</p>
+                </div>
+            </div>
+
+            <!-- Red Flag Assessment -->
+            <div class="warning-box">
+                <h2>⚠️ Red Flag Assessment</h2>
+                <p style="margin-bottom: 20px;"><strong>Check any that apply. These may indicate you need to wait or reconsider:</strong></p>
+                
+                <div class="checkbox-list">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="red1" name="redFlags" value="rushed">
+                        <label for="red1">I feel rushed or pressured to act immediately</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="red2" name="redFlags" value="advisor_concerns">
+                        <label for="red2">Trusted advisors have significant concerns</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="red3" name="redFlags" value="twisting_scripture">
+                        <label for="red3">I'm having to rationalize or twist Scripture</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="red4" name="redFlags" value="causing_division">
+                        <label for="red4">It's causing division in important relationships</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="red5" name="redFlags" value="lack_peace">
+                        <label for="red5">I lack peace when I'm honest with myself</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Confirmation Summary -->
+            <div class="summary-section">
+                <h2>Confirmation Summary</h2>
+                <p><strong>Your total score:</strong></p>
+                <div class="score-display" id="totalScore">0/25</div>
+                
+                <h3>Interpretation Guide:</h3>
+                <ul style="margin-left: 30px; line-height: 1.8;">
+                    <li><strong>20-25:</strong> Strong confirmation - proceed with confidence</li>
+                    <li><strong>15-19:</strong> Good confirmation - address any weak areas</li>
+                    <li><strong>10-14:</strong> Mixed signals - seek additional prayer and counsel</li>
+                    <li><strong>Below 10:</strong> Weak confirmation - wait and continue seeking God</li>
+                </ul>
+                
+                <label for="overallConfidence" style="margin-top: 20px;">My Overall Confidence Level:</label>
+                <textarea id="overallConfidence" name="overallConfidence" required placeholder="Reflect on your confirmation journey..."></textarea>
+            </div>
+
+            <!-- Action Plan -->
+            <div class="action-plan">
+                <h2>Action Plan</h2>
+                <h3>Based on this assessment, my next steps are:</h3>
+                
+                <div class="checkbox-list">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="action1" name="actionPlan" value="move_forward">
+                        <label for="action1"><strong>Move Forward:</strong> I have clear confirmation</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="action2" name="actionPlan" value="seek_clarity">
+                        <label for="action2"><strong>Seek More Clarity:</strong> I need additional confirmation</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="action3" name="actionPlan" value="wait">
+                        <label for="action3"><strong>Wait:</strong> I will continue praying and waiting</label>
+                    </div>
+                </div>
+                
+                <label for="specificActions" style="margin-top: 20px;">Specific actions I will take this week:</label>
+                <textarea id="specificActions" name="specificActions" required placeholder="1.&#10;2.&#10;3."></textarea>
+            </div>
+
+            <!-- Prayer Section -->
+            <div class="prayer-section">
+                <h2>Prayer of Commitment</h2>
+                <p style="font-style: italic; margin-bottom: 20px;">Lord, I submit this calling to You. If it is from You, please continue to confirm it. If it is not, please close the doors clearly. I want Your will above my own. Give me patience to wait, wisdom to discern, and courage to obey. In Jesus' name, Amen.</p>
+                
+                <label for="personalPrayer">Add your personal prayer:</label>
+                <textarea id="personalPrayer" name="personalPrayer" placeholder="Pour out your heart to God..."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Confirmation Checklist</button>
+            
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Submitting your checklist...</p>
+            </div>
+            
+            <div id="successMessage">
+                <h3>✓ Checklist Submitted Successfully!</h3>
+                <p>Your calling confirmation has been recorded. Continue seeking God's guidance!</p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Rating selection
+        function selectRating(category, value) {
+            document.querySelectorAll(`input[name="${category}Rating"]`).forEach(input => {
+                input.parentElement.classList.remove('selected');
+            });
+            
+            const selectedCircle = document.querySelector(`input[name="${category}Rating"][value="${value}"]`).parentElement;
+            selectedCircle.classList.add('selected');
+            document.querySelector(`input[name="${category}Rating"][value="${value}"]`).checked = true;
+            
+            updateTotalScore();
+        }
+
+        // Update total score
+        function updateTotalScore() {
+            let total = 0;
+            const categories = ['scripture', 'peace', 'counsel', 'fruit', 'timing'];
+            
+            categories.forEach(category => {
+                const checked = document.querySelector(`input[name="${category}Rating"]:checked`);
+                if (checked) {
+                    total += parseInt(checked.value);
+                }
+            });
+            
+            document.getElementById('totalScore').textContent = `${total}/25`;
+        }
+
+        // Form submission
+        document.getElementById('confirmationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            document.querySelector('.loading').style.display = 'block';
+            document.querySelector('.submit-btn').style.display = 'none';
+            
+            const formData = new FormData(e.target);
+            const data = {};
+            
+            // Process form data
+            for (let [key, value] of formData.entries()) {
+                if (data[key]) {
+                    if (!Array.isArray(data[key])) {
+                        data[key] = [data[key]];
+                    }
+                    data[key].push(value);
+                } else {
+                    data[key] = value;
+                }
+            }
+            
+            // Convert checkbox arrays to strings
+            const checkboxFields = ['scriptureTest', 'peaceTest', 'fruitTest', 'timingTest', 'redFlags', 'actionPlan'];
+            checkboxFields.forEach(field => {
+                if (Array.isArray(data[field])) {
+                    data[field] = data[field].join(', ');
+                }
+            });
+            
+            data['totalScore'] = document.getElementById('totalScore').textContent;
+            data['timestamp'] = new Date().toLocaleString();
+            
+            console.log('Form Data:', data);
+            
+            // Simulate submission
+            setTimeout(() => {
+                document.querySelector('.loading').style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+                document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+            }, 2000);
+        });
+
+        // Initialize
+        updateTotalScore();
+    </script>
+</body>
+</html>

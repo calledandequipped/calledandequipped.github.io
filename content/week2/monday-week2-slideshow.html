@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Many Ways God Speaks - Week 2 Monday</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #0a1929; color: #fff; overflow: hidden; height: 100vh; }
+        .slideshow-container { position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .slide { display: none; width: 90%; max-width: 1200px; height: 85vh; text-align: center; animation: fadeIn 0.5s; }
+        .slide.active { display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .title-slide { background: linear-gradient(135deg, #00695c 0%, #00897b 100%); border-radius: 20px; padding: 60px; }
+        .title-slide h1 { font-size: 4em; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .content-slide { background: #1a2f3f; border-radius: 20px; padding: 50px; }
+        .content-slide h2 { font-size: 3em; color: #4db6ac; margin-bottom: 40px; }
+        .content-slide h3 { font-size: 1.8em; color: #00897b; margin-bottom: 20px; }
+        .content-slide p { font-size: 1.4em; line-height: 1.8; margin-bottom: 20px; }
+        .content-slide ul { text-align: left; font-size: 1.3em; line-height: 2; max-width: 800px; margin: 0 auto; list-style: none; }
+        .content-slide ul li { margin-bottom: 15px; padding-left: 40px; position: relative; }
+        .content-slide ul li::before { content: "🔊"; position: absolute; left: 0; font-size: 1.3em; }
+        
+        .scripture-slide { background: linear-gradient(135deg, #00897b 0%, #00695c 100%); border-radius: 20px; padding: 60px; }
+        .scripture-slide .verse { font-size: 2.2em; line-height: 1.8; margin-bottom: 30px; font-style: italic; }
+        .scripture-slide .reference { font-size: 1.5em; font-weight: bold; }
+        
+        .ways-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 900px; margin: 0 auto; }
+        .way-card { background: #2a3f5f; padding: 25px; border-radius: 15px; border: 2px solid #00695c; transition: transform 0.3s; }
+        .way-card:hover { transform: translateY(-5px); }
+        .way-card h4 { color: #4db6ac; margin-bottom: 15px; font-size: 1.3em; }
+        
+        .practice-slide { background: #1a2f3f; border-radius: 20px; padding: 50px; }
+        .lectio-steps { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; margin: 30px 0; }
+        .lectio-step { background: #2a3f5f; padding: 20px; border-radius: 10px; width: 200px; }
+        .lectio-step h4 { color: #00897b; margin-bottom: 10px; }
+        
+        .nav-buttons { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; }
+        .nav-btn { background: #00695c; color: white; border: none; padding: 15px 30px; font-size: 1.1em; border-radius: 50px; cursor: pointer; }
+        .nav-btn:hover { background: #004d40; }
+        .nav-btn:disabled { background: #4a5568; cursor: not-allowed; }
+        
+        .progress-bar { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); width: 300px; height: 6px; background: #4a5568; border-radius: 3px; overflow: hidden; }
+        .progress { height: 100%; background: #00695c; transition: width 0.3s; }
+        .slide-counter { position: absolute; top: 30px; right: 30px; font-size: 1.2em; }
+        
+        @media (max-width: 768px) {
+            .slide { width: 95%; padding: 30px; }
+            .title-slide h1 { font-size: 2.5em; }
+            .ways-grid { grid-template-columns: 1fr; }
+            .lectio-steps { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <div class="progress-bar"><div class="progress" id="progressBar"></div></div>
+        <div class="slide-counter"><span id="currentSlide">1</span> / 10</div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <h1>The Many Ways God Speaks</h1>
+            <p style="font-size: 1.8em;">Developing Spiritual Discernment for Direction</p>
+            <p style="font-size: 1.2em; margin-top: 40px;">Week 2, Monday - Session 4</p>
+        </div>
+
+        <!-- Slide 2: Scripture -->
+        <div class="slide scripture-slide">
+            <p class="verse">"My sheep listen to my voice; I know them, and they follow me."</p>
+            <p class="reference">John 10:27 (NIV)</p>
+        </div>
+
+        <!-- Slide 3: Introduction -->
+        <div class="slide content-slide">
+            <h2>God Is Still Speaking!</h2>
+            <p style="font-size: 1.5em; color: #4db6ac; margin-bottom: 30px;">Our God is not silent</p>
+            <ul>
+                <li>He desires to communicate with His children</li>
+                <li>He speaks in multiple ways, not just one</li>
+                <li>Learning to hear requires practice and patience</li>
+                <li>Every believer can hear God's voice</li>
+            </ul>
+            <p style="margin-top: 40px;">Today: Discover the many ways God speaks to guide you into purpose</p>
+        </div>
+
+        <!-- Slide 4: Through His Word -->
+        <div class="slide content-slide">
+            <h2>1. Through His Word</h2>
+            <div style="background: #2a3f5f; padding: 30px; border-radius: 15px; margin-bottom: 30px;">
+                <p style="font-size: 1.3em; font-style: italic;">"All Scripture is God-breathed and is useful for teaching, rebuking, correcting and training in righteousness"</p>
+                <p style="margin-top: 15px;">- 2 Timothy 3:16-17</p>
+            </div>
+            <ul>
+                <li>The Bible is God's primary voice</li>
+                <li>It never contradicts His character</li>
+                <li>Specific verses can leap off the page</li>
+                <li>Themes emerge through consistent reading</li>
+                <li>Foundation for testing all other words</li>
+            </ul>
+        </div>
+
+        <!-- Slide 5: Through the Holy Spirit -->
+        <div class="slide content-slide">
+            <h2>2. Through the Holy Spirit</h2>
+            <div style="background: #2a3f5f; padding: 30px; border-radius: 15px; margin-bottom: 30px;">
+                <p style="font-size: 1.3em; font-style: italic;">"When he, the Spirit of truth, comes, he will guide you into all the truth."</p>
+                <p style="margin-top: 15px;">- John 16:13</p>
+            </div>
+            <h3>The Spirit speaks through:</h3>
+            <ul>
+                <li>Inner promptings and impressions</li>
+                <li>Dreams and visions</li>
+                <li>Words of knowledge or wisdom</li>
+                <li>Deep inner peace or unrest</li>
+                <li>Illumination of Scripture</li>
+            </ul>
+        </div>
+
+        <!-- Slide 6: Four Ways Grid -->
+        <div class="slide content-slide">
+            <h2>More Ways God Speaks</h2>
+            <div class="ways-grid">
+                <div class="way-card">
+                    <h4>3. Through Circumstances</h4>
+                    <p>Open and closed doors<br>Divine appointments<br>Provision and timing<br>Obstacles and opportunities</p>
+                </div>
+                <div class="way-card">
+                    <h4>4. Through Godly Counsel</h4>
+                    <p>Wise mentors and leaders<br>Prophetic words<br>Community confirmation<br>Accountability partners</p>
+                </div>
+                <div class="way-card">
+                    <h4>5. Through Creation</h4>
+                    <p>Nature's testimony<br>Object lessons<br>Divine metaphors<br>Seasonal meanings</p>
+                </div>
+                <div class="way-card">
+                    <h4>6. Through Peace</h4>
+                    <p>Inner witness<br>Settled assurance<br>Absence of striving<br>Heart alignment</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Biblical Examples -->
+        <div class="slide content-slide">
+            <h2>Biblical Examples</h2>
+            <h3 style="color: #4db6ac; margin-bottom: 30px;">God spoke uniquely to each person</h3>
+            <ul style="font-size: 1.2em;">
+                <li><strong>Moses:</strong> Burning bush and face-to-face</li>
+                <li><strong>Samuel:</strong> Audible voice in the night</li>
+                <li><strong>Elijah:</strong> Still small voice after the storm</li>
+                <li><strong>Joseph:</strong> Dreams and interpretations</li>
+                <li><strong>Paul:</strong> Visions and revelations</li>
+                <li><strong>Peter:</strong> Trance and vision on rooftop</li>
+            </ul>
+            <p style="margin-top: 30px; font-size: 1.3em;">God meets us where we are!</p>
+        </div>
+
+        <!-- Slide 8: Lectio Divina Practice -->
+        <div class="slide practice-slide">
+            <h2>Practice: Lectio Divina</h2>
+            <p style="font-size: 1.3em; margin-bottom: 30px;">Ancient practice of sacred reading</p>
+            <div class="lectio-steps">
+                <div class="lectio-step">
+                    <h4>1. Lectio (Read)</h4>
+                    <p>Read slowly, savoring each word</p>
+                </div>
+                <div class="lectio-step">
+                    <h4>2. Meditatio (Meditate)</h4>
+                    <p>Reflect on what stands out</p>
+                </div>
+                <div class="lectio-step">
+                    <h4>3. Oratio (Pray)</h4>
+                    <p>Respond to God about what you've heard</p>
+                </div>
+                <div class="lectio-step">
+                    <h4>4. Contemplatio (Contemplate)</h4>
+                    <p>Rest in God's presence</p>
+                </div>
+            </div>
+            <p style="margin-top: 30px;">Try this with Psalm 139 this week!</p>
+        </div>
+
+        <!-- Slide 9: Assignment -->
+        <div class="slide content-slide">
+            <h2>Your "God Speaks" Journal</h2>
+            <div style="background: #2a3f5f; padding: 40px; border-radius: 20px;">
+                <h3 style="color: #4db6ac; margin-bottom: 30px;">This Week's Assignment:</h3>
+                <ol style="text-align: left; font-size: 1.3em; line-height: 2.5;">
+                    <li>Start a dedicated journal for hearing God</li>
+                    <li>Each day, record:
+                        <ul style="margin-left: 30px; margin-top: 10px;">
+                            <li>Scripture that spoke to you</li>
+                            <li>Inner promptings or impressions</li>
+                            <li>Circumstances that seem significant</li>
+                            <li>Words from others that resonate</li>
+                        </ul>
+                    </li>
+                    <li>Look for patterns and confirmation</li>
+                    <li>Test everything against Scripture</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Slide 10: Closing -->
+        <div class="slide title-slide">
+            <h2>Remember This Truth</h2>
+            <p style="font-size: 2em; margin: 40px 0;">God is speaking.</p>
+            <p style="font-size: 1.8em; margin-bottom: 40px;">The question is: Are we listening?</p>
+            <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px;">
+                <p style="font-size: 1.3em;">"Whether you turn to the right or to the left, your ears will hear a voice behind you, saying, 'This is the way; walk in it.'"</p>
+                <p style="margin-top: 15px;">- Isaiah 30:21</p>
+            </div>
+            <p style="margin-top: 40px;">Next: Wednesday - Cultivating a Listening Heart</p>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">Previous</button>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 10;
+
+        function changeSlide(direction) {
+            const slides = document.querySelectorAll('.slide');
+            slides[currentSlide - 1].classList.remove('active');
+            
+            currentSlide += direction;
+            if (currentSlide > totalSlides) currentSlide = totalSlides;
+            if (currentSlide < 1) currentSlide = 1;
+            
+            slides[currentSlide - 1].classList.add('active');
+            document.getElementById('currentSlide').textContent = currentSlide;
+            
+            updateProgressBar();
+            updateNavButtons();
+        }
+
+        function updateProgressBar() {
+            const progress = (currentSlide / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function updateNavButtons() {
+            document.getElementById('prevBtn').disabled = currentSlide === 1;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
+            document.getElementById('nextBtn').textContent = currentSlide === totalSlides ? 'Complete' : 'Next';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+        });
+
+        updateProgressBar();
+        updateNavButtons();
+    </script>
+</body>
+</html>

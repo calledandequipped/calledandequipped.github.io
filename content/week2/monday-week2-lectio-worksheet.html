@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lectio Divina - Sacred Reading Practice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background: #e8eaf6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #1a237e 0%, #3949ab 100%);
+            color: white;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #3949ab;
+            font-size: 20px;
+            margin: 25px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        h3 {
+            color: #5e35b1;
+            font-size: 16px;
+            margin: 15px 0 10px;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .subtitle {
+            font-style: italic;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .intro-box {
+            background: #e8eaf6;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #3949ab;
+        }
+
+        .time-note {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin: 20px 0;
+            padding: 10px;
+            background: #fff9c4;
+            border-radius: 5px;
+        }
+
+        .scripture-box {
+            background: #f5f5f5;
+            border-left: 4px solid #64b5f6;
+            padding: 20px;
+            margin: 20px 0;
+            font-size: 18px;
+            font-style: italic;
+        }
+
+        .scripture-ref {
+            display: block;
+            text-align: right;
+            font-size: 14px;
+            color: #666;
+            margin-top: 10px;
+            font-style: normal;
+        }
+
+        .step-container {
+            background: #fafafa;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #3949ab;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 20px;
+        }
+
+        .step-title {
+            display: inline-block;
+            font-size: 20px;
+            color: #1a237e;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin: 20px 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: 'Georgia', serif;
+            resize: vertical;
+        }
+
+        textarea {
+            min-height: 100px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .prayer-prompt {
+            background: #f3e5f5;
+            border-left: 4px solid #7e57c2;
+            padding: 15px;
+            margin: 15px 0;
+            font-style: italic;
+        }
+
+        .latin-pronunciation {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+            z-index: 1000;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #3949ab;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .submit-button {
+            background: #3949ab;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background: #1a237e;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .submit-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .success-message,
+        .error-message {
+            display: none;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .success-message {
+            background: #4caf50;
+            color: white;
+        }
+
+        .error-message {
+            background: #f44336;
+            color: white;
+        }
+
+        .reflection-box {
+            background: #e8f5e9;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .word-display {
+            border: 2px dashed #666;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            margin: 20px 0;
+            background: #fafafa;
+        }
+
+        .timer-display {
+            text-align: center;
+            font-size: 24px;
+            color: #3949ab;
+            margin: 20px 0;
+            padding: 15px;
+            background: #e8eaf6;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                border-radius: 0;
+            }
+            
+            .header, .content {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressBar"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Lectio Divina</h1>
+            <p class="subtitle">Sacred Reading - An Ancient Practice of Hearing God Through Scripture</p>
+            <p>Week 2, Day 1: The Many Ways God Speaks</p>
+        </div>
+
+        <div class="content">
+            <div class="intro-box">
+                <p><strong>What is Lectio Divina?</strong> Latin for "divine reading," this ancient practice helps us move from reading Scripture for information to experiencing transformation through communion with God. It's not about analyzing the text but allowing the text to read us.</p>
+            </div>
+
+            <div class="time-note">
+                ⏰ Set aside 30-45 minutes for this practice in a quiet, comfortable space
+            </div>
+
+            <form id="lectioForm" onsubmit="handleSubmit(event)">
+                <!-- User Information -->
+                <div class="step-container">
+                    <h2>Your Information</h2>
+                    <div class="form-group">
+                        <label for="userName">Name:</label>
+                        <input type="text" id="userName" name="userName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userEmail">Email:</label>
+                        <input type="email" id="userEmail" name="userEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date:</label>
+                        <input type="text" id="date" name="date" value="" readonly>
+                    </div>
+                </div>
+
+                <!-- Preparation -->
+                <div class="step-container">
+                    <h2>Preparation</h2>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="prep1" name="preparation" value="quiet_place">
+                        <label for="prep1">Find a quiet place where you won't be disturbed</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="prep2" name="preparation" value="phone_silenced">
+                        <label for="prep2">Silence your phone and remove distractions</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="prep3" name="preparation" value="candle_lit">
+                        <label for="prep3">Light a candle if it helps you focus (optional)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="prep4" name="preparation" value="deep_breaths">
+                        <label for="prep4">Take three deep breaths to center yourself</label>
+                    </div>
+
+                    <div class="prayer-prompt">
+                        "Lord, I come before You with an open heart. Speak to me through Your Word. Help me to hear Your voice and respond in faith. Amen."
+                    </div>
+                </div>
+
+                <!-- Today's Scripture -->
+                <div class="step-container">
+                    <h2>Today's Scripture</h2>
+                    <div class="scripture-box">
+                        "Be still, and know that I am God; I will be exalted among the nations, I will be exalted in the earth."
+                        <span class="scripture-ref">- Psalm 46:10 (NIV)</span>
+                    </div>
+
+                    <div class="latin-pronunciation">
+                        <strong>Pronunciation Guide:</strong><br>
+                        • Lectio (LEK-tsee-oh) = Read<br>
+                        • Meditatio (med-ih-TAH-tsee-oh) = Meditate<br>
+                        • Oratio (oh-RAH-tsee-oh) = Pray<br>
+                        • Contemplatio (con-tem-PLAH-tsee-oh) = Contemplate
+                    </div>
+                </div>
+
+                <!-- Step 1: Lectio -->
+                <div class="step-container">
+                    <div>
+                        <span class="step-number">1</span>
+                        <span class="step-title">Lectio (Read) - 5 minutes</span>
+                    </div>
+                    
+                    <p style="margin: 15px 0 10px 55px;">Read the passage slowly, savoring each word. Read it aloud if possible. Listen for a word or phrase that catches your attention or seems to shimmer with meaning.</p>
+                    
+                    <div class="timer-display" id="timer1">Click to start 5-minute timer</div>
+                    
+                    <div class="form-group">
+                        <label for="wordPhrase">The word or phrase that stands out to me is:</label>
+                        <input type="text" id="wordPhrase" name="wordPhrase" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="handwrittenScripture">Write the scripture again in your own words:</label>
+                        <textarea id="handwrittenScripture" name="handwrittenScripture" required placeholder="Be still, and know that I am God..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Step 2: Meditatio -->
+                <div class="step-container">
+                    <div>
+                        <span class="step-number">2</span>
+                        <span class="step-title">Meditatio (Meditate) - 10 minutes</span>
+                    </div>
+                    
+                    <p style="margin: 15px 0 10px 55px;">Return to your word or phrase. Repeat it slowly, letting it interact with your thoughts, hopes, memories, and desires. How does this word connect with your life today?</p>
+                    
+                    <div class="timer-display" id="timer2">Click to start 10-minute timer</div>
+                    
+                    <div class="form-group">
+                        <label for="meditationNotice">As I meditate on this word/phrase, I notice:</label>
+                        <textarea id="meditationNotice" name="meditationNotice" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lifeConnection">This word/phrase connects to my life in this way:</label>
+                        <textarea id="lifeConnection" name="lifeConnection" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="godSaying">I sense God might be saying:</label>
+                        <textarea id="godSaying" name="godSaying" required></textarea>
+                    </div>
+                </div>
+
+                <!-- Step 3: Oratio -->
+                <div class="step-container">
+                    <div>
+                        <span class="step-number">3</span>
+                        <span class="step-title">Oratio (Pray) - 10 minutes</span>
+                    </div>
+                    
+                    <p style="margin: 15px 0 10px 55px;">Begin to speak to God about what you've heard. This is your response to His word. Be honest about your feelings, questions, gratitude, or needs. Let this be a conversation.</p>
+                    
+                    <div class="timer-display" id="timer3">Click to start 10-minute timer</div>
+                    
+                    <div class="form-group">
+                        <label for="prayerResponse">My prayer response to God:</label>
+                        <textarea id="prayerResponse" name="prayerResponse" required style="min-height: 150px;"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="questions">Questions I want to ask God:</label>
+                        <textarea id="questions" name="questions" required></textarea>
+                    </div>
+                </div>
+
+                <!-- Step 4: Contemplatio -->
+                <div class="step-container">
+                    <div>
+                        <span class="step-number">4</span>
+                        <span class="step-title">Contemplatio (Contemplate) - 10 minutes</span>
+                    </div>
+                    
+                    <p style="margin: 15px 0 10px 55px;">Simply rest in God's presence. Let go of words and thoughts. Like a child resting in a parent's arms, just be with God. If your mind wanders, gently return to resting.</p>
+                    
+                    <div class="timer-display" id="timer4">Click to start 10-minute timer</div>
+                    
+                    <div class="form-group">
+                        <label for="restingExperience">During this time of resting, I experienced:</label>
+                        <textarea id="restingExperience" name="restingExperience" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="impressions">Any images, feelings, or impressions that came:</label>
+                        <textarea id="impressions" name="impressions" required></textarea>
+                    </div>
+                </div>
+
+                <!-- Reflection & Response -->
+                <div class="reflection-box">
+                    <h2>Reflection & Response</h2>
+                    
+                    <div class="form-group">
+                        <label for="howGodSpoke">1. How did God speak to me today?</label>
+                        <textarea id="howGodSpoke" name="howGodSpoke" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="invitation">2. What is He inviting me to do or become?</label>
+                        <textarea id="invitation" name="invitation" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="response">3. How will I respond to what I've heard?</label>
+                        <textarea id="response" name="response" required></textarea>
+                    </div>
+                </div>
+
+                <!-- Action Step -->
+                <div class="step-container">
+                    <h2>Action Step</h2>
+                    <p>Write the word or phrase that spoke to you on a card or in your phone. Return to it throughout this week, continuing to listen for what God wants to say through it.</p>
+                    
+                    <div class="word-display">
+                        <p style="color: #666; margin-bottom: 10px;">My word/phrase for this week:</p>
+                        <div class="form-group">
+                            <input type="text" id="weekWord" name="weekWord" required style="font-size: 24px; font-weight: bold; color: #1a237e; text-align: center; border: none; background: transparent;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="prayer-prompt">
+                    "Thank You, Lord, for speaking to me through Your Word. Help me to carry what I've heard into my daily life. Give me ears to hear and a heart to obey. Continue to speak to me throughout this week. In Jesus' name, Amen."
+                </div>
+
+                <div class="success-message" id="successMessage">
+                    ✓ Your Lectio Divina practice has been saved successfully!
+                </div>
+
+                <div class="error-message" id="errorMessage">
+                    ✗ There was an error saving your practice. Please try again.
+                </div>
+
+                <button type="submit" class="submit-button" id="submitButton">Submit Lectio Divina Practice</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Set today's date
+        document.getElementById('date').value = new Date().toLocaleDateString();
+
+        // Timer functionality
+        function startTimer(elementId, minutes) {
+            const element = document.getElementById(elementId);
+            let seconds = minutes * 60;
+            
+            const interval = setInterval(() => {
+                const mins = Math.floor(seconds / 60);
+                const secs = seconds % 60;
+                element.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+                
+                if (seconds === 0) {
+                    clearInterval(interval);
+                    element.textContent = 'Time complete! ✓';
+                    element.style.background = '#4caf50';
+                    element.style.color = 'white';
+                }
+                
+                seconds--;
+            }, 1000);
+        }
+
+        // Add click listeners to timers
+        document.getElementById('timer1').addEventListener('click', () => startTimer('timer1', 5));
+        document.getElementById('timer2').addEventListener('click', () => startTimer('timer2', 10));
+        document.getElementById('timer3').addEventListener('click', () => startTimer('timer3', 10));
+        document.getElementById('timer4').addEventListener('click', () => startTimer('timer4', 10));
+
+        // Update word/phrase display
+        document.getElementById('wordPhrase').addEventListener('input', (e) => {
+            document.getElementById('weekWord').value = e.target.value;
+        });
+
+        // Progress bar functionality
+        function updateProgress() {
+            const form = document.getElementById('lectioForm');
+            const requiredFields = form.querySelectorAll('[required]');
+            const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+            
+            let completed = 0;
+            let total = requiredFields.length + 1; // +1 for checkboxes
+            
+            requiredFields.forEach(field => {
+                if (field.value.trim() !== '') {
+                    completed++;
+                }
+            });
+            
+            // At least 2 checkboxes checked
+            const checkedBoxes = form.querySelectorAll('input[type="checkbox"]:checked').length;
+            if (checkedBoxes >= 2) completed++;
+            
+            const progress = (completed / total) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        // Add event listeners
+        document.querySelectorAll('input, textarea').forEach(field => {
+            field.addEventListener('input', updateProgress);
+            field.addEventListener('change', updateProgress);
+        });
+
+        // Google Sheets Integration
+        const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
+
+        async function handleSubmit(event) {
+            event.preventDefault();
+            
+            const submitButton = document.getElementById('submitButton');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            submitButton.disabled = true;
+            submitButton.textContent = 'Submitting...';
+            
+            // Collect form data
+            const formData = new FormData(event.target);
+            const data = {
+                timestamp: new Date().toISOString(),
+                week: 2,
+                day: 'Monday',
+                exercise: 'Lectio Divina Practice',
+                responses: {}
+            };
+            
+            // Process form data
+            for (let [key, value] of formData.entries()) {
+                if (data.responses[key]) {
+                    if (!Array.isArray(data.responses[key])) {
+                        data.responses[key] = [data.responses[key]];
+                    }
+                    data.responses[key].push(value);
+                } else {
+                    data.responses[key] = value;
+                }
+            }
+            
+            // Convert checkbox arrays to strings
+            if (Array.isArray(data.responses.preparation)) {
+                data.responses.preparation = data.responses.preparation.join(', ');
+            }
+            
+            try {
+                // Submit to Google Sheets
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                // Show success message
+                successMessage.style.display = 'block';
+                errorMessage.style.display = 'none';
+                
+                // Save to localStorage as backup
+                const savedPractices = JSON.parse(localStorage.getItem('lectioDivinaPractices') || '[]');
+                savedPractices.push(data);
+                localStorage.setItem('lectioDivinaPractices', JSON.stringify(savedPractices));
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Submit Lectio Divina Practice';
+            }
+        }
+
+        // Initialize progress
+        updateProgress();
+    </script>
+</body>
+</html>
