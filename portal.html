@@ -738,54 +738,361 @@
 
         // Course content structure
         const courseContent = {
-            1: {
-                title: "Created for a Purpose",
-                sessions: {
-                    monday: {
-                        title: "You Are God's Masterpiece",
-                        videoUrl: "https://player.vimeo.com/video/123456789", // Replace with actual
-                        description: "Deep dive into Ephesians 2:10 - Understanding your unique design and spiritual DNA",
-                        resources: ["Divine Design Profile Template", "Ephesians Study Guide"]
-                    },
-                    wednesday: {
-                        title: "Before You Were Born",
-                        videoUrl: "https://player.vimeo.com/video/123456790",
-                        description: "Studying Jeremiah 1:5 and Psalm 139:13-16 - God's foreknowledge of your purpose",
-                        resources: ["Generational Calling Worksheet", "Breaking Limiting Beliefs Guide"]
-                    },
-                    friday: {
-                        title: "The Joseph Journey",
-                        videoUrl: "https://player.vimeo.com/video/123456791",
-                        description: "Learning from Joseph's path to purpose through adversity",
-                        resources: ["Life Journey Map", "Modern-Day Josephs Case Studies"]
-                    }
-                }
-            },
-            2: {
-                title: "Hearing God's Voice",
-                sessions: {
-                    monday: {
-                        title: "The Many Ways God Speaks",
-                        videoUrl: "https://player.vimeo.com/video/123456792",
-                        description: "Biblical examples of divine communication and how to recognize God's voice today",
-                        resources: ["God Speaks Journal Template", "Divine Communication Guide"]
-                    },
-                    wednesday: {
-                        title: "Cultivating a Listening Heart",
-                        videoUrl: "https://player.vimeo.com/video/123456793",
-                        description: "Creating space for silence, practicing Lectio Divina, and spiritual disciplines",
-                        resources: ["Lectio Divina Guide", "24-Hour Media Fast Plan"]
-                    },
-                    friday: {
-                        title: "Confirming Your Calling",
-                        videoUrl: "https://player.vimeo.com/video/123456794",
-                        description: "Biblical tests for authentic calling and creating your confirmation checklist",
-                        resources: ["Calling Confirmation Checklist", "Prophetic Encouragement Guide"]
-                    }
-                }
-            },
-            // Add remaining weeks 3-6 with same structure
-        };
+  "1": {
+    "title": "Created for a Purpose",
+    "sessions": {
+      "monday": {
+        "title": "You Are God's Masterpiece",
+        "slideshow": "/content/week1/monday-week1-slides.html",
+        "worksheet": "/content/week1/monday-week1-prayer-worksheet.html",
+        "description": "Session content for Created for a Purpose - monday",
+        "resources": [
+          {
+            "name": "Session Slideshow",
+            "type": "slideshow",
+            "url": "/content/week1/monday-week1-slides.html"
+          },
+          {
+            "name": "Monday Worksheet",
+            "type": "worksheet",
+            "url": "/content/week1/monday-week1-prayer-worksheet.html"
+          }
+        ]
+      },
+      "wednesday": {
+        "title": "Before You Were Born",
+        "slideshow": "/content/week1/wednesday-week1-slides.html",
+        "worksheet": "/content/week1/wednesday-week1-workshop.html",
+        "description": "Session content for Created for a Purpose - wednesday",
+        "resources": [
+          {
+            "name": "Session Slideshow",
+            "type": "slideshow",
+            "url": "/content/week1/wednesday-week1-slides.html"
+          },
+          {
+            "name": "Wednesday Worksheet",
+            "type": "worksheet",
+            "url": "/content/week1/wednesday-week1-workshop.html"
+          }
+        ]
+      },
+      "friday": {
+        "title": "The Joseph Journey",
+        "slideshow": "/content/week1/friday-week1-slides.html",
+        "worksheet": "/content/week1/friday-week1-project.html",
+        "description": "Session content for Created for a Purpose - friday",
+        "resources": [
+          {
+            "name": "Session Slideshow",
+            "type": "slideshow",
+            "url": "/content/week1/friday-week1-slides.html"
+          },
+          {
+            "name": "Friday Worksheet",
+            "type": "worksheet",
+            "url": "/content/week1/friday-week1-project.html"
+          }
+        ]
+      }
+    }
+  },
+  "2": {
+    "title": "Hearing God's Voice",
+    "sessions": {
+      "monday": {
+        "title": "The Many Ways God Speaks",
+        "slideshow": "/content/week2/monday-week2-slideshow.html",
+        "worksheet": "/content/week2/monday-week2-lectio-worksheet.html",
+        "description": "Session content for Hearing God's Voice - monday",
+        "resources": [
+          {
+            "name": "Session Slideshow",
+            "type": "slideshow",
+            "url": "/content/week2/monday-week2-slideshow.html"
+          },
+          {
+            "name": "Monday Worksheet",
+            "type": "worksheet",
+            "url": "/content/week2/monday-week2-lectio-worksheet.html"
+          }
+        ]
+      },
+      "wednesday": {
+        "title": "Cultivating a Listening Heart",
+        "slideshow": "/content/week2/wednesday-week2-slideshow.html",
+        "worksheet": "/content/week2/wednesday-week2-workshop.html",
+        "description": "Session content for Hearing God's Voice - wednesday",
+        "resources": [
+          {
+            "name": "Session Slideshow",
+            "type": "slideshow",
+            "url": "/content/week2/wednesday-week2-slideshow.html"
+          },
+          {
+            "name": "Wednesday Worksheet",
+            "type": "worksheet",
+            "url": "/content/week2/wednesday-week2-workshop.html"
+          }
+        ]
+      },
+      "friday": {
+        "title": "Confirming Your Calling",
+        "slideshow": "/content/week2/week2-friday-slideshow.html",
+        "worksheet": "/content/week2/week2-friday-checklist.html",
+        "description": "Session content for Hearing God's Voice - friday",
+        "resources": [
+          {
+            "name": "Session Slideshow",
+            "type": "slideshow",
+            "url": "/content/week2/week2-friday-slideshow.html"
+          },
+          {
+            "name": "Friday Worksheet",
+            "type": "worksheet",
+            "url": "/content/week2/week2-friday-checklist.html"
+          }
+        ]
+      }
+    }
+  },
+  "3": {
+    "title": "Aligning Passion with Purpose",
+    "sessions": {
+      "monday": {
+        "title": "Holy Ambition",
+        "slideshow": "/content/week3/monday-week3-slideshow.html",
+        "worksheet": "/content/week3/monday-week3-worksheet.html",
+        "description": "Session content for Aligning Passion with Purpose - monday",
+        "resources": [
+          {
+            "name": "Session Slideshow",
+            "type": "slideshow",
+            "url": "/content/week3/monday-week3-slideshow.html"
+          },
+          {
+            "name": "Monday Worksheet",
+            "type": "worksheet",
+            "url": "/content/week3/monday-week3-worksheet.html"
+          }
+        ]
+      },
+      "wednesday": {
+        "title": "Marketplace Ministry",
+        "slideshow": "/content/week3/wednesday-week3-slideshow.html",
+        "worksheet": "/content/week3/wednesday-week3-worksheet.html",
+        "description": "Session content for Aligning Passion with Purpose - wednesday",
+        "resources": [
+          {
+            "name": "Session Slideshow",
+            "type": "slideshow",
+            "url": "/content/week3/wednesday-week3-slideshow.html"
+          },
+          {
+            "name": "Wednesday Worksheet",
+            "type": "worksheet",
+            "url": "/content/week3/wednesday-week3-worksheet.html"
+          }
+        ]
+      },
+      "friday": {
+        "title": "Stewardship of Talents",
+        "slideshow": "/content/week3/friday-week3-slideshow.html",
+        "worksheet": "/content/week3/friday-week3-worksheet.html",
+        "description": "Session content for Aligning Passion with Purpose - friday",
+        "resources": [
+          {
+            "name": "Session Slideshow",
+            "type": "slideshow",
+            "url": "/content/week3/friday-week3-slideshow.html"
+          },
+          {
+            "name": "Friday Worksheet",
+            "type": "worksheet",
+            "url": "/content/week3/friday-week3-worksheet.html"
+          }
+        ]
+      }
+    }
+  },
+  "4": {
+    "title": "Overcoming Purpose Blockers",
+    "sessions": {
+      "monday": {
+        "title": "Conquering Fear and Doubt",
+        "slideshow": "/content/week4/monday-week4-slideshow.html",
+        "worksheet": "/content/week4/monday-week4-worksheet.html",
+        "description": "Session content for Overcoming Purpose Blockers - monday",
+        "resources": [
+          {
+            "name": "Session Slideshow",
+            "type": "slideshow",
+            "url": "/content/week4/monday-week4-slideshow.html"
+          },
+          {
+            "name": "Monday Worksheet",
+            "type": "worksheet",
+            "url": "/content/week4/monday-week4-worksheet.html"
+          }
+        ]
+      },
+      "wednesday": {
+        "title": "Breaking Comparison and Competition",
+        "slideshow": "/content/week4/wednesday-week4-slideshow.html",
+        "worksheet": "/content/week4/wednesday-week4-worksheet.html",
+        "description": "Session content for Overcoming Purpose Blockers - wednesday",
+        "resources": [
+          {
+            "name": "Session Slideshow",
+            "type": "slideshow",
+            "url": "/content/week4/wednesday-week4-slideshow.html"
+          },
+          {
+            "name": "Wednesday Worksheet",
+            "type": "worksheet",
+            "url": "/content/week4/wednesday-week4-worksheet.html"
+          }
+        ]
+      },
+      "friday": {
+        "title": "Patience in the Process",
+        "slideshow": "/content/week4/friday-week4-slideshow.html",
+        "worksheet": "/content/week4/friday-week4-worksheet.html",
+        "description": "Session content for Overcoming Purpose Blockers - friday",
+        "resources": [
+          {
+            "name": "Session Slideshow",
+            "type": "slideshow",
+            "url": "/content/week4/friday-week4-slideshow.html"
+          },
+          {
+            "name": "Friday Worksheet",
+            "type": "worksheet",
+            "url": "/content/week4/friday-week4-worksheet.html"
+          }
+        ]
+      }
+    }
+  },
+  "5": {
+    "title": "Practical Purpose Implementation",
+    "sessions": {
+      "monday": {
+        "title": "Strategic Planning with God",
+        "slideshow": "/content/week5/monday-week5-slideshow.html",
+        "worksheet": "/content/week5/monday-week5-worksheet.html",
+        "description": "Session content for Practical Purpose Implementation - monday",
+        "resources": [
+          {
+            "name": "Session Slideshow",
+            "type": "slideshow",
+            "url": "/content/week5/monday-week5-slideshow.html"
+          },
+          {
+            "name": "Monday Worksheet",
+            "type": "worksheet",
+            "url": "/content/week5/monday-week5-worksheet.html"
+          }
+        ]
+      },
+      "wednesday": {
+        "title": "Building Your Purpose Support System",
+        "slideshow": "/content/week5/wednesday-week5-slideshow.html",
+        "worksheet": "/content/week5/wednesday-week5-worksheet.html",
+        "description": "Session content for Practical Purpose Implementation - wednesday",
+        "resources": [
+          {
+            "name": "Session Slideshow",
+            "type": "slideshow",
+            "url": "/content/week5/wednesday-week5-slideshow.html"
+          },
+          {
+            "name": "Wednesday Worksheet",
+            "type": "worksheet",
+            "url": "/content/week5/wednesday-week5-worksheet.html"
+          }
+        ]
+      },
+      "friday": {
+        "title": "Financial Stewardship for Purpose",
+        "slideshow": "/content/week5/friday-week5-slideshow.html",
+        "worksheet": "/content/week5/friday-week5-worksheet.html",
+        "description": "Session content for Practical Purpose Implementation - friday",
+        "resources": [
+          {
+            "name": "Session Slideshow",
+            "type": "slideshow",
+            "url": "/content/week5/friday-week5-slideshow.html"
+          },
+          {
+            "name": "Friday Worksheet",
+            "type": "worksheet",
+            "url": "/content/week5/friday-week5-worksheet.html"
+          }
+        ]
+      }
+    }
+  },
+  "6": {
+    "title": "Living Your Purpose Daily",
+    "sessions": {
+      "monday": {
+        "title": "Daily Rhythms of Purpose",
+        "slideshow": "/content/week6/monday-week6-slideshow.html",
+        "worksheet": "/content/week6/monday-week6-worksheet.html",
+        "description": "Session content for Living Your Purpose Daily - monday",
+        "resources": [
+          {
+            "name": "Session Slideshow",
+            "type": "slideshow",
+            "url": "/content/week6/monday-week6-slideshow.html"
+          },
+          {
+            "name": "Monday Worksheet",
+            "type": "worksheet",
+            "url": "/content/week6/monday-week6-worksheet.html"
+          }
+        ]
+      },
+      "wednesday": {
+        "title": "Legacy and Multiplication",
+        "slideshow": "/content/week6/wednesday-week6-slideshow.html",
+        "worksheet": "/content/week6/wednesday-week6-worksheet.html",
+        "description": "Session content for Living Your Purpose Daily - wednesday",
+        "resources": [
+          {
+            "name": "Session Slideshow",
+            "type": "slideshow",
+            "url": "/content/week6/wednesday-week6-slideshow.html"
+          },
+          {
+            "name": "Wednesday Worksheet",
+            "type": "worksheet",
+            "url": "/content/week6/wednesday-week6-worksheet.html"
+          }
+        ]
+      },
+      "friday": {
+        "title": "Commissioning and Sending",
+        "slideshow": "/content/week6/friday-week6-slideshow.html",
+        "worksheet": "/content/week6/friday-week6-worksheet.html",
+        "description": "Session content for Living Your Purpose Daily - friday",
+        "resources": [
+          {
+            "name": "Session Slideshow",
+            "type": "slideshow",
+            "url": "/content/week6/friday-week6-slideshow.html"
+          },
+          {
+            "name": "Friday Worksheet",
+            "type": "worksheet",
+            "url": "/content/week6/friday-week6-worksheet.html"
+          }
+        ]
+      }
+    }
+  }
+};
 
         // Initialize on page load
         window.addEventListener('DOMContentLoaded', async () => {
