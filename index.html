@@ -860,7 +860,13 @@
                 const data = await response.json();
                 
                 // Redirect to Stripe Checkout
-                window.location.href = data.url;
+                console.log('Response data:', data);
+				if (data.url) {
+   					window.location.href = data.url;
+				} else {
+    				alert('Error: No checkout URL received. Check console for details.');
+    				console.error('Full response:', data);
+				}
             } catch (error) {
                 alert('Error: ' + error.message);
                 closeModal();
